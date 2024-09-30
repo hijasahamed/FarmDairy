@@ -1,8 +1,6 @@
-import 'package:farm_dairy/views/screens/login_signup_screen/login_signup_screen_widgets/login_signup_screen_email_form/login_signup_screen_email_form.dart';
+import 'package:farm_dairy/views/screens/login_signup_screen/login_signup_screen_widgets/login_signup_screen_authentication_forms/login_signup_screen_authentication_forms.dart';
 import 'package:farm_dairy/views/screens/login_signup_screen/login_signup_screen_widgets/login_signup_screen_login_text/login_signup_screen_login_text.dart';
 import 'package:farm_dairy/views/screens/login_signup_screen/login_signup_screen_widgets/login_signup_screen_logo_widget/login_signup_screen_logo_widget.dart';
-import 'package:farm_dairy/views/screens/login_signup_screen/login_signup_screen_widgets/login_signup_screen_password_form/login_signup_screen_password_form.dart';
-import 'package:farm_dairy/views/screens/login_signup_screen/login_signup_screen_widgets/login_signup_screen_role_form/login_signup_screen_role_form.dart';
 import 'package:flutter/material.dart';
 
 class LoginSignUpScreenWidgets extends StatelessWidget {
@@ -26,9 +24,7 @@ class LoginSignUpScreenWidgets extends StatelessWidget {
             children: [
               LoginSignUpScreenLogo(screenSize: screenSize, isDarkMode: isDarkMode),              
               LoginSignUpScreenLoginText(screenSize: screenSize),              
-              LoginSignUpScreenEmailForm(screenSize: screenSize, isDarkMode: isDarkMode), 
-              LoginSignUpScreenPasswordForm(screenSize: screenSize, isDarkMode: isDarkMode),              
-              LoginSignUpScreenRoleForm(screenSize: screenSize, isDarkMode: isDarkMode),              
+              LoginSignUpScreenAuthenticationForms(screenSize: screenSize, isDarkMode: isDarkMode)
             ],
           ),
         ),
@@ -36,6 +32,8 @@ class LoginSignUpScreenWidgets extends StatelessWidget {
     );
   }
 }
+
+
 
 
 

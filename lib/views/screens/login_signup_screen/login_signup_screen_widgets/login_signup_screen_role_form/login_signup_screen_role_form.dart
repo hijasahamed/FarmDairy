@@ -1,3 +1,4 @@
+import 'package:farm_dairy/controllers/login_signup_screen_functions.dart';
 import 'package:farm_dairy/views/screens/login_signup_screen/login_signup_screen_widgets/text_form_field_widget/text_form_field_widget.dart';
 import 'package:flutter/material.dart';
 
@@ -16,6 +17,7 @@ class LoginSignUpScreenRoleForm extends StatelessWidget {
     return Column(
       children: [
         CustomTextFormField(
+          controller: roleController,
           label: 'Role',
           obscureText: false,
           keyboardType: TextInputType.text,

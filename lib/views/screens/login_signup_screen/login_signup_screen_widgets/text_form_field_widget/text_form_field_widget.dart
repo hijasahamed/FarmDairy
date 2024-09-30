@@ -6,6 +6,7 @@ class CustomTextFormField extends StatelessWidget {
   final TextInputType keyboardType;
   final Size screenSize;
   final bool isDarkMode;
+  final TextEditingController controller;
 
   const CustomTextFormField({
     super.key,
@@ -14,6 +15,7 @@ class CustomTextFormField extends StatelessWidget {
     required this.keyboardType,
     required this.screenSize,
     required this.isDarkMode,
+    required this.controller
   });
 
   @override
@@ -46,6 +48,7 @@ class CustomTextFormField extends StatelessWidget {
     );
 
     return TextFormField(
+      controller: controller,
       decoration: inputDecoration,
       obscureText: obscureText,
       keyboardType: keyboardType,
