@@ -1,5 +1,5 @@
-import 'package:farm_dairy/controllers/functions.dart';
-import 'package:farm_dairy/views/widgets/splash_screen_widgets/splash_screen_body.dart';
+import 'package:farm_dairy/controllers/splash_screen_functions.dart';
+import 'package:farm_dairy/views/screens/splash_screen/splash_screen_body/splash_screen_body.dart';
 import 'package:flutter/material.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -12,7 +12,7 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
-    checkLogging(context: context,screenSize: widget.screenSize,isDarkMode: widget.isDarkMode);
+    checkLogging(context: context,screenSize: widget.screenSize,);
     super.initState();
   }
   @override
@@ -23,4 +23,3 @@ class _SplashScreenState extends State<SplashScreen> {
     );
   }
 }
-
