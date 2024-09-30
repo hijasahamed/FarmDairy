@@ -7,6 +7,7 @@ class CustomTextFormField extends StatelessWidget {
   final Size screenSize;
   final bool isDarkMode;
   final TextEditingController controller;
+  final bool? isRole;
 
   const CustomTextFormField({
     super.key,
@@ -15,7 +16,8 @@ class CustomTextFormField extends StatelessWidget {
     required this.keyboardType,
     required this.screenSize,
     required this.isDarkMode,
-    required this.controller
+    required this.controller,
+    this.isRole
   });
 
   @override

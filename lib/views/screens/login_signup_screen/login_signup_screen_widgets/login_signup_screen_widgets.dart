@@ -32,15 +32,3 @@ class LoginSignUpScreenWidgets extends StatelessWidget {
     );
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
