@@ -1,6 +1,6 @@
 import 'package:connectivity/connectivity.dart';
 import 'package:farm_dairy/models/common_widgets/snack_bar_message_widget.dart';
-import 'package:farm_dairy/views/screens/users_role_screen/users_role_screen.dart';
+import 'package:farm_dairy/views/screens/login_signup_screen/login_signup_screen.dart';
 import 'package:flutter/material.dart';
 
 Future<void> checkLogging({required context,required Size screenSize,}) async {
@@ -21,6 +21,6 @@ Future<void> checkLogging({required context,required Size screenSize,}) async {
 
 Future<void> goToUserRoleScreen({required context,required Size screenSize,}) async {
   Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (ctx) {
-    return UsersRoleScreen(screenSize: screenSize,);
+    return LoginSignupScreen(screenSize: screenSize,);
   }));
 }

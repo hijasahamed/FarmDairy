@@ -12,17 +12,21 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     final isDarkMode = MediaQuery.of(context).platformBrightness == Brightness.dark;
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-      statusBarColor: isDarkMode?Colors.black:const Color.fromARGB(255, 228, 242, 245),
+      statusBarColor: isDarkMode?Colors.black:Colors.white,
       statusBarIconBrightness: isDarkMode?Brightness.light:Brightness.dark,
       statusBarBrightness: isDarkMode?Brightness.light:Brightness.dark,
-      systemNavigationBarColor: isDarkMode?Colors.black:const Color.fromARGB(255, 228, 242, 245),
-      systemNavigationBarDividerColor: isDarkMode?Colors.black:const Color.fromARGB(255, 228, 242, 245),
+      systemNavigationBarColor: isDarkMode?Colors.black:Colors.white,
+      systemNavigationBarDividerColor: isDarkMode?Colors.black:Colors.white,
       systemNavigationBarContrastEnforced: false
     ));    
     final screenSize =MediaQuery.of(context).size;
     return MaterialApp(
       title: 'FarmDairy',
       debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.orange),
+        useMaterial3: true,        
+      ),
       home: SplashScreen(screenSize: screenSize,isDarkMode: isDarkMode,),
     );
   }
