@@ -1,4 +1,5 @@
 import 'package:farm_dairy/views/screens/login_signup_screen/login_signup_screen_widgets/login_signup_screen_authentication_forms/login_signup_screen_authentication_forms.dart';
+import 'package:farm_dairy/views/screens/login_signup_screen/login_signup_screen_widgets/login_signup_screen_login_button_widget/login_signup_screen_login_button_widget.dart';
 import 'package:farm_dairy/views/screens/login_signup_screen/login_signup_screen_widgets/login_signup_screen_login_text/login_signup_screen_login_text.dart';
 import 'package:farm_dairy/views/screens/login_signup_screen/login_signup_screen_widgets/login_signup_screen_logo_widget/login_signup_screen_logo_widget.dart';
 import 'package:flutter/material.dart';
@@ -25,7 +26,7 @@ class LoginSignUpScreenWidgets extends StatelessWidget {
               LoginSignUpScreenLogo(screenSize: screenSize, isDarkMode: isDarkMode),              
               LoginSignUpScreenLoginText(screenSize: screenSize),              
               LoginSignUpScreenAuthenticationForms(screenSize: screenSize, isDarkMode: isDarkMode),
-              
+              LoginSignupScreenLoginButtonWidget(screenSize: screenSize),
             ],
           ),
         ),

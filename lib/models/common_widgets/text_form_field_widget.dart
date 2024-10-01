@@ -57,6 +57,7 @@ class CustomTextFormField extends StatelessWidget {
       decoration: inputDecoration,
       style: TextStyle(color: isDarkMode? Colors.white:Colors.black),
       obscureText: obscureText,
+      autovalidateMode: AutovalidateMode.onUserInteraction,
       keyboardType: keyboardType,
       validator: (value) {
         if (value == null || value.isEmpty) {

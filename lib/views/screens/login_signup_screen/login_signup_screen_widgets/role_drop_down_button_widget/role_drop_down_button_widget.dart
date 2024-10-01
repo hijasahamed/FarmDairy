@@ -10,12 +10,7 @@ class RoleDropDownButtonWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    String? selectedItem;
-    final List<String> dropDownItems = [
-      'Admin',
-      'SalesMan',
-      'Retailer',
-    ];
+    
     return Padding(
       padding: EdgeInsets.only(right: screenSize.width/25),
       child: DropdownButton<String>(
@@ -25,7 +20,7 @@ class RoleDropDownButtonWidget extends StatelessWidget {
         elevation: 5,
         isDense: true,
         iconEnabledColor: const Color(0xFFFD7014),
-        value: selectedItem,
+        value: selectedDropDownItem,
         items: dropDownItems.map((String item) {
           return DropdownMenuItem<String>(
             alignment: Alignment.center,
