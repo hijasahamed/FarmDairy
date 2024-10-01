@@ -1,3 +1,4 @@
+import 'package:farm_dairy/views/screens/login_signup_screen/login_signup_screen_widgets/role_drop_down_button_widget/role_drop_down_button_widget.dart';
 import 'package:flutter/material.dart';
 
 class CustomTextFormField extends StatelessWidget {
@@ -47,7 +48,8 @@ class CustomTextFormField extends StatelessWidget {
         color: isDarkMode ? Colors.white : Colors.grey[850],
       ),
       labelText: label,
-      
+      suffixIcon: (isRole==true)?
+      RoleDropDownButtonWidget(screenSize: screenSize,isDarkMode: isDarkMode,):null
     );
 
     return TextFormField(
