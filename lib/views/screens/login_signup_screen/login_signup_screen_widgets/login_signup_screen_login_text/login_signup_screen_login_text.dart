@@ -23,18 +23,18 @@ class LoginSignUpScreenLoginText extends StatelessWidget {
               return TextWidget(
                 text: 'SignUp',
                 color: const Color(0xFFFD7014),
-                size: screenSize.width / 10,
-                fontFamily: 'FarmDairyFontBold',
-                weight: FontWeight.bold,
+                size: screenSize.width / 20,
+                fontFamily: 'FarmDairyFontNormal',
+                weight: FontWeight.w700,
               );
             }
             else{
               return TextWidget(
                 text: 'Login',
                 color: const Color(0xFFFD7014),
-                size: screenSize.width / 10,
-                fontFamily: 'FarmDairyFontBold',
-                weight: FontWeight.bold,
+                size: screenSize.width / 20,
+                fontFamily: 'FarmDairyFontNormal',
+                weight: FontWeight.w700,
               );
             }
           },
