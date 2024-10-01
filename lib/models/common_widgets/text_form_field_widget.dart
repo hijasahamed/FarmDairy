@@ -47,13 +47,33 @@ class CustomTextFormField extends StatelessWidget {
         color: isDarkMode ? Colors.white : Colors.grey[850],
       ),
       labelText: label,
+      
     );
 
     return TextFormField(
       controller: controller,
       decoration: inputDecoration,
+      style: TextStyle(color: isDarkMode? Colors.white:Colors.black),
       obscureText: obscureText,
       keyboardType: keyboardType,
+      validator: (value) {
+        if (value == null || value.isEmpty) {
+          return 'This field is required';
+        }
+        if (label == 'Email') {
+          final emailRegex = RegExp(
+            r'^[a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$',
+          );
+          if (!emailRegex.hasMatch(value)) {
+            return 'Enter a valid email address';
+          }
+        } else if (label == 'Password') {
+          if (value.length < 6) {
+            return 'Password must be at least 6 characters';
+          }
+        }
+        return null; 
+      },
     );
   }
 }
