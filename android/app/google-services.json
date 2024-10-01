@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "406837924425",
+    "project_id": "farmdairy-61a48",
+    "storage_bucket": "farmdairy-61a48.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:406837924425:android:450d971aba7f63f568e598",
+        "android_client_info": {
+          "package_name": "com.farmdairy"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBsK3OisS9FIhyKsOeX9JBjFpBYTEgfHTc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
