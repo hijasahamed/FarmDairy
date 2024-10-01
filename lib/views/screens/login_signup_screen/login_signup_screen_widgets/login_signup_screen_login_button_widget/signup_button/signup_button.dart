@@ -1,9 +1,8 @@
-import 'package:farm_dairy/controllers/login_signup_screen_functions.dart';
 import 'package:farm_dairy/models/common_widgets/text_widget.dart';
 import 'package:flutter/material.dart';
 
-class LoginButton extends StatelessWidget {
-  const LoginButton({
+class SignUpButton extends StatelessWidget {
+  const SignUpButton({
     super.key,
     required this.screenSize,
   });
@@ -11,10 +10,10 @@ class LoginButton extends StatelessWidget {
   final Size screenSize;
 
   @override
-  Widget build(BuildContext context) { 
+  Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        loginButtonClicked();
+        
       },
       child: Ink(
         height: screenSize.height/17,
@@ -23,7 +22,7 @@ class LoginButton extends StatelessWidget {
           color: const Color(0xFFFD7014),
           borderRadius: BorderRadius.circular(screenSize.width/75)
         ),
-        child: Center(child: TextWidget(text: 'Login', color: Colors.white, size: screenSize.width/17, fontFamily: 'FarmDairyFontBold', weight: FontWeight.bold)),
+        child: Center(child: TextWidget(text: 'Sign Up', color: Colors.white, size: screenSize.width/17, fontFamily: 'FarmDairyFontBold', weight: FontWeight.bold)),
       ),
     );
   }

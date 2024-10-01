@@ -4,7 +4,7 @@ import 'package:farm_dairy/views/screens/login_signup_screen/login_signup_screen
 import 'package:farm_dairy/views/screens/splash_screen/bloc/splash_screen_bloc.dart';
 import 'package:flutter/material.dart';
 
-  SplashScreenBloc noNetworkLoaderBlocInstance = SplashScreenBloc();
+SplashScreenBloc noNetworkLoaderBlocInstance = SplashScreenBloc();
 
 Future<void> checkLogging({required context,required Size screenSize,}) async {
   var connectivityResult = await Connectivity().checkConnectivity();

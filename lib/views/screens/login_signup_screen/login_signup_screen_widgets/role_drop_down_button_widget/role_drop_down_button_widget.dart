@@ -12,7 +12,7 @@ class RoleDropDownButtonWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     
     return Padding(
-      padding: EdgeInsets.only(right: screenSize.width/25),
+      padding: EdgeInsets.only(right: screenSize.width/90),
       child: DropdownButton<String>(
         underline: const SizedBox.shrink(),
         padding: EdgeInsets.all(screenSize.width/20),
