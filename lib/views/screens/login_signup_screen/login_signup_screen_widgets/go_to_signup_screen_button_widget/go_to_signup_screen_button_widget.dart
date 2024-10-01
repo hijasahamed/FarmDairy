@@ -1,4 +1,4 @@
-import 'package:farm_dairy/controllers/login_signup_screen_functions.dart';
+import 'package:farm_dairy/controllers/login_signup_screen_controllers.dart';
 import 'package:farm_dairy/views/screens/login_signup_screen/bloc/login_signup_screen_bloc.dart';
 import 'package:farm_dairy/views/screens/login_signup_screen/login_signup_screen_widgets/go_to_signup_screen_button_widget/back_to_login_button/back_to_login_button.dart';
 import 'package:farm_dairy/views/screens/login_signup_screen/login_signup_screen_widgets/go_to_signup_screen_button_widget/create_account_button_widget/create_account_button_widget.dart';

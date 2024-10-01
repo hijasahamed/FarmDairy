@@ -1,4 +1,4 @@
-import 'package:farm_dairy/controllers/login_signup_screen_functions.dart';
+import 'package:farm_dairy/controllers/login_signup_screen_controllers.dart';
 import 'package:farm_dairy/models/common_widgets/text_widget.dart';
 import 'package:flutter/material.dart';
 
@@ -14,7 +14,7 @@ class LoginButton extends StatelessWidget {
   Widget build(BuildContext context) { 
     return InkWell(
       onTap: () {
-        loginButtonClicked();
+        loginButtonClicked(context: context);
       },
       child: Ink(
         height: screenSize.height/20,

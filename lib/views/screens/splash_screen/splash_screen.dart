@@ -1,4 +1,4 @@
-import 'package:farm_dairy/controllers/splash_screen_functions.dart';
+import 'package:farm_dairy/controllers/splash_screen_controllers.dart';
 import 'package:farm_dairy/views/screens/splash_screen/splash_screen_widgets/splash_screen_body_widget.dart';
 import 'package:flutter/material.dart';
 

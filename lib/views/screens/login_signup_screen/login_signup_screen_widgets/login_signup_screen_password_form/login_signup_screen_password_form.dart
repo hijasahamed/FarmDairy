@@ -1,4 +1,4 @@
-import 'package:farm_dairy/controllers/login_signup_screen_functions.dart';
+import 'package:farm_dairy/controllers/login_signup_screen_controllers.dart';
 import 'package:farm_dairy/models/common_widgets/text_form_field_widget.dart';
 import 'package:flutter/material.dart';
 
