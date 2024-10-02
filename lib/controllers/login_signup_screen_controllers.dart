@@ -41,30 +41,31 @@ void loginButtonClicked({required BuildContext context})async{
   if(userLoginformkey.currentState!.validate()){
     User? user = await firebaseAuthServiceInstance.userLogin(context: context,email: emailController.text,password: passwordController.text);
     if(user!=null){
+      signUpAndLoginCircularBlocInstance.add(SignUpAndLoginCircularIndicatorEvent());
         dynamic userData = await checkIfUserAvailable(email: user.email!);
         if(userData != null){
           final sharedPreferenceStorageInstance = await SharedPreferences.getInstance();
-        await sharedPreferenceStorageInstance.setBool(logedInKey, true);
-        await sharedPreferenceStorageInstance.setString('email', userData.email);
-        await sharedPreferenceStorageInstance.setString('email', userData.password);
-        await sharedPreferenceStorageInstance.setString('email', userData.role);
-        await sharedPreferenceStorageInstance.setString('email', userData.userUid);
-        if(userData.role == 'Admin'){
-          Navigator.of(context).pushAndRemoveUntil(
-            MaterialPageRoute(builder: (context) => AdminHomescreen()),
-            (Route<dynamic> route) => false,
-          );
-        }else if(userData.role == 'SalesMan'){
-          Navigator.of(context).pushAndRemoveUntil(
-            MaterialPageRoute(builder: (context) => SalesManHomeScreen()),
-            (Route<dynamic> route) => false,
-          );
-        }else if(userData.role == 'Retailer'){
-          Navigator.of(context).pushAndRemoveUntil(
-            MaterialPageRoute(builder: (context) => RetailerHomeScreen()),
-            (Route<dynamic> route) => false,
-          );
-        }
+          await sharedPreferenceStorageInstance.setBool(logedInKey, true);
+          await sharedPreferenceStorageInstance.setString('email', userData.email);
+          await sharedPreferenceStorageInstance.setString('password', userData.password);
+          await sharedPreferenceStorageInstance.setString('role', userData.role);
+          await sharedPreferenceStorageInstance.setString('userUid', userData.userUid);
+          if(userData.role == 'Admin'){
+            Navigator.of(context).pushAndRemoveUntil(
+              MaterialPageRoute(builder: (context) => AdminHomescreen()),
+              (Route<dynamic> route) => false,
+            );
+          }else if(userData.role == 'SalesMan'){
+            Navigator.of(context).pushAndRemoveUntil(
+              MaterialPageRoute(builder: (context) => SalesManHomeScreen()),
+              (Route<dynamic> route) => false,
+            );
+          }else if(userData.role == 'Retailer'){
+            Navigator.of(context).pushAndRemoveUntil(
+              MaterialPageRoute(builder: (context) => RetailerHomeScreen()),
+              (Route<dynamic> route) => false,
+            );
+          }
         }
       }
   }
@@ -90,9 +91,9 @@ void signUpButtonClicked({required BuildContext context}) async {
         final sharedPreferenceStorageInstance = await SharedPreferences.getInstance();
         await sharedPreferenceStorageInstance.setBool(logedInKey, true);
         await sharedPreferenceStorageInstance.setString('email', userData.email);
-        await sharedPreferenceStorageInstance.setString('email', userData.password);
-        await sharedPreferenceStorageInstance.setString('email', userData.role);
-        await sharedPreferenceStorageInstance.setString('email', userData.userUid);
+        await sharedPreferenceStorageInstance.setString('password', userData.password);
+        await sharedPreferenceStorageInstance.setString('role', userData.role);
+        await sharedPreferenceStorageInstance.setString('userUid', userData.userUid);
         if(userData.role == 'Admin'){
           Navigator.of(context).pushAndRemoveUntil(
             MaterialPageRoute(builder: (context) => AdminHomescreen()),

@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:connectivity/connectivity.dart';
 import 'package:farm_dairy/models/common_widgets/snack_bar_message_widget.dart';
 import 'package:farm_dairy/views/screens/home_screen/admin_home_screen/admin_home_screen.dart';
@@ -17,6 +19,8 @@ Future<void> checkLogging({required context,required Size screenSize,}) async {
   final sharedPreferenceStorageInstance = await SharedPreferences.getInstance();
   final isLogedIn = sharedPreferenceStorageInstance.getBool(logedInKey);
   final role = sharedPreferenceStorageInstance.getString('role');
+  log(isLogedIn.toString());
+  log(role.toString());
   if (connectivityResult == ConnectivityResult.none) {
     noNetworkLoaderBlocInstance.add(NoNetworkLoaderEvent());
     snackbarMessageWidget(
