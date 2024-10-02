@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
       statusBarBrightness: isDarkMode?Brightness.light:Brightness.dark,
       systemNavigationBarColor: isDarkMode?Colors.black:Colors.white,
       systemNavigationBarDividerColor: isDarkMode?Colors.black:Colors.white,
-      systemNavigationBarContrastEnforced: false
+      systemNavigationBarIconBrightness: isDarkMode?Brightness.light:Brightness.dark,
     ));    
     final screenSize =MediaQuery.of(context).size;
     return MaterialApp(
