@@ -1,6 +1,6 @@
 import 'package:farm_dairy/controllers/login_signup_screen_controllers.dart';
-import 'package:farm_dairy/models/common_widgets/text_widget.dart';
 import 'package:farm_dairy/views/screens/login_signup_screen/bloc/login_signup_screen_bloc.dart';
+import 'package:farm_dairy/views/screens/login_signup_screen/login_signup_screen_widgets/login_signup_button_widget/signup_button/sign_up_button_text/sign_up_button_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -19,7 +19,7 @@ class SignUpButton extends StatelessWidget {
       builder: (context, state) {
         return InkWell(
           onTap: () {
-            signUpButtonClicked(context: context);
+            signUpButtonClicked(context: context,screenSize: screenSize);
           },
           child: Ink(
             height: screenSize.height / 20,
@@ -30,13 +30,7 @@ class SignUpButton extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                TextWidget(
-                    text: 'Sign Up',
-                    color: Colors.white,
-                    size: screenSize.width / 23,
-                    fontFamily: 'FarmDairyFontNormal',
-                    weight: FontWeight.w700),
-                    SizedBox(width: screenSize.width/20,),
+                SignUpButtonText(screenSize: screenSize),
                 if (state is SignUpAndLoginCircularIndicatorState)                  
                   SizedBox(
                     height: screenSize.width/15,

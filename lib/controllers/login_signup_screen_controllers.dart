@@ -13,6 +13,7 @@ import 'package:farm_dairy/views/screens/home_screen/sales_man_home_screen/sales
 import 'package:farm_dairy/views/screens/login_signup_screen/bloc/login_signup_screen_bloc.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 LoginSignupScreenBloc showSignupFunctionBlocInstance = LoginSignupScreenBloc();
@@ -37,7 +38,7 @@ final List<String> dropDownItems = [
 
 
 // function when user click on the Login button
-void loginButtonClicked({required BuildContext context})async{
+void loginButtonClicked({required BuildContext context,required Size screenSize})async{
   if(userLoginformkey.currentState!.validate()){
     User? user = await firebaseAuthServiceInstance.userLogin(context: context,email: emailController.text,password: passwordController.text);
     if(user!=null){
@@ -52,7 +53,7 @@ void loginButtonClicked({required BuildContext context})async{
           await sharedPreferenceStorageInstance.setString('userUid', userData.userUid);
           if(userData.role == 'Admin'){
             Navigator.of(context).pushAndRemoveUntil(
-              MaterialPageRoute(builder: (context) => AdminHomescreen()),
+              MaterialPageRoute(builder: (context) => AdminHomescreen(screenSize: screenSize,)),
               (Route<dynamic> route) => false,
             );
           }else if(userData.role == 'SalesMan'){
@@ -76,7 +77,7 @@ void loginButtonClicked({required BuildContext context})async{
 
 
 // function when user click on the Signup button
-void signUpButtonClicked({required BuildContext context}) async {
+void signUpButtonClicked({required BuildContext context,required Size screenSize}) async {
   if (userLoginformkey.currentState!.validate()) {
     signUpAndLoginCircularBlocInstance.add(SignUpAndLoginCircularIndicatorEvent());
     try {
@@ -96,7 +97,7 @@ void signUpButtonClicked({required BuildContext context}) async {
         await sharedPreferenceStorageInstance.setString('userUid', userData.userUid);
         if(userData.role == 'Admin'){
           Navigator.of(context).pushAndRemoveUntil(
-            MaterialPageRoute(builder: (context) => AdminHomescreen()),
+            MaterialPageRoute(builder: (context) => AdminHomescreen(screenSize: screenSize,)),
             (Route<dynamic> route) => false,
           );
         }else if(userData.role == 'SalesMan'){

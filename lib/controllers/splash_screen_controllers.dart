@@ -53,7 +53,7 @@ Future<void> goToLoginSignupScreen({required context,required Size screenSize,})
 
 Future<void> goToAdminHomeScreen({required context,required Size screenSize,}) async {
   Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (ctx) {
-    return const AdminHomescreen();
+    return AdminHomescreen(screenSize: screenSize,);
   }));
 }
 
