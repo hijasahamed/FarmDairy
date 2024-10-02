@@ -8,3 +8,5 @@ final class LoginSignupScreenInitial extends LoginSignupScreenState {}
 class ShowSignupFunctionsWhenCreatingAccountState extends LoginSignupScreenState {}
 
 class ShowLoginFunctionsWhenCreatingAccountState extends LoginSignupScreenState {}
+
+class SignUpAndLoginCircularIndicatorState extends LoginSignupScreenState {}

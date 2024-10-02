@@ -2,12 +2,16 @@
 
 import 'dart:developer';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:farm_dairy/controllers/firebase_controllers.dart';
 import 'package:farm_dairy/models/common_widgets/snack_bar_message_widget.dart';
 import 'package:farm_dairy/views/screens/login_signup_screen/bloc/login_signup_screen_bloc.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 LoginSignupScreenBloc showSignupFunctionBlocInstance = LoginSignupScreenBloc();
+
+LoginSignupScreenBloc signUpAndLoginCircularBlocInstance = LoginSignupScreenBloc();
 
 TextEditingController emailController = TextEditingController();
 
@@ -25,23 +29,31 @@ final List<String> dropDownItems = [
   'Retailer',
 ];
 
+
+// function when user click on the Login button
 void loginButtonClicked({required BuildContext context})async{
   if(userLoginformkey.currentState!.validate()){
-    await auth.userLogin(context: context,email: emailController.text,password: passwordController.text);
+    User? user = await firebaseAuthServiceInstance.userLogin(context: context,email: emailController.text,password: passwordController.text);
   }
   else{
     log('Not Logged In');
   }
 }
 
+
+// function when user click on the Signup button
 void signUpButtonClicked({required BuildContext context}) async {
   if (userLoginformkey.currentState!.validate()) {
+    signUpAndLoginCircularBlocInstance.add(SignUpAndLoginCircularIndicatorEvent());
     try {
-      await auth.userSignup(
+      User? user = await firebaseAuthServiceInstance.userSignup(
         context: context,
         email: emailController.text,
         password: passwordController.text,
       );
+      if(user!=null){
+        await addUserSignupDataToFirebaseDbCollection(userUid: user.uid);
+      }
     } catch (e) {
       log('SignUp Failed: $e');      
     }
@@ -55,4 +67,16 @@ void signUpButtonClicked({required BuildContext context}) async {
         behavior: SnackBarBehavior.floating,
       );
   }
+}
+
+// function to add the user details into firebase database of collection usersDetails
+addUserSignupDataToFirebaseDbCollection({required userUid}) async{
+  final CollectionReference instance = FirebaseFirestore.instance.collection('userSignupData');
+  final data = {
+    'email': emailController.text,
+    'password': passwordController.text,
+    'role' : roleController.text,
+    'userUid' : userUid
+    };
+  instance.add(data);
 }

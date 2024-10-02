@@ -6,3 +6,5 @@ sealed class LoginSignupScreenEvent {}
 class ShowSignupFunctionsWhenCreatingAccountEvent extends LoginSignupScreenEvent {}
 
 class ShowLoginFunctionsWhenCreatingAccountEvent extends LoginSignupScreenEvent {}
+
+class SignUpAndLoginCircularIndicatorEvent extends LoginSignupScreenEvent {}
