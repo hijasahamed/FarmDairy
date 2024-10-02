@@ -41,6 +41,7 @@ dependencies:
   firebase_core_web: ^2.11.5 # firbase packages
   firebase_storage: ^11.7.4 # firbase packages
   cloud_firestore: ^4.17.2 # firbase packages
+  shared_preferences: ^2.2.3 #local storage for storing small piece of datas
 
 
 dev_dependencies:

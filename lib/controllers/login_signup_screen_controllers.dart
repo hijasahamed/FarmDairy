@@ -4,10 +4,16 @@ import 'dart:developer';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:farm_dairy/controllers/firebase_controllers.dart';
+import 'package:farm_dairy/controllers/splash_screen_controllers.dart';
 import 'package:farm_dairy/models/common_widgets/snack_bar_message_widget.dart';
+import 'package:farm_dairy/models/user_model/user_model.dart';
+import 'package:farm_dairy/views/screens/home_screen/admin_home_screen/admin_home_screen.dart';
+import 'package:farm_dairy/views/screens/home_screen/retailer_home_screen/retailer_home_screen.dart';
+import 'package:farm_dairy/views/screens/home_screen/sales_man_home_screen/sales_man_home_screen.dart';
 import 'package:farm_dairy/views/screens/login_signup_screen/bloc/login_signup_screen_bloc.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 LoginSignupScreenBloc showSignupFunctionBlocInstance = LoginSignupScreenBloc();
 
@@ -34,6 +40,33 @@ final List<String> dropDownItems = [
 void loginButtonClicked({required BuildContext context})async{
   if(userLoginformkey.currentState!.validate()){
     User? user = await firebaseAuthServiceInstance.userLogin(context: context,email: emailController.text,password: passwordController.text);
+    if(user!=null){
+        dynamic userData = await checkIfUserAvailable(email: user.email!);
+        if(userData != null){
+          final sharedPreferenceStorageInstance = await SharedPreferences.getInstance();
+        await sharedPreferenceStorageInstance.setBool(logedInKey, true);
+        await sharedPreferenceStorageInstance.setString('email', userData.email);
+        await sharedPreferenceStorageInstance.setString('email', userData.password);
+        await sharedPreferenceStorageInstance.setString('email', userData.role);
+        await sharedPreferenceStorageInstance.setString('email', userData.userUid);
+        if(userData.role == 'Admin'){
+          Navigator.of(context).pushAndRemoveUntil(
+            MaterialPageRoute(builder: (context) => AdminHomescreen()),
+            (Route<dynamic> route) => false,
+          );
+        }else if(userData.role == 'SalesMan'){
+          Navigator.of(context).pushAndRemoveUntil(
+            MaterialPageRoute(builder: (context) => SalesManHomeScreen()),
+            (Route<dynamic> route) => false,
+          );
+        }else if(userData.role == 'Retailer'){
+          Navigator.of(context).pushAndRemoveUntil(
+            MaterialPageRoute(builder: (context) => RetailerHomeScreen()),
+            (Route<dynamic> route) => false,
+          );
+        }
+        }
+      }
   }
   else{
     log('Not Logged In');
@@ -53,6 +86,29 @@ void signUpButtonClicked({required BuildContext context}) async {
       );
       if(user!=null){
         await addUserSignupDataToFirebaseDbCollection(userUid: user.uid);
+        dynamic userData = await checkIfUserAvailable(email: user.email!);
+        final sharedPreferenceStorageInstance = await SharedPreferences.getInstance();
+        await sharedPreferenceStorageInstance.setBool(logedInKey, true);
+        await sharedPreferenceStorageInstance.setString('email', userData.email);
+        await sharedPreferenceStorageInstance.setString('email', userData.password);
+        await sharedPreferenceStorageInstance.setString('email', userData.role);
+        await sharedPreferenceStorageInstance.setString('email', userData.userUid);
+        if(userData.role == 'Admin'){
+          Navigator.of(context).pushAndRemoveUntil(
+            MaterialPageRoute(builder: (context) => AdminHomescreen()),
+            (Route<dynamic> route) => false,
+          );
+        }else if(userData.role == 'SalesMan'){
+          Navigator.of(context).pushAndRemoveUntil(
+            MaterialPageRoute(builder: (context) => SalesManHomeScreen()),
+            (Route<dynamic> route) => false,
+          );
+        }else if(userData.role == 'Retailer'){
+          Navigator.of(context).pushAndRemoveUntil(
+            MaterialPageRoute(builder: (context) => RetailerHomeScreen()),
+            (Route<dynamic> route) => false,
+          );
+        }
       }
     } catch (e) {
       log('SignUp Failed: $e');      
@@ -70,13 +126,38 @@ void signUpButtonClicked({required BuildContext context}) async {
 }
 
 // function to add the user details into firebase database of collection usersDetails
-addUserSignupDataToFirebaseDbCollection({required userUid}) async{
-  final CollectionReference instance = FirebaseFirestore.instance.collection('userSignupData');
-  final data = {
-    'email': emailController.text,
-    'password': passwordController.text,
-    'role' : roleController.text,
-    'userUid' : userUid
+addUserSignupDataToFirebaseDbCollection({required userUid}) async {
+  try {
+    final CollectionReference instance = FirebaseFirestore.instance.collection('userSignupData');
+    final data = {
+      'email': emailController.text,
+      'password': passwordController.text,
+      'role': roleController.text,
+      'userUid': userUid
     };
-  instance.add(data);
+    await instance.add(data);
+  } catch (e) {
+    log(e.toString());
+  }
+}
+
+
+// Function to check if the user is in db and get the details of that user
+Future<UserData?> checkIfUserAvailable({required String email}) async {
+  final CollectionReference instance = FirebaseFirestore.instance.collection('userSignupData');
+
+  try {
+    QuerySnapshot querySnapshot = await instance.where('email', isEqualTo: email).get();
+
+    if (querySnapshot.docs.isNotEmpty) {
+      QueryDocumentSnapshot doc = querySnapshot.docs.first;
+      UserData userData = UserData(email: doc['email'], password: doc['password'], role: doc['role'], userUid: doc['userUid']);
+      return userData;
+    } else {
+      return null;
+    }
+  } catch (e) {
+    log(e.toString());
+  }
+  return null;
 }
