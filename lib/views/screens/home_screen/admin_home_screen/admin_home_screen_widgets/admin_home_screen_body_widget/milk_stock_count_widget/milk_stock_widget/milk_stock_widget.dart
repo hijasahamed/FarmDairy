@@ -1,5 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:farm_dairy/models/common_widgets/text_widget.dart';
+import 'package:farm_dairy/views/screens/home_screen/admin_home_screen/admin_home_screen_widgets/admin_home_screen_body_widget/milk_stock_count_widget/milk_stock_widget/milk_stock_connecting/milk_stock_connecting.dart';
+import 'package:farm_dairy/views/screens/home_screen/admin_home_screen/admin_home_screen_widgets/admin_home_screen_body_widget/milk_stock_count_widget/milk_stock_widget/milk_stock_error/milk_stock_error.dart';
+import 'package:farm_dairy/views/screens/home_screen/admin_home_screen/admin_home_screen_widgets/admin_home_screen_body_widget/milk_stock_count_widget/milk_stock_widget/milk_stock_result/milk_stock_result.dart';
 import 'package:flutter/material.dart';
 
 class MilkStockWidget extends StatelessWidget {
@@ -21,74 +23,17 @@ class MilkStockWidget extends StatelessWidget {
           .snapshots(),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return Row(
-            children: [
-              TextWidget(
-                  text: 'Milk Stock : ',
-                  color: isDarkMode ? Colors.white : Colors.blueGrey,
-                  size: screenSize.width / 15,
-                  fontFamily: 'FarmDairyFontNormal',
-                  weight: FontWeight.w400
-              ),
-              TextWidget(
-                  text: 'Loading...',
-                  color: isDarkMode ? Colors.white : Colors.blueGrey,
-                  size: screenSize.width / 15,
-                  fontFamily: 'FarmDairyFontNormal',
-                  weight: FontWeight.w400
-              ),
-            ],
-          );
+          return MilkStockConnectingWidget(isDarkMode: isDarkMode, screenSize: screenSize);
         }    
         if (snapshot.hasError || !snapshot.hasData || !snapshot.data!.exists) {
-          return Row(
-            children: [
-              TextWidget(
-                  text: 'Milk Stock : ',
-                  color: isDarkMode ? Colors.white : Colors.blueGrey,
-                  size: screenSize.width / 15,
-                  fontFamily: 'FarmDairyFontNormal',
-                  weight: FontWeight.w400
-              ),
-              TextWidget(
-                  text: 'Error',
-                  color: isDarkMode ? Colors.red : Colors.blueGrey,
-                  size: screenSize.width / 15,
-                  fontFamily: 'FarmDairyFontNormal',
-                  weight: FontWeight.w400
-              ),
-            ],
-          );
-        }
-    
-        dynamic stock = snapshot.data!['stock'] ?? 0.0;
-    
-        return Row(
-          children: [
-            TextWidget(
-                text: 'Milk Stock : ',
-                color: isDarkMode ? Colors.white : Colors.blueGrey,
-                size: screenSize.width / 15,
-                fontFamily: 'FarmDairyFontNormal',
-                weight: FontWeight.w400
-            ),
-            TextWidget(
-                text: stock.toString(),
-                color: isDarkMode ? Colors.white : Colors.blueGrey,
-                size: screenSize.width / 15,
-                fontFamily: 'FarmDairyFontNormal',
-                weight: FontWeight.w400
-            ),
-            TextWidget(
-                text: ' Litres',
-                color: isDarkMode ? Colors.white : Colors.blueGrey,
-                size: screenSize.width / 15,
-                fontFamily: 'FarmDairyFontNormal',
-                weight: FontWeight.w400
-            ),
-          ],
-        );
+          return MilkStockErrorWidget(isDarkMode: isDarkMode, screenSize: screenSize);
+        }    
+        dynamic stock = snapshot.data!['stock'] ?? 0.0;    
+        return MilkStockResult(isDarkMode: isDarkMode, screenSize: screenSize, stock: stock);
       },
     );
   }
 }
+
+
+

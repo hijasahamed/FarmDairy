@@ -21,7 +21,7 @@ class MilkStockCountWidget extends StatelessWidget {
       children: [
         CurrentDateWidget(formattedDate: formattedDate, isDarkMode: isDarkMode, screenSize: screenSize),        
         MilkStockWidget(isDarkMode: isDarkMode, screenSize: screenSize),
-        SizedBox(height: screenSize.height/30,)
+        
       ],
     );
   }
