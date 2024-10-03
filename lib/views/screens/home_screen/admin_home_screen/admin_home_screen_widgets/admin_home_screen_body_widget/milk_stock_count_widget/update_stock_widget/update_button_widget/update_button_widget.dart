@@ -6,10 +6,12 @@ class UpdateButtonWidget extends StatelessWidget {
     super.key,
     required this.screenSize,
     required this.isDarkMode,
+    this.isReduceStock
   });
 
   final Size screenSize;
   final bool isDarkMode;
+  final bool? isReduceStock;
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +25,7 @@ class UpdateButtonWidget extends StatelessWidget {
           borderRadius: BorderRadius.circular(screenSize.width / 75)),
       child: Center(
           child: TextWidget(
-              text: 'Add Stock',
+              text: (isReduceStock==true)?'Reduce Stock -': 'Add Stock +',
               color: Colors.white,
               size: screenSize.width / 25,
               fontFamily: 'FarmDairyFontNormal',

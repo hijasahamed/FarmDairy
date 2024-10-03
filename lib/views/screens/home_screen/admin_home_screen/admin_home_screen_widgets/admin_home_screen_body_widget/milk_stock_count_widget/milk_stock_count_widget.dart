@@ -17,13 +17,20 @@ class MilkStockCountWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     String formattedDate = DateFormat('EEEE, MMMM d, yyyy').format(DateTime.now());
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        CurrentDateWidget(formattedDate: formattedDate, isDarkMode: isDarkMode, screenSize: screenSize),        
-        MilkStockWidget(isDarkMode: isDarkMode, screenSize: screenSize),
-        UpdateMilkStock(isDarkMode: isDarkMode, screenSize: screenSize)
-      ],
+    return Container(
+      padding: EdgeInsets.all(screenSize.width/50),
+      decoration: BoxDecoration(
+        border: Border.all(width: .1),
+        borderRadius: BorderRadius.circular(screenSize.width/75)
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          CurrentDateWidget(formattedDate: formattedDate, isDarkMode: isDarkMode, screenSize: screenSize),        
+          MilkStockWidget(isDarkMode: isDarkMode, screenSize: screenSize),
+          UpdateMilkStock(isDarkMode: isDarkMode, screenSize: screenSize)
+        ],
+      ),
     );
   }
 }

@@ -15,7 +15,8 @@ class AdminHomeScreenBodyWidget extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           MilkStockCountWidget(isDarkMode: isDarkMode, screenSize: screenSize),
-          LessiStockCountWidget(screenSize: screenSize, isDarkMode: isDarkMode)
+          LessiStockCountWidget(screenSize: screenSize, isDarkMode: isDarkMode,isMilkPeda: false,),
+          LessiStockCountWidget(screenSize: screenSize, isDarkMode: isDarkMode,isMilkPeda: true,),
         ],
       ),
     );
