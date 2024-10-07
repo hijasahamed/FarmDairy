@@ -13,10 +13,15 @@ class LessiImage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        Image.asset((isMilkPeda==true)?'assets/images/milk peda.webp':'assets/images/lessi.jpg'),
-        SizedBox(
-      width: screenSize.width / 25,
-    ),
+        ClipRRect(
+          borderRadius: BorderRadius.circular(screenSize.width/75),
+          child: Image.asset(
+            (isMilkPeda == true)
+                ? 'assets/images/milk peda.webp'
+                : 'assets/images/lessi.jpg',
+          ),
+        ),
+        SizedBox(width: screenSize.width / 25,),
       ],
     );
   }

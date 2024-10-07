@@ -20,7 +20,7 @@ class MilkStockCountWidget extends StatelessWidget {
     return Container(
       padding: EdgeInsets.all(screenSize.width/50),
       decoration: BoxDecoration(
-        border: Border.all(width: .1),
+        border: Border.all(width: .1,color: isDarkMode?Colors.white:Colors.black),
         borderRadius: BorderRadius.circular(screenSize.width/75)
       ),
       child: Column(

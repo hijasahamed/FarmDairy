@@ -20,7 +20,7 @@ class LassiStockCard extends StatelessWidget {
       height: screenSize.height / 5,
       width: screenSize.width,
       decoration: BoxDecoration(
-        border: Border.all(width: .1),
+        border: Border.all(width: .1,color: isDarkMode?Colors.white:Colors.black),
         borderRadius: BorderRadius.circular(screenSize.width/50)
       ),
       child: LessiStockCardItems(screenSize: screenSize, isDarkMode: isDarkMode,isMilkPeda: isMilkPeda,)

@@ -11,7 +11,7 @@ class AdminHomescreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: isDarkMode ? Colors.black : Colors.white,
       appBar: AdminHomeScreenAppBarWidget(screenSize: screenSize,isDarkMode: isDarkMode,),
-      body: SingleChildScrollView(child: AdminHomeScreenBodyWidget(screenSize: screenSize,isDarkMode: isDarkMode,))
+      body: AdminHomeScreenBodyWidget(screenSize: screenSize,isDarkMode: isDarkMode,)
     );
   }
 }
