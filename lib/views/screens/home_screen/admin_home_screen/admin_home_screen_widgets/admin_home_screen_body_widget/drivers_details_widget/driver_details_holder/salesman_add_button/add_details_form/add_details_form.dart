@@ -1,10 +1,10 @@
 // ignore_for_file: use_build_context_synchronously
 
-import 'package:farm_dairy/controllers/admin_home_screen_controllers.dart';
 import 'package:farm_dairy/models/common_widgets/text_widget.dart';
+import 'package:farm_dairy/views/screens/home_screen/admin_home_screen/admin_home_screen_widgets/admin_home_screen_body_widget/drivers_details_widget/driver_details_holder/salesman_add_button/add_details_form/cancel_button/cancel_button.dart';
+import 'package:farm_dairy/views/screens/home_screen/admin_home_screen/admin_home_screen_widgets/admin_home_screen_body_widget/drivers_details_widget/driver_details_holder/salesman_add_button/add_details_form/submit_button/submit_button.dart';
 import 'package:farm_dairy/views/screens/home_screen/admin_home_screen/bloc/admin_home_screen_bloc.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 TextEditingController salesmanNameController = TextEditingController();
 TextEditingController vehicleNumberController = TextEditingController();
@@ -17,8 +17,20 @@ void showAddSalesmanDialog({
   required BuildContext context,
   required Size screenSize,
   required bool isDarkMode,
+  bool? iseditSaleMan,
+  String? documentId,
+  dynamic salesmanName,
+  dynamic vehicleNumber,
+  dynamic location,
+  dynamic mobileNumber,
 }) {
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  if(iseditSaleMan==true){
+    salesmanNameController.text = salesmanName ?? '';
+    vehicleNumberController.text = vehicleNumber ?? '';
+    locationController.text = location ?? '';
+    mobileController.text = mobileNumber ?? '';
+  }
 
   showDialog(
     context: context,
@@ -140,87 +152,9 @@ void showAddSalesmanDialog({
         ),
         actions: [
           AddSalesManCancelButton(screenSize: screenSize,),
-          AddSalesManSubmitButton(formKey: formKey,screenSize: screenSize,),
+          AddSalesManSubmitButton(formKey: formKey,screenSize: screenSize,iseditSaleMan: iseditSaleMan,documentId: documentId?? '',),
         ],
       );
     },
   );
-}
-
-class AddSalesManCancelButton extends StatelessWidget {
-  const AddSalesManCancelButton({
-    super.key,
-    required this.screenSize
-  });
-  final Size screenSize;
-  @override
-  Widget build(BuildContext context) {
-    return TextButton(
-      onPressed: () {
-        salesmanNameController.clear();
-        vehicleNumberController.clear();
-        locationController.clear();
-        mobileController.clear();
-        Navigator.of(context).pop();
-      },
-      child: TextWidget(
-        text: 'Cancel',
-        color: Colors.red,
-        size: screenSize.width / 30,
-        fontFamily: 'FarmDairyFontNormal',
-        weight: FontWeight.bold,
-      ),
-    );
-  }
-}
-
-class AddSalesManSubmitButton extends StatelessWidget {
-  const AddSalesManSubmitButton({
-    super.key,
-    required this.formKey,
-    required this.screenSize,
-  });
-
-  final GlobalKey<FormState> formKey;
-  final Size screenSize;
-
-  @override
-  Widget build(BuildContext context) {
-    return TextButton(
-      onPressed: () async {
-          await addSalesmanDetails(
-            salesmanName: salesmanNameController.text,
-            vehicleNumber: vehicleNumberController.text,
-            location: locationController.text,
-            mobileNumber: mobileController.text,
-            context: context,
-            formkey: formKey
-          );
-          salesmanNameController.clear();
-          vehicleNumberController.clear();
-          locationController.clear();
-          mobileController.clear();
-          Navigator.of(context).pop();
-      },
-      child: BlocBuilder<AdminHomeScreenBloc, AdminHomeScreenState>(
-        bloc: addSalesPersonRefreshInstance,
-        builder: (context, state) {
-          if (state is AddSalesManRefreshState) {
-            return CircularProgressIndicator(
-              color: Colors.green,
-              strokeWidth: screenSize.width / 200,
-            );
-          } else {
-            return TextWidget(
-              text: 'Submit',
-              color: Colors.green,
-              size: screenSize.width / 30,
-              fontFamily: 'FarmDairyFontNormal',
-              weight: FontWeight.bold,
-            );
-          }
-        },
-      ),
-    );
-  }
 }

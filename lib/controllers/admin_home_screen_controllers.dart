@@ -92,10 +92,71 @@ Future<void> addSalesmanDetails({
         'mobileNumber': mobileNumber,
         'timestamp': FieldValue.serverTimestamp(),
       });
-      snackbarMessageWidget(text: 'SalesMan Added', context: context, color: Colors.green, textColor: Colors.white, behavior: SnackBarBehavior.floating, time: 3000); 
+      snackbarMessageWidget(text: 'SalesMan Added', context: context, color: Colors.green, textColor: Colors.white, behavior: SnackBarBehavior.floating, time: 3000);
+      addSalesPersonRefreshInstance.add(AddSalesManStopRefreshEvent());
     }
   } catch (e) {
     snackbarMessageWidget(text: 'Something Went Wrong', context: context, color: Colors.red, textColor: Colors.white, behavior: SnackBarBehavior.floating, time: 3000); 
     log(e.toString());
+  }
+}
+
+// Function to update Salesman Details to firebase db
+Future<void> updateSalesMan({
+  required String documentId,
+  required String salesmanName,
+  required String vehicleNumber,
+  required String location,
+  required String mobileNumber,
+  required BuildContext context,
+  required GlobalKey<FormState> formkey,
+}) async {
+  try {
+    if (formkey.currentState!.validate()) {
+      CollectionReference salesManCollection = 
+          FirebaseFirestore.instance.collection('salesManDetails');
+      await salesManCollection.doc(documentId).update({
+        'salesmanName': salesmanName,
+        'vehicleNumber': vehicleNumber,
+        'location': location,
+        'mobileNumber': mobileNumber,
+      });
+      snackbarMessageWidget(text: 'SalesMan Updated', context: context, color: Colors.green, textColor: Colors.white, behavior: SnackBarBehavior.floating, time: 3000);
+    }
+  } catch (e) {
+    snackbarMessageWidget(text: 'Something Went Wrong', context: context, color: Colors.red, textColor: Colors.white, behavior: SnackBarBehavior.floating, time: 3000); 
+    log(e.toString());
+  }
+}
+
+//Function to delete the salesMan from db
+Future<void> deleteSalesMan({
+  required String documentId,
+  required BuildContext context,
+}) async {
+  try {
+
+    CollectionReference salesManCollection = FirebaseFirestore.instance.collection('salesManDetails');
+
+    await salesManCollection.doc(documentId).delete();
+
+    snackbarMessageWidget(
+      text: 'SalesMan Deleted Successfully',
+      context: context,
+      color: Colors.green,
+      textColor: Colors.white,
+      behavior: SnackBarBehavior.floating,
+      time: 3000,
+    );
+  } catch (e) {
+    log('Error deleting SalesMan: $e');
+    snackbarMessageWidget(
+      text: 'Failed to delete SalesMan',
+      context: context,
+      color: Colors.red,
+      textColor: Colors.white,
+      behavior: SnackBarBehavior.floating,
+      time: 3000,
+    );
   }
 }

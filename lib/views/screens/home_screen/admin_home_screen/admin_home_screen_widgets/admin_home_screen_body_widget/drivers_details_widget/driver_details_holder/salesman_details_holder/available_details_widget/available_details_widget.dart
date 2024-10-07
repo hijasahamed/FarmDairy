@@ -16,7 +16,8 @@ class AvailableDetailsWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(          
+    return ListView.builder(  
+      physics: const NeverScrollableScrollPhysics(),        
       shrinkWrap: true,
       itemCount: salesManDetails.length,
       itemBuilder: (context, index) {
@@ -25,8 +26,9 @@ class AvailableDetailsWidget extends StatelessWidget {
         final vehicleNumber = data['vehicleNumber'] ?? 'N/A';
         final location = data['location'] ?? 'N/A';
         final mobileNumber = data['mobileNumber'] ?? 'N/A';
-                
-        return AddressHolderWidget(screenSize: screenSize, isDarkMode: isDarkMode, salesmanName: salesmanName, vehicleNumber: vehicleNumber, location: location, mobileNumber: mobileNumber);
+        final documentId = data.id;
+
+        return AddressHolderWidget(screenSize: screenSize, isDarkMode: isDarkMode, salesmanName: salesmanName, vehicleNumber: vehicleNumber, location: location, mobileNumber: mobileNumber,documentId: documentId,);
       },
     );
   }

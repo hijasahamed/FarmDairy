@@ -1,4 +1,5 @@
 import 'package:farm_dairy/views/screens/home_screen/admin_home_screen/admin_home_screen_widgets/admin_home_screen_body_widget/drivers_details_widget/driver_details_holder/salesman_details_holder/available_details_widget/address_holder_widget/address_widget/address_widget.dart';
+import 'package:farm_dairy/views/screens/home_screen/admin_home_screen/admin_home_screen_widgets/admin_home_screen_body_widget/drivers_details_widget/driver_details_holder/salesman_details_holder/available_details_widget/address_holder_widget/delete_address_widget/delete_address_widget.dart';
 import 'package:farm_dairy/views/screens/home_screen/admin_home_screen/admin_home_screen_widgets/admin_home_screen_body_widget/drivers_details_widget/driver_details_holder/salesman_details_holder/available_details_widget/address_holder_widget/update_address_widget/update_address_widget.dart';
 import 'package:flutter/material.dart';
 
@@ -11,6 +12,7 @@ class AddressHolderWidget extends StatelessWidget {
     required this.vehicleNumber,
     required this.location,
     required this.mobileNumber,
+    required this.documentId
   });
 
   final Size screenSize;
@@ -19,6 +21,7 @@ class AddressHolderWidget extends StatelessWidget {
   final String vehicleNumber;
   final String location;
   final String mobileNumber;
+  final String documentId;
 
   @override
   Widget build(BuildContext context) {
@@ -34,12 +37,14 @@ class AddressHolderWidget extends StatelessWidget {
         ),
       ),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           AddressWidget(salesmanName: salesmanName, isDarkMode: isDarkMode, screenSize: screenSize, vehicleNumber: vehicleNumber, location: location, mobileNumber: mobileNumber),
-          UpdateAddress(screenSize: screenSize, isDarkMode: isDarkMode)
+          const Spacer(),
+          UpdateAddress(screenSize: screenSize, isDarkMode: isDarkMode,location: location,mobileNumber: mobileNumber,salesmanName: salesmanName,vehicleNumber: vehicleNumber,documentId: documentId,),
+          DeleteAddressWidget(screenSize: screenSize, isDarkMode: isDarkMode,documentId: documentId,)
         ],
       ),
     );
   }
 }
+

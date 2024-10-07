@@ -6,3 +6,5 @@ sealed class AdminHomeScreenState {}
 final class AdminHomeScreenInitial extends AdminHomeScreenState {}
 
 class AddSalesManRefreshState extends AdminHomeScreenState {}
+
+class AddSalesManStopRefreshState extends AdminHomeScreenState {}

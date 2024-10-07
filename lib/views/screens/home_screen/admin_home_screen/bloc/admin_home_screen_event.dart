@@ -4,3 +4,5 @@ part of 'admin_home_screen_bloc.dart';
 sealed class AdminHomeScreenEvent {}
 
 class AddSalesManRefreshEvent extends AdminHomeScreenEvent {}
+
+class AddSalesManStopRefreshEvent extends AdminHomeScreenEvent {}
