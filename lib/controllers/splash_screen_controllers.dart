@@ -19,6 +19,7 @@ Future<void> checkLogging({required context,required Size screenSize,}) async {
   final sharedPreferenceStorageInstance = await SharedPreferences.getInstance();
   final isLogedIn = sharedPreferenceStorageInstance.getBool(logedInKey);
   final role = sharedPreferenceStorageInstance.getString('role');
+  final email = sharedPreferenceStorageInstance.getString('email');
   log(isLogedIn.toString());
   log(role.toString());
   if (connectivityResult == ConnectivityResult.none) {
@@ -41,7 +42,7 @@ Future<void> checkLogging({required context,required Size screenSize,}) async {
     await goToSalesManHomeScreen(context: context, screenSize: screenSize);
   } else if(isLogedIn == true && role == 'Retailer') {
     await Future.delayed(const Duration(milliseconds: 1500));
-    await goToRetailersHomeScreen(context: context, screenSize: screenSize);
+    await goToRetailersHomeScreen(context: context, screenSize: screenSize,email: email!);
   }
 }
 
@@ -63,8 +64,8 @@ Future<void> goToSalesManHomeScreen({required context,required Size screenSize,}
   }));
 }
 
-Future<void> goToRetailersHomeScreen({required context,required Size screenSize,}) async {
+Future<void> goToRetailersHomeScreen({required context,required Size screenSize,required String email}) async {
   Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (ctx) {
-    return const RetailerHomeScreen();
+    return RetailerHomeScreen(screenSize: screenSize,email: email,);
   }));
 }

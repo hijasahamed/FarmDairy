@@ -14,7 +14,6 @@ import 'package:farm_dairy/views/screens/login_signup_screen/bloc/login_signup_s
 import 'package:farm_dairy/views/screens/login_signup_screen/login_signup_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 LoginSignupScreenBloc showSignupFunctionBlocInstance = LoginSignupScreenBloc();
@@ -64,7 +63,7 @@ void loginButtonClicked({required BuildContext context,required Size screenSize}
             );
           }else if(userData.role == 'Retailer'){
             Navigator.of(context).pushAndRemoveUntil(
-              MaterialPageRoute(builder: (context) => RetailerHomeScreen()),
+              MaterialPageRoute(builder: (context) => RetailerHomeScreen(screenSize: screenSize,email: userData.email,)),
               (Route<dynamic> route) => false,
             );
           }
@@ -108,7 +107,7 @@ void signUpButtonClicked({required BuildContext context,required Size screenSize
           );
         }else if(userData.role == 'Retailer'){
           Navigator.of(context).pushAndRemoveUntil(
-            MaterialPageRoute(builder: (context) => RetailerHomeScreen()),
+            MaterialPageRoute(builder: (context) => RetailerHomeScreen(screenSize: screenSize,email: userData.email,)),
             (Route<dynamic> route) => false,
           );
         }
@@ -169,15 +168,23 @@ Future<UserData?> checkIfUserAvailable({required String email}) async {
 // Function to Logout the Current user
 Future<void> logout({required BuildContext context,required Size screenSize}) async {
   try {
-    await FirebaseAuth.instance.signOut();
-    Navigator.of(context).pushAndRemoveUntil(
+    await FirebaseAuth.instance.signOut().then((value) async {
+      final sharedPreferenceStorageInstance = await SharedPreferences.getInstance();
+          await sharedPreferenceStorageInstance.setBool(logedInKey, false);
+          await sharedPreferenceStorageInstance.setString('email', '');
+          await sharedPreferenceStorageInstance.setString('password', '');
+          await sharedPreferenceStorageInstance.setString('role', '');
+          await sharedPreferenceStorageInstance.setString('userUid', '');
+    },).then((value) {
+      Navigator.of(context).pushAndRemoveUntil(
       MaterialPageRoute(
         builder: (context) {
           return LoginSignupScreen(screenSize: screenSize);
         },
       ),
       (Route<dynamic> route) => false,
-    );    
+    ); 
+    },);  
   } catch (e) {
     snackbarMessageWidget(text: 'Something Went Wrong', context: context, color: Colors.red, textColor: Colors.white, behavior: SnackBarBehavior.floating, time: 3000);
   }
