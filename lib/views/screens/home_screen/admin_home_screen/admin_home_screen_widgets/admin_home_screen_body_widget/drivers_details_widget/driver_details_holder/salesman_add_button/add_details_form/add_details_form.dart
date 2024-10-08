@@ -77,6 +77,7 @@ void showAddSalesmanDialog({
                 TextFormField(
                   keyboardType: TextInputType.name,
                   textCapitalization: TextCapitalization.characters,
+                  maxLength: 10,
                   controller: vehicleNumberController,
                   style: TextStyle(
                     color: isDarkMode ? Colors.white : Colors.black,
@@ -137,6 +138,7 @@ void showAddSalesmanDialog({
                     fillColor: isDarkMode ? Colors.grey[800] : Colors.grey[200],
                   ),
                   keyboardType: TextInputType.phone,
+                  maxLength: 10,
                   validator: (value) {
                     if (value == null || value.isEmpty) {
                       return 'Please enter mobile number';
