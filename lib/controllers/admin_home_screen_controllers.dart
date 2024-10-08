@@ -71,7 +71,7 @@ Future<void> updateProductsStockCount({
 }
 
 // Function to add Salesman Details to firebase db
-Future<void> addSalesmanDetails({
+Future<bool> addSalesmanDetails({
   required String salesmanName,
   required String vehicleNumber,
   required String location,
@@ -94,11 +94,14 @@ Future<void> addSalesmanDetails({
       });
       snackbarMessageWidget(text: 'SalesMan Added', context: context, color: Colors.green, textColor: Colors.white, behavior: SnackBarBehavior.floating, time: 3000);
       addSalesPersonRefreshInstance.add(AddSalesManStopRefreshEvent());
+      return true;
     }
   } catch (e) {
     snackbarMessageWidget(text: 'Something Went Wrong', context: context, color: Colors.red, textColor: Colors.white, behavior: SnackBarBehavior.floating, time: 3000); 
     log(e.toString());
+    return false;
   }
+  return false;
 }
 
 // Function to update Salesman Details to firebase db

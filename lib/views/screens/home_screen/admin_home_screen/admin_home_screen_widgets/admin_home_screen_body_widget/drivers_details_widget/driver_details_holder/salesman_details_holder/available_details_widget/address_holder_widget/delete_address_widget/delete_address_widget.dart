@@ -26,7 +26,7 @@ class DeleteAddressWidget extends StatelessWidget {
                 text: 'Confirm Deletion',
                 color: isDarkMode ? Colors.white : Colors.black,
                 size: screenSize.width / 20,
-                fontFamily: 'Roboto', // Replace with your font family if required
+                fontFamily: 'Roboto',
                 weight: FontWeight.bold,
               ),
               content: TextWidget(

@@ -42,12 +42,15 @@ class AddSalesManSubmitButton extends StatelessWidget {
             mobileNumber: mobileController.text,
             context: context,
             formkey: formKey
-          );
-          salesmanNameController.clear();
-          vehicleNumberController.clear();
-          locationController.clear();
-          mobileController.clear();
-          Navigator.of(context).pop();
+          ).then((value) {
+            if(value==true){
+              salesmanNameController.clear();
+              vehicleNumberController.clear();
+              locationController.clear();
+              mobileController.clear();
+              Navigator.of(context).pop();
+              }
+          },);          
       },
       child: BlocBuilder<AdminHomeScreenBloc, AdminHomeScreenState>(
         bloc: addSalesPersonRefreshInstance,
