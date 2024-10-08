@@ -1,20 +1,23 @@
 import 'package:farm_dairy/models/common_widgets/text_widget.dart';
+import 'package:farm_dairy/views/screens/home_screen/retailer_home_screen/retialer_home_screen_body_widget/available_products_widget/product_holder_card/product_card/available_stock_count_widget/available_stock_count_widget.dart';
 import 'package:flutter/material.dart';
 
-class ProductCard extends StatelessWidget {
-  const ProductCard({
+class ItemCard extends StatelessWidget {
+  const ItemCard({
     super.key,
     required this.isDarkMode,
     required this.screenSize,
     required this.imageUrl,
     required this.title,
     required this.price,
+    required this.stockName
   });
   final Size screenSize;
   final bool isDarkMode;
   final String imageUrl;
   final String title;
   final String price;
+  final String stockName;
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -29,7 +32,7 @@ class ProductCard extends StatelessWidget {
             Image.asset(
               imageUrl,
               width: screenSize.width / 2.3,
-              height: screenSize.height / 6,
+              height: screenSize.height / 8,
               fit: BoxFit.cover,
             ),
             SizedBox(height: screenSize.height / 60),
@@ -40,6 +43,7 @@ class ProductCard extends StatelessWidget {
               fontFamily: 'FarmDairyFontNormal', 
               weight: FontWeight.bold
             ),
+            AvailableStockCountWidget(stockName: stockName,screenSize: screenSize,),
             SizedBox(height: screenSize.height / 80),
             TextWidget(
               text: price, 

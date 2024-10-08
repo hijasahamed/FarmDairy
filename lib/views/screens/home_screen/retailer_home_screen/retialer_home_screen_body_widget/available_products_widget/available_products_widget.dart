@@ -24,6 +24,7 @@ class AvailableProductsWidget extends StatelessWidget {
           price: '₹30',
           screenSize: screenSize,
           isDarkMode: isDarkMode,
+          stockName: 'lassiStock'
         ),
         productCard(
           imageUrl: 'assets/images/milk peda.webp',
@@ -31,6 +32,7 @@ class AvailableProductsWidget extends StatelessWidget {
           price: '₹100',
           screenSize: screenSize,
           isDarkMode: isDarkMode,
+          stockName: 'milkPedaStock'
         ),
       ],
     );
