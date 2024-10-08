@@ -133,7 +133,7 @@ Future<void> updateSalesMan({
 }
 
 //Function to delete the salesMan from db
-Future<void> deleteSalesMan({
+Future<bool> deleteSalesMan({
   required String documentId,
   required BuildContext context,
 }) async {
@@ -151,6 +151,7 @@ Future<void> deleteSalesMan({
       behavior: SnackBarBehavior.floating,
       time: 3000,
     );
+    return true;
   } catch (e) {
     log('Error deleting SalesMan: $e');
     snackbarMessageWidget(
@@ -161,5 +162,6 @@ Future<void> deleteSalesMan({
       behavior: SnackBarBehavior.floating,
       time: 3000,
     );
+    return false;
   }
 }
