@@ -49,7 +49,7 @@ class AddSalesManSubmitButton extends StatelessWidget {
               locationController.clear();
               mobileController.clear();
               Navigator.of(context).pop();
-              }
+            }
           },);          
       },
       child: BlocBuilder<AdminHomeScreenBloc, AdminHomeScreenState>(

@@ -11,8 +11,10 @@ import 'package:farm_dairy/views/screens/home_screen/admin_home_screen/admin_hom
 import 'package:farm_dairy/views/screens/home_screen/retailer_home_screen/retailer_home_screen.dart';
 import 'package:farm_dairy/views/screens/home_screen/sales_man_home_screen/sales_man_home_screen.dart';
 import 'package:farm_dairy/views/screens/login_signup_screen/bloc/login_signup_screen_bloc.dart';
+import 'package:farm_dairy/views/screens/login_signup_screen/login_signup_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 LoginSignupScreenBloc showSignupFunctionBlocInstance = LoginSignupScreenBloc();
@@ -161,4 +163,22 @@ Future<UserData?> checkIfUserAvailable({required String email}) async {
     log(e.toString());
   }
   return null;
+}
+
+
+// Function to Logout the Current user
+Future<void> logout({required BuildContext context,required Size screenSize}) async {
+  try {
+    await FirebaseAuth.instance.signOut();
+    Navigator.of(context).pushAndRemoveUntil(
+      MaterialPageRoute(
+        builder: (context) {
+          return LoginSignupScreen(screenSize: screenSize);
+        },
+      ),
+      (Route<dynamic> route) => false,
+    );    
+  } catch (e) {
+    snackbarMessageWidget(text: 'Something Went Wrong', context: context, color: Colors.red, textColor: Colors.white, behavior: SnackBarBehavior.floating, time: 3000);
+  }
 }
