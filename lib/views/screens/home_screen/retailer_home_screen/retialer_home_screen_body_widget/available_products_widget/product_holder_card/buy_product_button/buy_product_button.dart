@@ -40,7 +40,7 @@ class BuyProductButton extends StatelessWidget {
         if(stock == '0'){
           return NoStockButton(screenSize: screenSize);
         }else{
-          return StockAvailableButton(screenSize: screenSize);
+          return StockAvailableButton(screenSize: screenSize,isDarkMode: isDarkMode,imageUrl: imageUrl,price: price,stockName: stockName,title: title,);
         }
       },
     );
