@@ -51,21 +51,23 @@ void loginButtonClicked({required BuildContext context,required Size screenSize}
           await sharedPreferenceStorageInstance.setString('password', userData.password);
           await sharedPreferenceStorageInstance.setString('role', userData.role);
           await sharedPreferenceStorageInstance.setString('userUid', userData.userUid);
-          if(userData.role == 'Admin'){
+          if(userData.role == 'Admin' && roleController.text == userData.role){
             Navigator.of(context).pushAndRemoveUntil(
               MaterialPageRoute(builder: (context) => AdminHomescreen(screenSize: screenSize,)),
               (Route<dynamic> route) => false,
             );
-          }else if(userData.role == 'SalesMan'){
+          }else if(userData.role == 'SalesMan' && roleController.text == userData.role){
             Navigator.of(context).pushAndRemoveUntil(
               MaterialPageRoute(builder: (context) => SalesManHomeScreen()),
               (Route<dynamic> route) => false,
             );
-          }else if(userData.role == 'Retailer'){
+          }else if(userData.role == 'Retailer' && roleController.text == userData.role){
             Navigator.of(context).pushAndRemoveUntil(
               MaterialPageRoute(builder: (context) => RetailerHomeScreen(screenSize: screenSize,email: userData.email,)),
               (Route<dynamic> route) => false,
             );
+          }else{
+            snackbarMessageWidget(text: 'UnRegisterd Role', context: context, color: Colors.red, textColor: Colors.white, behavior: SnackBarBehavior.floating, time: 3000);
           }
           
         }
