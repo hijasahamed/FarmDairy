@@ -33,7 +33,7 @@ class AvailableStockCountWidget extends StatelessWidget {
         return TextWidget(
           text: 'Available Stock : $stock Pcs', 
           color: (stock=='0')? Colors.red:Colors.green, 
-          size: screenSize.width / 28, 
+          size: screenSize.width / 35, 
           fontFamily: 'FarmDairyFontNormal', 
           weight: FontWeight.bold,
           maxline: true,

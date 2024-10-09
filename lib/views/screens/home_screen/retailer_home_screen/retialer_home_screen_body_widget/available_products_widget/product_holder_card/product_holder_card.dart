@@ -15,7 +15,7 @@ Widget productCard({
     return Row(
       children: [
         ItemCard(imageUrl: imageUrl,isDarkMode: isDarkMode,price: price,screenSize: screenSize,title: title,stockName: stockName,),
-        BuyProductButton(imageUrl: imageUrl,isDarkMode: isDarkMode,price: price,screenSize: screenSize,title: title,)
+        BuyProductButton(imageUrl: imageUrl,isDarkMode: isDarkMode,price: price,screenSize: screenSize,title: title,stockName: stockName,)
       ],
     );
 }
