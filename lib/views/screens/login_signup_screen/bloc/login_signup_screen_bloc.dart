@@ -14,6 +14,7 @@ class LoginSignupScreenBloc extends Bloc<LoginSignupScreenEvent, LoginSignupScre
     on<ShowSignupFunctionsWhenCreatingAccountEvent>(showSignupFunctionsWhenCreatingAccountEvent);
     on<ShowLoginFunctionsWhenCreatingAccountEvent>(showLoginFunctionsWhenCreatingAccountEvent);
     on<SignUpAndLoginCircularIndicatorEvent>(signUpAndLoginCircularIndicatorEvent);
+    on<SignUpAndLoginCircularIndicatorStopEvent>(signUpAndLoginCircularIndicatorStopEvent);
   }
 
   FutureOr<void> showSignupFunctionsWhenCreatingAccountEvent(
@@ -29,5 +30,10 @@ class LoginSignupScreenBloc extends Bloc<LoginSignupScreenEvent, LoginSignupScre
   FutureOr<void> signUpAndLoginCircularIndicatorEvent(
     SignUpAndLoginCircularIndicatorEvent event, Emitter<LoginSignupScreenState> emit) {
       emit(SignUpAndLoginCircularIndicatorState());
+  }
+
+  FutureOr<void> signUpAndLoginCircularIndicatorStopEvent(
+    SignUpAndLoginCircularIndicatorStopEvent event, Emitter<LoginSignupScreenState> emit) {
+      emit(SignUpAndLoginCircularIndicatorStopState());
   }
 }

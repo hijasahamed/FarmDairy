@@ -40,9 +40,9 @@ final List<String> dropDownItems = [
 // function when user click on the Login button
 void loginButtonClicked({required BuildContext context,required Size screenSize})async{
   if(userLoginformkey.currentState!.validate()){
+    signUpAndLoginCircularBlocInstance.add(SignUpAndLoginCircularIndicatorEvent());
     User? user = await firebaseAuthServiceInstance.userLogin(context: context,email: emailController.text,password: passwordController.text);
-    if(user!=null){
-      signUpAndLoginCircularBlocInstance.add(SignUpAndLoginCircularIndicatorEvent());
+    if(user!=null){     
         dynamic userData = await checkIfUserAvailable(email: user.email!);
         if(userData != null){
           final sharedPreferenceStorageInstance = await SharedPreferences.getInstance();
@@ -67,8 +67,10 @@ void loginButtonClicked({required BuildContext context,required Size screenSize}
               (Route<dynamic> route) => false,
             );
           }
+          
         }
-      }
+    }
+    signUpAndLoginCircularBlocInstance.add(SignUpAndLoginCircularIndicatorStopEvent());
   }
   else{
     log('Not Logged In');
@@ -111,11 +113,15 @@ void signUpButtonClicked({required BuildContext context,required Size screenSize
             (Route<dynamic> route) => false,
           );
         }
+        signUpAndLoginCircularBlocInstance.add(SignUpAndLoginCircularIndicatorStopEvent());
       }
+
     } catch (e) {
+      signUpAndLoginCircularBlocInstance.add(SignUpAndLoginCircularIndicatorStopEvent());
       log('SignUp Failed: $e');      
     }
   } else {
+    signUpAndLoginCircularBlocInstance.add(SignUpAndLoginCircularIndicatorStopEvent());
     snackbarMessageWidget(
         text: 'Provide Correct Details',
         context: context,

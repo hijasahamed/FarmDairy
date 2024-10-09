@@ -1,4 +1,6 @@
+import 'package:farm_dairy/controllers/login_signup_screen_controllers.dart';
 import 'package:farm_dairy/models/common_widgets/snack_bar_message_widget.dart';
+import 'package:farm_dairy/views/screens/login_signup_screen/bloc/login_signup_screen_bloc.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -27,6 +29,7 @@ class FirebaseAuthService {
           email: email, password: password);
       return credential.user;
     } catch (e) {
+      signUpAndLoginCircularBlocInstance.add(SignUpAndLoginCircularIndicatorStopEvent());
       return snackbarMessageWidget(text: 'Already a User. Please Login', context: context, color: Colors.red, textColor: Colors.white, behavior: SnackBarBehavior.floating, time: 2000);
     }
   }

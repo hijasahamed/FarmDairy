@@ -30,16 +30,24 @@ class SignUpButton extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                SignUpButtonText(screenSize: screenSize),
-                if (state is SignUpAndLoginCircularIndicatorState)                  
-                  SizedBox(
-                    height: screenSize.width/15,
-                    width: screenSize.width/15,
-                    child: CircularProgressIndicator(
-                      color: Colors.white,
-                      strokeWidth: screenSize.width/150,
-                    ),
-                  ),
+                if (state is SignUpAndLoginCircularIndicatorState)
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      SignUpButtonText(screenSize: screenSize),
+                      SizedBox(width: screenSize.width / 30),
+                      SizedBox(
+                        height: screenSize.width / 15,
+                        width: screenSize.width / 15,
+                        child: CircularProgressIndicator(
+                          color: Colors.white,
+                          strokeWidth: screenSize.width / 150,
+                        ),
+                      ),
+                    ],
+                  )
+                else
+                  SignUpButtonText(screenSize: screenSize),
               ],
             ),
           ),
