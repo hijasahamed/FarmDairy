@@ -19,7 +19,7 @@ class AvailableProductsWidget extends StatelessWidget {
       children: [
         TextAvailableProductsAndDivider(isDarkMode: isDarkMode, screenSize: screenSize),
         productCard(
-          imageUrl: 'assets/images/lessi.jpg',
+          imageUrl: isDarkMode?'assets/images/lessi black background.png':'assets/images/lessi.jpg',
           title: 'Lassi',
           price: '₹30',
           screenSize: screenSize,
@@ -27,7 +27,7 @@ class AvailableProductsWidget extends StatelessWidget {
           stockName: 'lassiStock'
         ),
         productCard(
-          imageUrl: 'assets/images/milk peda.webp',
+          imageUrl: isDarkMode? 'assets/images/milk peda blk bg.png':'assets/images/milk peda.webp',
           title: 'Milk Peda',
           price: '₹100',
           screenSize: screenSize,

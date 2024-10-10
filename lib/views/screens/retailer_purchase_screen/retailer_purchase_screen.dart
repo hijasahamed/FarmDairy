@@ -42,35 +42,53 @@ class _RetailerPurchaseScreenState extends State<RetailerPurchaseScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final isDarkMode = MediaQuery.of(context).platformBrightness == Brightness.dark;
+    final isDarkMode = MediaQuery.of(context).platformBrightness == Brightness.dark;    
     return Scaffold(
       backgroundColor: isDarkMode?Colors.black:Colors.white,
       appBar: PurchaseAppBar(isDarkMode: isDarkMode, screenSize: widget.screenSize),
-      body: SafeArea(
-        child: Padding(
-          padding: EdgeInsets.all(widget.screenSize.width/50),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Container(
-                padding: EdgeInsets.all(widget.screenSize.width/150),
-                height: widget.screenSize.height/3,
-                width: widget.screenSize.width,
-                decoration: BoxDecoration(
-                  color: isDarkMode ? Colors.grey[900] : Colors.white,
-                  borderRadius: BorderRadius.circular(widget.screenSize.width/75),
-                  border: Border.all(color: isDarkMode?const Color.fromARGB(255, 184, 184, 184):const Color.fromARGB(255, 39, 39, 39),width: .1)
-                ),
-                child: Image.asset(widget.imageUrl),
+      body: PurchaseBodyWidget(widget: widget, isDarkMode: isDarkMode),
+    );
+  }
+}
+
+class PurchaseBodyWidget extends StatelessWidget {
+  const PurchaseBodyWidget({
+    super.key,
+    required this.widget,
+    required this.isDarkMode,
+  });
+
+  final RetailerPurchaseScreen widget;
+  final bool isDarkMode;
+
+  @override
+  Widget build(BuildContext context) {
+    return SafeArea(
+      child: Padding(
+        padding: EdgeInsets.all(widget.screenSize.width/50),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Container(
+              padding: EdgeInsets.all(widget.screenSize.width/150),
+              height: widget.screenSize.height/3,
+              width: widget.screenSize.width,
+              decoration: BoxDecoration(
+                color: isDarkMode ? Colors.black : Colors.white,
+                borderRadius: BorderRadius.circular(widget.screenSize.width/75),
+                border: Border.all(color: isDarkMode?const Color.fromARGB(255, 184, 184, 184):const Color.fromARGB(255, 39, 39, 39),width: .1)
               ),
-              TextWidget(text: widget.title, color: isDarkMode?Colors.white:Colors.blueGrey, size: widget.screenSize.width/10, fontFamily: 'FarmDairyFontNormal', weight: FontWeight.bold),
-              TextWidget(text: '${widget.price} / Pcs', color: Colors.green, size: widget.screenSize.width/25, fontFamily: 'FarmDairyFontNormal', weight: FontWeight.bold),
-              AvailableStockCountWidget(stockName: widget.stockName,screenSize: widget.screenSize,),
-            ],
-          ),
-        )
-      ),
+              child: Image.asset(widget.imageUrl),
+            ),
+            TextWidget(text: widget.title, color: isDarkMode?Colors.white:Colors.blueGrey, size: widget.screenSize.width/10, fontFamily: 'FarmDairyFontNormal', weight: FontWeight.bold),
+            TextWidget(text: '${widget.price} / Pcs', color: Colors.green, size: widget.screenSize.width/25, fontFamily: 'FarmDairyFontNormal', weight: FontWeight.bold),
+            AvailableStockCountWidget(stockName: widget.stockName,screenSize: widget.screenSize,),
+            SizedBox(height: widget.screenSize.height/80,),
+            TextWidget(text: 'Place Your Order', color: Colors.blueGrey, size: widget.screenSize.width/15, fontFamily: 'FarmDairyFontNormal', weight: FontWeight.bold),
+          ],
+        ),
+      )
     );
   }
 }

@@ -15,7 +15,7 @@ class ProductImageWidget extends StatelessWidget {
     return Image.asset(
       imageUrl,
       width: screenSize.width / 2.3,
-      height: screenSize.height / 8,
+      height: screenSize.height / 7,
       fit: BoxFit.cover,
     );
   }

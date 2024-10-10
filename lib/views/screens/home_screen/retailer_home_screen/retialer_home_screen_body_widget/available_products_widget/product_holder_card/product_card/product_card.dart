@@ -23,8 +23,15 @@ class ItemCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
+      shape: RoundedRectangleBorder(
+        side: const BorderSide(
+          color: Colors.grey,
+          width: .2,
+        ),
+        borderRadius: BorderRadius.circular(screenSize.width/75), 
+      ),
       elevation: 3,
-      color: isDarkMode ? Colors.grey[900] : Colors.white,
+      color: isDarkMode ? Colors.black: Colors.white,
       child: Container(
         width: screenSize.width / 2.3,
         padding: EdgeInsets.all(screenSize.width / 40),
