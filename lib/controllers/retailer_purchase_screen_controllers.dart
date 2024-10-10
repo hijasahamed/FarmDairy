@@ -1,7 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/material.dart';
+
+TextEditingController itemCountController = TextEditingController();
+TextEditingController villageController = TextEditingController();
 
 // Function to fetch the stock count
-Future<String> getStockValue({required String stockName}) async {
+Future<int> getStockValue({required String stockName}) async {
   try {
     DocumentSnapshot<Map<String, dynamic>> snapshot = await FirebaseFirestore.instance
         .collection('productStocks')
@@ -9,11 +13,11 @@ Future<String> getStockValue({required String stockName}) async {
         .get();
 
     if (snapshot.exists) {
-      return snapshot.data()?['stock'] as String? ?? '0';
+      return int.tryParse(snapshot.data()?['stock'].toString() ?? '0') ?? 0;
     } else {
-      return '0';
+      return 0;
     }
   } catch (e) {
-    return '0';
+    return 0;
   }
 }
