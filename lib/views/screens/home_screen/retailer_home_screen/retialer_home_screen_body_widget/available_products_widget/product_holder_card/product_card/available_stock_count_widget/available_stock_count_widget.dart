@@ -21,7 +21,7 @@ class AvailableStockCountWidget extends StatelessWidget {
           .snapshots(),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return const CircularProgressIndicator();
+          return const SizedBox.shrink();
         }
         if (snapshot.hasError) {
           return const SizedBox.shrink();
