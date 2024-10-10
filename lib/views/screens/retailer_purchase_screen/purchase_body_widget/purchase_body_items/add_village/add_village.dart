@@ -27,6 +27,7 @@ class AddVillage extends StatelessWidget {
         ),
         TextFormField(
           controller: villageController,
+          keyboardType: TextInputType.none,
           style: TextStyle(color: isDarkMode ? Colors.white : Colors.black), 
           decoration: InputDecoration(
             filled: true,
@@ -39,6 +40,28 @@ class AddVillage extends StatelessWidget {
                 color: isDarkMode ? Colors.white : Colors.black,
               ),
             ),
+            suffixIcon: Padding(
+              padding: EdgeInsets.only(right: widget.screenSize.width/90),
+              child: DropdownButton<String>(
+                underline: const SizedBox.shrink(),
+                padding: EdgeInsets.all(widget.screenSize.width/20),
+                dropdownColor: isDarkMode? Colors.white:Colors.black,
+                elevation: 5,
+                isDense: true,
+                iconEnabledColor: const Color(0xFFFD7014),
+                value: villageSelectedDropDownItem,
+                items: villageDropDownItems.map((String item) {
+                  return DropdownMenuItem<String>(
+                    alignment: Alignment.center,
+                    value: item,
+                    child: TextWidget(text: item, color: isDarkMode? Colors.black:Colors.white, size: widget.screenSize.width/25, fontFamily: 'FarmDairyFontNormal', weight: FontWeight.bold),
+                  );
+                }).toList(),
+                onChanged: (value) {
+                  villageController.text = value.toString();
+                },
+              ),
+            )
           ),
         ),
         SizedBox(height: widget.screenSize.width / 50),

@@ -11,11 +11,12 @@ Widget productCard({
     required Size screenSize,
     required bool isDarkMode,
     required String stockName,
+    required String email
   }) {
     return Row(
       children: [
         ItemCard(imageUrl: imageUrl,isDarkMode: isDarkMode,price: price,screenSize: screenSize,title: title,stockName: stockName,),
-        BuyProductButton(imageUrl: imageUrl,isDarkMode: isDarkMode,price: price,screenSize: screenSize,title: title,stockName: stockName,)
+        BuyProductButton(imageUrl: imageUrl,isDarkMode: isDarkMode,price: price,screenSize: screenSize,title: title,stockName: stockName,email: email,)
       ],
     );
 }

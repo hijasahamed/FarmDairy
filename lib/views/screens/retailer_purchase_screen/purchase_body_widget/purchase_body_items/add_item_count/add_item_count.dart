@@ -37,18 +37,10 @@ class _AddItemCountState extends State<AddItemCount> {
         } else {
           itemStatusText = 'Item Count';
         }
-      } else {
-        itemStatusText = 'Invalid input';
       }
     });
   }
-
-  @override
-  void dispose() {
-    itemCountController.clear();
-    villageController.clear();
-    super.dispose();
-  }
+  
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -61,6 +53,8 @@ class _AddItemCountState extends State<AddItemCount> {
           fontFamily: 'FarmDairyFontNormal',
           weight: FontWeight.w400,
         ),
+        if(itemStatusText=='Item more than stock')
+        TextWidget(text: 'Item Limit Exeeds Stock', color: Colors.red, size: widget.widget.screenSize.width/25, fontFamily: 'FarmDairyFontNormal', weight: FontWeight.w500),
         TextFormField(
           controller: itemCountController,
           style: TextStyle(color: widget.isDarkMode ? Colors.white : Colors.black),
@@ -72,7 +66,7 @@ class _AddItemCountState extends State<AddItemCount> {
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(widget.widget.screenSize.width / 75),
               borderSide: BorderSide(
-                color: widget.isDarkMode ? Colors.white : Colors.black,
+                color: widget.isDarkMode ? const Color.fromARGB(255, 227, 227, 227) : const Color.fromARGB(255, 123, 123, 123),
               ),
             ),
           ),

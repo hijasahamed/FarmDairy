@@ -1,4 +1,5 @@
 import 'package:farm_dairy/controllers/retailer_purchase_screen_controllers.dart';
+import 'package:farm_dairy/views/screens/retailer_purchase_screen/bottom_app_bar_widget/bottom_app_bar_widget.dart';
 import 'package:farm_dairy/views/screens/retailer_purchase_screen/purchase_app_bar/purchase_app_bar.dart';
 import 'package:farm_dairy/views/screens/retailer_purchase_screen/purchase_body_widget/purchase_body_widget.dart';
 import 'package:flutter/material.dart';
@@ -10,13 +11,15 @@ class RetailerPurchaseScreen extends StatefulWidget {
     required this.imageUrl,
     required this.title,
     required this.price,
-    required this.stockName
+    required this.stockName,
+    required this.email
     });
   final Size screenSize;
   final String imageUrl;
   final String title;
   final String price;
   final String stockName;
+  final String email;
 
   @override
   State<RetailerPurchaseScreen> createState() => _RetailerPurchaseScreenState();
@@ -46,7 +49,7 @@ class _RetailerPurchaseScreenState extends State<RetailerPurchaseScreen> {
       backgroundColor: isDarkMode?Colors.black:Colors.white,
       appBar: PurchaseAppBar(isDarkMode: isDarkMode, screenSize: widget.screenSize),
       body: PurchaseBodyWidget(widget: widget, isDarkMode: isDarkMode,stockValue: stockValue,),
+      bottomNavigationBar: BottomAppBarWidget(isDarkMode: isDarkMode, widget: widget,stockValue: stockValue,email: widget.email,),
     );
   }
 }
-

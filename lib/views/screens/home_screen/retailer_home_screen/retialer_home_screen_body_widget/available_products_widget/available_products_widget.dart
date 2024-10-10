@@ -7,10 +7,12 @@ class AvailableProductsWidget extends StatelessWidget {
     super.key,
     required this.isDarkMode,
     required this.screenSize,
+    required this.email
   });
 
   final bool isDarkMode;
   final Size screenSize;
+  final dynamic email;
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +26,8 @@ class AvailableProductsWidget extends StatelessWidget {
           price: '₹30',
           screenSize: screenSize,
           isDarkMode: isDarkMode,
-          stockName: 'lassiStock'
+          stockName: 'lassiStock',
+          email: email
         ),
         productCard(
           imageUrl: isDarkMode? 'assets/images/milk peda blk bg.png':'assets/images/milk peda.webp',
@@ -32,7 +35,8 @@ class AvailableProductsWidget extends StatelessWidget {
           price: '₹100',
           screenSize: screenSize,
           isDarkMode: isDarkMode,
-          stockName: 'milkPedaStock'
+          stockName: 'milkPedaStock',
+          email: email
         ),
       ],
     );
