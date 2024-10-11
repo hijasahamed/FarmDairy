@@ -4,9 +4,10 @@ import 'package:farm_dairy/views/screens/home_screen/retailer_home_screen/retial
 import 'package:flutter/material.dart';
 
 class RetailerHomeScreen extends StatelessWidget {
-  const RetailerHomeScreen({super.key,required this.screenSize,required this.email});
+  const RetailerHomeScreen({super.key,required this.screenSize,required this.email,required this.userData});
   final Size screenSize;
   final dynamic email;
+  final dynamic userData;
   @override
   Widget build(BuildContext context) {
     final isDarkMode = MediaQuery.of(context).platformBrightness == Brightness.dark;
@@ -14,7 +15,7 @@ class RetailerHomeScreen extends StatelessWidget {
       backgroundColor: isDarkMode ? Colors.black : Colors.white,
       appBar: RetailerHomeScreenAppbar(screenSize: screenSize, isDarkMode: isDarkMode),
       body: RetailerHomeScreenBodyWidget(email: email, isDarkMode: isDarkMode, screenSize: screenSize), 
-      bottomNavigationBar: RetailersHomeScreenBottomApp(screenSize: screenSize, isDarkMode: isDarkMode),    
+      bottomNavigationBar: RetailersHomeScreenBottomApp(screenSize: screenSize, isDarkMode: isDarkMode,userData: userData,),    
     );
   }
 }

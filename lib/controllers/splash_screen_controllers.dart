@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:connectivity/connectivity.dart';
+import 'package:farm_dairy/controllers/login_signup_screen_controllers.dart';
 import 'package:farm_dairy/models/common_widgets/snack_bar_message_widget.dart';
 import 'package:farm_dairy/views/screens/home_screen/admin_home_screen/admin_home_screen.dart';
 import 'package:farm_dairy/views/screens/home_screen/retailer_home_screen/retailer_home_screen.dart';
@@ -20,6 +21,7 @@ Future<void> checkLogging({required context,required Size screenSize,}) async {
   final isLogedIn = sharedPreferenceStorageInstance.getBool(logedInKey);
   final role = sharedPreferenceStorageInstance.getString('role');
   final email = sharedPreferenceStorageInstance.getString('email');
+  dynamic userData = await checkIfUserAvailable(email: email!);
   log(isLogedIn.toString());
   log(role.toString());
   if (connectivityResult == ConnectivityResult.none) {
@@ -42,7 +44,7 @@ Future<void> checkLogging({required context,required Size screenSize,}) async {
     await goToSalesManHomeScreen(context: context, screenSize: screenSize);
   } else if(isLogedIn == true && role == 'Retailer') {
     await Future.delayed(const Duration(milliseconds: 1500));
-    await goToRetailersHomeScreen(context: context, screenSize: screenSize,email: email!);
+    await goToRetailersHomeScreen(context: context, screenSize: screenSize,email: email,userData: userData);
   }
 }
 
@@ -64,8 +66,8 @@ Future<void> goToSalesManHomeScreen({required context,required Size screenSize,}
   }));
 }
 
-Future<void> goToRetailersHomeScreen({required context,required Size screenSize,required String email}) async {
+Future<void> goToRetailersHomeScreen({required context,required Size screenSize,required String email,required dynamic userData}) async {
   Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (ctx) {
-    return RetailerHomeScreen(screenSize: screenSize,email: email,);
+    return RetailerHomeScreen(screenSize: screenSize,email: email,userData: userData,);
   }));
 }

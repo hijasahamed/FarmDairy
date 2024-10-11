@@ -6,10 +6,12 @@ class RetailersHomeScreenBottomApp extends StatelessWidget {
     super.key,
     required this.screenSize,
     required this.isDarkMode,
+    required this.userData
   });
 
   final Size screenSize;
   final bool isDarkMode;
+  final dynamic userData;
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +19,7 @@ class RetailersHomeScreenBottomApp extends StatelessWidget {
       padding: EdgeInsets.all(screenSize.width/75),
       child: BottomAppBar(
         color: isDarkMode?Colors.black:Colors.white,
-        child: BottomAppTextButtonWidget(isDarkMode: isDarkMode,screenSize: screenSize,),
+        child: BottomAppTextButtonWidget(isDarkMode: isDarkMode,screenSize: screenSize,userData: userData,),
       ),
     );
   }

@@ -6,18 +6,20 @@ class BottomAppTextButtonWidget extends StatelessWidget {
   const BottomAppTextButtonWidget({
     super.key,
     required this.isDarkMode,
-    required this.screenSize
+    required this.screenSize,
+    required this.userData
   });
 
   final bool isDarkMode;
   final Size screenSize;
+  final dynamic userData;
 
   @override
   Widget build(BuildContext context) {
     return TextButton(
       onPressed: () {
         Navigator.of(context).push(MaterialPageRoute(builder: (context) {
-          return RetailerViewOrderScreen(screenSize: screenSize,);
+          return RetailerViewOrderScreen(screenSize: screenSize,userData: userData,);
         },));
       },
       style: TextButton.styleFrom(

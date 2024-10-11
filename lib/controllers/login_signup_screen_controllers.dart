@@ -76,7 +76,7 @@ void loginButtonClicked({required BuildContext context,required Size screenSize}
             );
           }else if(userData.role == 'Retailer' && roleController.text == userData.role){
             Navigator.of(context).pushAndRemoveUntil(
-              MaterialPageRoute(builder: (context) => RetailerHomeScreen(screenSize: screenSize,email: userData.email,)),
+              MaterialPageRoute(builder: (context) => RetailerHomeScreen(screenSize: screenSize,email: userData.email,userData: userData,)),
               (Route<dynamic> route) => false,
             );
           }else{
@@ -125,7 +125,7 @@ void signUpButtonClicked({required BuildContext context,required Size screenSize
           );
         }else if(userData.role == 'Retailer'){
           Navigator.of(context).pushAndRemoveUntil(
-            MaterialPageRoute(builder: (context) => RetailerHomeScreen(screenSize: screenSize,email: userData.email,)),
+            MaterialPageRoute(builder: (context) => RetailerHomeScreen(screenSize: screenSize,email: userData.email,userData: userData,)),
             (Route<dynamic> route) => false,
           );
         }
