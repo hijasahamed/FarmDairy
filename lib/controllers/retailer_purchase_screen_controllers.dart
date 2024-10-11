@@ -57,7 +57,7 @@ Future<void> addProductOrder({
         'orderDate': orderDate,
         'email' : email,
         'title' : title,
-        'update' : 'orderPlaced'
+        'update' : 'Order Placed'
       };
 
       await FirebaseFirestore.instance.collection('productOrders').add(orderData);
