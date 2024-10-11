@@ -32,7 +32,7 @@ class AvailableStockCountWidget extends StatelessWidget {
         var stock = snapshot.data!['stock'];
         return TextWidget(
           text: 'Available Stock : $stock Pcs', 
-          color: (stock=='0')? Colors.red:Colors.green, 
+          color: (stock=='0')? Colors.red:Colors.blueGrey, 
           size: screenSize.width / 35, 
           fontFamily: 'FarmDairyFontNormal', 
           weight: FontWeight.bold,

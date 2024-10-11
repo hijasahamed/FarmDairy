@@ -26,8 +26,9 @@ class FetchedOrderWidget extends StatelessWidget {
         final int totalAmount = orderData['totalAmount'];
         final int itemCount = orderData['itemCount'];
         final String update = orderData['update'];
+        final String documentId = orderData.id;
         
-        return FetchedOrdersHolder(isDarkMode: isDarkMode, screenSize: screenSize, title: title, orderDate: orderDate, itemCount: itemCount, totalAmount: totalAmount, update: update);
+        return FetchedOrdersHolder(isDarkMode: isDarkMode, screenSize: screenSize, title: title, orderDate: orderDate, itemCount: itemCount, totalAmount: totalAmount, update: update,documentId: documentId,);
       },
     );
   }

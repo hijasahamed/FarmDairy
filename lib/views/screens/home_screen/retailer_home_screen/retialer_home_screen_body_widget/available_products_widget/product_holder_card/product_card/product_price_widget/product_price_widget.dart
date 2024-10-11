@@ -15,7 +15,7 @@ class ProductPriceWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        SizedBox(height: screenSize.height / 80),
+        SizedBox(height: screenSize.height / 150),
         TextWidget(
           text: price, 
           color: Colors.green, 
