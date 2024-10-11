@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:farm_dairy/models/common_widgets/snack_bar_message_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 TextEditingController itemCountController = TextEditingController();
 
@@ -45,13 +46,18 @@ Future<void> addProductOrder({
 
       DateTime orderDate = DateTime.now();
 
+      final sharedPreferenceStorageInstance = await SharedPreferences.getInstance();
+       String? storedVillage = sharedPreferenceStorageInstance.getString('village') ?? 'village';
+
+
       Map<String, dynamic> orderData = {
         'itemCount': parsedItemCount,
         'totalAmount': totalAmount,
-        'village': village,
+        'village': storedVillage,
         'orderDate': orderDate,
         'email' : email,
-        'title' : title
+        'title' : title,
+        'update' : 'orderPlaced'
       };
 
       await FirebaseFirestore.instance.collection('productOrders').add(orderData);

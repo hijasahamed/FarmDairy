@@ -55,6 +55,7 @@ class _AddItemCountState extends State<AddItemCount> {
         ),
         if(itemStatusText=='Item more than stock')
         TextWidget(text: 'Item Limit Exeeds Stock', color: Colors.red, size: widget.widget.screenSize.width/25, fontFamily: 'FarmDairyFontNormal', weight: FontWeight.w500),
+        SizedBox(height: widget.widget.screenSize.height/75,),
         TextFormField(
           controller: itemCountController,
           style: TextStyle(color: widget.isDarkMode ? Colors.white : Colors.black),

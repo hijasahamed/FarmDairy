@@ -22,7 +22,7 @@ class RetailerHomeScreenBodyWidget extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           WelcomeText(isDarkMode: isDarkMode, screenSize: screenSize, email: email),
-          AvailableProductsWidget(isDarkMode: isDarkMode, screenSize: screenSize,email: email,)
+          AvailableProductsWidget(isDarkMode: isDarkMode, screenSize: screenSize,email: email,),          
         ],
       ),
     );
