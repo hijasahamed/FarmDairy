@@ -17,7 +17,7 @@ class RetailersHomeScreenBottomApp extends StatelessWidget {
       padding: EdgeInsets.all(screenSize.width/75),
       child: BottomAppBar(
         color: isDarkMode?Colors.black:Colors.white,
-        child: BottomAppTextButtonWidget(isDarkMode: isDarkMode),
+        child: BottomAppTextButtonWidget(isDarkMode: isDarkMode,screenSize: screenSize,),
       ),
     );
   }
