@@ -20,7 +20,6 @@ class DeleteSalesManForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // final isDarkMode = MediaQuery.of(context).platformBrightness == Brightness.dark;
     return AlertDialog(
       backgroundColor: isDarkMode?const Color.fromARGB(255, 36, 35, 35):Colors.white,
       title: FormTitle(isDarkMode: isDarkMode, screenSize: screenSize),

@@ -63,6 +63,7 @@ void loginButtonClicked({required BuildContext context,required Size screenSize}
           await sharedPreferenceStorageInstance.setString('password', userData.password);
           await sharedPreferenceStorageInstance.setString('role', userData.role);
           await sharedPreferenceStorageInstance.setString('userUid', userData.userUid);
+          await sharedPreferenceStorageInstance.setString('village', userData.village);
           if(userData.role == 'Admin' && roleController.text == userData.role){
             Navigator.of(context).pushAndRemoveUntil(
               MaterialPageRoute(builder: (context) => AdminHomescreen(screenSize: screenSize,)),
@@ -111,6 +112,7 @@ void signUpButtonClicked({required BuildContext context,required Size screenSize
         await sharedPreferenceStorageInstance.setString('password', userData.password);
         await sharedPreferenceStorageInstance.setString('role', userData.role);
         await sharedPreferenceStorageInstance.setString('userUid', userData.userUid);
+        await sharedPreferenceStorageInstance.setString('village', userData.village);
         if(userData.role == 'Admin'){
           Navigator.of(context).pushAndRemoveUntil(
             MaterialPageRoute(builder: (context) => AdminHomescreen(screenSize: screenSize,)),
@@ -174,7 +176,7 @@ Future<UserData?> checkIfUserAvailable({required String email}) async {
 
     if (querySnapshot.docs.isNotEmpty) {
       QueryDocumentSnapshot doc = querySnapshot.docs.first;
-      UserData userData = UserData(email: doc['email'], password: doc['password'], role: doc['role'], userUid: doc['userUid']);
+      UserData userData = UserData(email: doc['email'], password: doc['password'], role: doc['role'], userUid: doc['userUid'],village: doc['village']);
       return userData;
     } else {
       return null;
