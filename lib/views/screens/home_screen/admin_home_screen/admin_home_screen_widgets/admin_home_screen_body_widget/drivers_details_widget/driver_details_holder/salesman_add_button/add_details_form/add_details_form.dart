@@ -1,9 +1,11 @@
 // ignore_for_file: use_build_context_synchronously
 
+import 'package:farm_dairy/controllers/login_signup_screen_controllers.dart';
 import 'package:farm_dairy/models/common_widgets/text_widget.dart';
 import 'package:farm_dairy/views/screens/home_screen/admin_home_screen/admin_home_screen_widgets/admin_home_screen_body_widget/drivers_details_widget/driver_details_holder/salesman_add_button/add_details_form/cancel_button/cancel_button.dart';
 import 'package:farm_dairy/views/screens/home_screen/admin_home_screen/admin_home_screen_widgets/admin_home_screen_body_widget/drivers_details_widget/driver_details_holder/salesman_add_button/add_details_form/submit_button/submit_button.dart';
 import 'package:farm_dairy/views/screens/home_screen/admin_home_screen/bloc/admin_home_screen_bloc.dart';
+import 'package:farm_dairy/views/screens/login_signup_screen/login_signup_screen_widgets/village_drop_down_button/village_drop_down_button.dart';
 import 'package:flutter/material.dart';
 
 TextEditingController salesmanNameController = TextEditingController();
@@ -28,7 +30,7 @@ void showAddSalesmanDialog({
   if(iseditSaleMan==true){
     salesmanNameController.text = salesmanName ?? '';
     vehicleNumberController.text = vehicleNumber ?? '';
-    locationController.text = location ?? '';
+    villageController.text = location ?? '';
     mobileController.text = mobileNumber ?? '';
   }
 
@@ -49,6 +51,7 @@ void showAddSalesmanDialog({
             key: formKey,
             child: Column(
               mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 TextFormField(
                   keyboardType: TextInputType.name,
@@ -99,18 +102,22 @@ void showAddSalesmanDialog({
                   },
                 ),
                 const SizedBox(height: 10),
+                TextWidget(
+                  text: 'Delivery Location', 
+                  color: isDarkMode ? Colors.white70 : Colors.black87, 
+                  size: screenSize.width/30, 
+                  fontFamily: 'FarmDairyFontNormal', 
+                  weight: FontWeight.bold
+                ),
                 TextFormField(
                   keyboardType: TextInputType.name,
                   textCapitalization: TextCapitalization.words,
-                  controller: locationController,
+                  controller: villageController,
                   style: TextStyle(
                     color: isDarkMode ? Colors.white : Colors.black,
                   ),
                   decoration: InputDecoration(
-                    labelText: 'Location',
-                    labelStyle: TextStyle(
-                      color: isDarkMode ? Colors.white70 : Colors.black87,
-                    ),
+                    suffixIcon: VillageDropDownButton(screenSize: screenSize, isDarkMode: isDarkMode),                   
                     border: const OutlineInputBorder(),
                     filled: true,
                     fillColor: isDarkMode ? Colors.grey[800] : Colors.grey[200],

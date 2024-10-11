@@ -18,6 +18,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 LoginSignupScreenBloc showSignupFunctionBlocInstance = LoginSignupScreenBloc();
 
+LoginSignupScreenBloc showAddVillageFormBlocInstance = LoginSignupScreenBloc();
+
 LoginSignupScreenBloc signUpAndLoginCircularBlocInstance = LoginSignupScreenBloc();
 
 TextEditingController emailController = TextEditingController();
@@ -34,6 +36,16 @@ final List<String> dropDownItems = [
   'Admin',
   'SalesMan',
   'Retailer',
+];
+
+TextEditingController villageController = TextEditingController();
+
+String? villageSelectedDropDownItem;
+
+final List<String> villageDropDownItems = [
+  'Pulikkal',
+  'Ayikkarapadi',
+  'Kottapuram',
 ];
 
 
@@ -143,7 +155,8 @@ addUserSignupDataToFirebaseDbCollection({required userUid}) async {
       'email': emailController.text,
       'password': passwordController.text,
       'role': roleController.text,
-      'userUid': userUid
+      'userUid': userUid,
+      'village' : villageController.text.isNotEmpty ? villageController.text : 'noData'
     };
     await instance.add(data);
   } catch (e) {

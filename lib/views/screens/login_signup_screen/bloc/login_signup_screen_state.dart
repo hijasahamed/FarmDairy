@@ -12,3 +12,5 @@ class ShowLoginFunctionsWhenCreatingAccountState extends LoginSignupScreenState 
 class SignUpAndLoginCircularIndicatorState extends LoginSignupScreenState {}
 
 class SignUpAndLoginCircularIndicatorStopState extends LoginSignupScreenState {}
+
+class ShowAddVillageFormForRetailerState extends LoginSignupScreenState {}

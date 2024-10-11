@@ -5,16 +5,6 @@ import 'package:farm_dairy/models/common_widgets/snack_bar_message_widget.dart';
 import 'package:flutter/material.dart';
 
 TextEditingController itemCountController = TextEditingController();
-TextEditingController villageController = TextEditingController();
-
-String? villageSelectedDropDownItem;
-
-final List<String> villageDropDownItems = [
-  'Pulikkal',
-  'Ayikkarapadi',
-  'Kottapuram',
-];
-
 
 // Function to fetch the stock count
 Future<int> getStockValue({required String stockName}) async {
@@ -40,6 +30,7 @@ Future<void> addProductOrder({
   required String itemCount,
   required String village,
   required String price,
+  required String title,
   required int stockValue,
   required context,
   required email
@@ -59,12 +50,12 @@ Future<void> addProductOrder({
         'totalAmount': totalAmount,
         'village': village,
         'orderDate': orderDate,
-        'email' : email
+        'email' : email,
+        'title' : title
       };
 
       await FirebaseFirestore.instance.collection('productOrders').add(orderData);
       itemCountController.clear();
-      villageController.clear();
       await snackbarMessageWidget(text: 'Order Placed', context: context, color: Colors.green, textColor: Colors.white, behavior: SnackBarBehavior.floating, time: 3000);
       Navigator.of(context).pop();
     } catch (e) {

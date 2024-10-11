@@ -1,3 +1,4 @@
+import 'package:farm_dairy/controllers/login_signup_screen_controllers.dart';
 import 'package:farm_dairy/controllers/retailer_purchase_screen_controllers.dart';
 import 'package:farm_dairy/models/common_widgets/text_widget.dart';
 import 'package:farm_dairy/views/screens/retailer_purchase_screen/retailer_purchase_screen.dart';
@@ -22,7 +23,7 @@ class BottomAppBarWidget extends StatelessWidget {
       color: isDarkMode?Colors.black:Colors.white,
       child: InkWell(
         onTap: () {
-          addProductOrder(itemCount: itemCountController.text, village: villageController.text, price: widget.price,stockValue: stockValue,context: context,email: email);
+          addProductOrder(itemCount: itemCountController.text, village: villageController.text, price: widget.price,stockValue: stockValue,context: context,email: email,title: widget.title);
         },
         child: Ink(
           height: widget.screenSize.height/15,

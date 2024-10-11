@@ -23,7 +23,7 @@ class MilkStockErrorWidget extends StatelessWidget {
             weight: FontWeight.w400
         ),
         TextWidget(
-            text: 'Error',
+            text: '0',
             color: isDarkMode ? Colors.red : Colors.blueGrey,
             size: screenSize.width / 15,
             fontFamily: 'FarmDairyFontNormal',

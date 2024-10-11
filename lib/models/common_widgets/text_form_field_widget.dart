@@ -1,4 +1,5 @@
 import 'package:farm_dairy/views/screens/login_signup_screen/login_signup_screen_widgets/role_drop_down_button_widget/role_drop_down_button_widget.dart';
+import 'package:farm_dairy/views/screens/login_signup_screen/login_signup_screen_widgets/village_drop_down_button/village_drop_down_button.dart';
 import 'package:flutter/material.dart';
 
 class CustomTextFormField extends StatelessWidget {
@@ -9,6 +10,7 @@ class CustomTextFormField extends StatelessWidget {
   final bool isDarkMode;
   final TextEditingController controller;
   final bool? isRole;
+  final bool? isVillage;
 
   const CustomTextFormField({
     super.key,
@@ -18,7 +20,8 @@ class CustomTextFormField extends StatelessWidget {
     required this.screenSize,
     required this.isDarkMode,
     required this.controller,
-    this.isRole
+    this.isRole,
+    this.isVillage
   });
 
   @override
@@ -53,7 +56,7 @@ class CustomTextFormField extends StatelessWidget {
       ),
       labelText: label,
       suffixIcon: (isRole==true)?
-      RoleDropDownButtonWidget(screenSize: screenSize,isDarkMode: isDarkMode,):null
+      RoleDropDownButtonWidget(screenSize: screenSize,isDarkMode: isDarkMode,):(isVillage==true)? VillageDropDownButton(screenSize: screenSize, isDarkMode: isDarkMode):null
     );
 
     return TextFormField(

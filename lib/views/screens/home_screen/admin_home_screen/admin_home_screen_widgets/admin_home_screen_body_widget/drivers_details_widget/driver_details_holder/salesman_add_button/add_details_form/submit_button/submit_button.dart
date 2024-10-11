@@ -1,6 +1,7 @@
 // ignore_for_file: use_build_context_synchronously
 
 import 'package:farm_dairy/controllers/admin_home_screen_controllers.dart';
+import 'package:farm_dairy/controllers/login_signup_screen_controllers.dart';
 import 'package:farm_dairy/models/common_widgets/text_widget.dart';
 import 'package:farm_dairy/views/screens/home_screen/admin_home_screen/admin_home_screen_widgets/admin_home_screen_body_widget/drivers_details_widget/driver_details_holder/salesman_add_button/add_details_form/add_details_form.dart';
 import 'package:farm_dairy/views/screens/home_screen/admin_home_screen/bloc/admin_home_screen_bloc.dart';
@@ -30,7 +31,7 @@ class AddSalesManSubmitButton extends StatelessWidget {
             documentId: documentId,
             salesmanName: salesmanNameController.text,
             vehicleNumber: vehicleNumberController.text,
-            location: locationController.text,
+            location: villageController.text,
             mobileNumber: mobileController.text,
             context: context,
             formkey: formKey
@@ -38,7 +39,7 @@ class AddSalesManSubmitButton extends StatelessWidget {
           : await addSalesmanDetails(
             salesmanName: salesmanNameController.text,
             vehicleNumber: vehicleNumberController.text,
-            location: locationController.text,
+            location: villageController.text,
             mobileNumber: mobileController.text,
             context: context,
             formkey: formKey
@@ -48,6 +49,7 @@ class AddSalesManSubmitButton extends StatelessWidget {
               vehicleNumberController.clear();
               locationController.clear();
               mobileController.clear();
+              villageController.clear();
               Navigator.of(context).pop();
             }
           },);          

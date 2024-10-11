@@ -10,3 +10,5 @@ class ShowLoginFunctionsWhenCreatingAccountEvent extends LoginSignupScreenEvent 
 class SignUpAndLoginCircularIndicatorEvent extends LoginSignupScreenEvent {}
 
 class SignUpAndLoginCircularIndicatorStopEvent extends LoginSignupScreenEvent {}
+
+class ShowAddVillageFormForRetailerEvent extends LoginSignupScreenEvent {}

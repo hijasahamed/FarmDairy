@@ -27,9 +27,9 @@ class StockCount extends StatelessWidget {
         }
         if (!snapshot.hasData || snapshot.data == null) {
           return TextWidget(
-            text: 'No Data',
+            text: '0',
             color: isDarkMode ? Colors.white : Colors.blueGrey,
-            size: screenSize.width / 15,
+            size: screenSize.width / 30,
             fontFamily: 'FarmDairyFontNormal',
             weight: FontWeight.w600,
           );

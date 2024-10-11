@@ -27,7 +27,7 @@ class LoginSignUpScreenWidgets extends StatelessWidget {
               LoginSignUpScreenLogo(screenSize: screenSize, isDarkMode: isDarkMode),              
               LoginSignUpScreenLoginText(screenSize: screenSize),              
               LoginSignUpScreenAuthenticationForms(screenSize: screenSize, isDarkMode: isDarkMode),
-              LoginSignupScreenLoginButtonWidget(screenSize: screenSize),
+              LoginSignupScreenLoginButtonWidget(screenSize: screenSize),              
               GoToSignupScreenButtonWidget(screenSize: screenSize, isDarkMode: isDarkMode)
             ],
           ),

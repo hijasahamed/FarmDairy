@@ -34,6 +34,3 @@ class MilkStockWidget extends StatelessWidget {
     );
   }
 }
-
-
-
