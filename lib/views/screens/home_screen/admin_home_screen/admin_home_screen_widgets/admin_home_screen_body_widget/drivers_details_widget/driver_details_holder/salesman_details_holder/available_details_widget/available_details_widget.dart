@@ -28,7 +28,10 @@ class AvailableDetailsWidget extends StatelessWidget {
         final mobileNumber = data['mobileNumber'] ?? 'N/A';
         final documentId = data.id;
 
-        return AddressHolderWidget(screenSize: screenSize, isDarkMode: isDarkMode, salesmanName: salesmanName, vehicleNumber: vehicleNumber, location: location, mobileNumber: mobileNumber,documentId: documentId,);
+        return Padding(
+          padding: EdgeInsets.all(screenSize.width/100),
+          child: AddressHolderWidget(screenSize: screenSize, isDarkMode: isDarkMode, salesmanName: salesmanName, vehicleNumber: vehicleNumber, location: location, mobileNumber: mobileNumber,documentId: documentId,),
+        );
       },
     );
   }

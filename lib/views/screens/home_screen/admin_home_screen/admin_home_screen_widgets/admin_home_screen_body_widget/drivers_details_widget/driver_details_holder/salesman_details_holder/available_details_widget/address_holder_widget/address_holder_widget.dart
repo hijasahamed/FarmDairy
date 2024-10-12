@@ -25,26 +25,29 @@ class AddressHolderWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.all(screenSize.width / 50),
-      margin: EdgeInsets.symmetric(vertical: screenSize.width / 75),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(screenSize.width/75),
-        color: isDarkMode ? Colors.grey[800] : Colors.grey[200],
-        border: Border.all(
-          color: isDarkMode ? Colors.white70 : Colors.grey,
-          width: .2
+    return InkWell(
+      onTap: () {
+        
+      },
+      child: Ink(
+        padding: EdgeInsets.all(screenSize.width / 50),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(screenSize.width/75),
+          color: isDarkMode ? Colors.grey[800] : Colors.grey[200],
+          border: Border.all(
+            color: isDarkMode ? Colors.white70 : Colors.grey,
+            width: .2
+          ),
         ),
-      ),
-      child: Row(
-        children: [
-          AddressWidget(salesmanName: salesmanName, isDarkMode: isDarkMode, screenSize: screenSize, vehicleNumber: vehicleNumber, location: location, mobileNumber: mobileNumber),
-          const Spacer(),
-          UpdateAddress(screenSize: screenSize, isDarkMode: isDarkMode,location: location,mobileNumber: mobileNumber,salesmanName: salesmanName,vehicleNumber: vehicleNumber,documentId: documentId,),
-          DeleteAddressWidget(screenSize: screenSize, isDarkMode: isDarkMode,documentId: documentId,)
-        ],
+        child: Row(
+          children: [
+            AddressWidget(salesmanName: salesmanName, isDarkMode: isDarkMode, screenSize: screenSize, vehicleNumber: vehicleNumber, location: location, mobileNumber: mobileNumber),
+            const Spacer(),
+            UpdateAddress(screenSize: screenSize, isDarkMode: isDarkMode,location: location,mobileNumber: mobileNumber,salesmanName: salesmanName,vehicleNumber: vehicleNumber,documentId: documentId,),
+            DeleteAddressWidget(screenSize: screenSize, isDarkMode: isDarkMode,documentId: documentId,)
+          ],
+        ),
       ),
     );
   }
 }
-
