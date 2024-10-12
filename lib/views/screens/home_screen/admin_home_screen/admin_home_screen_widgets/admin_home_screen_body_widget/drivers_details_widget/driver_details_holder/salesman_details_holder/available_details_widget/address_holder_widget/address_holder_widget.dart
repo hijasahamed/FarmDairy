@@ -1,6 +1,7 @@
 import 'package:farm_dairy/views/screens/home_screen/admin_home_screen/admin_home_screen_widgets/admin_home_screen_body_widget/drivers_details_widget/driver_details_holder/salesman_details_holder/available_details_widget/address_holder_widget/address_widget/address_widget.dart';
 import 'package:farm_dairy/views/screens/home_screen/admin_home_screen/admin_home_screen_widgets/admin_home_screen_body_widget/drivers_details_widget/driver_details_holder/salesman_details_holder/available_details_widget/address_holder_widget/delete_address_widget/delete_address_widget.dart';
 import 'package:farm_dairy/views/screens/home_screen/admin_home_screen/admin_home_screen_widgets/admin_home_screen_body_widget/drivers_details_widget/driver_details_holder/salesman_details_holder/available_details_widget/address_holder_widget/update_address_widget/update_address_widget.dart';
+import 'package:farm_dairy/views/screens/home_screen/admin_home_screen/admin_home_screen_widgets/admin_home_screen_body_widget/drivers_details_widget/driver_details_holder/salesman_details_holder/available_details_widget/address_holder_widget/view_sales_man_orders/view_sales_man_orders.dart';
 import 'package:flutter/material.dart';
 
 class AddressHolderWidget extends StatelessWidget {
@@ -27,7 +28,9 @@ class AddressHolderWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        
+        Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+          return ViewSalesManOrders(screenSize: screenSize,salesManLocation: location,salesmanName: salesmanName,); 
+        },));
       },
       child: Ink(
         padding: EdgeInsets.all(screenSize.width / 50),
