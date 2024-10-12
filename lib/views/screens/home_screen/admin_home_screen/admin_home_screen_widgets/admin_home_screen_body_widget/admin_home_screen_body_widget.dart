@@ -1,3 +1,4 @@
+import 'package:farm_dairy/views/screens/home_screen/admin_home_screen/admin_home_screen_widgets/admin_home_screen_body_widget/all_orders_widget/all_orders_widget.dart';
 import 'package:farm_dairy/views/screens/home_screen/admin_home_screen/admin_home_screen_widgets/admin_home_screen_body_widget/drivers_details_widget/drivers_details_widget.dart';
 import 'package:farm_dairy/views/screens/home_screen/admin_home_screen/admin_home_screen_widgets/admin_home_screen_body_widget/lessi_stock_count_widget/lessi_stock_count_widget.dart';
 import 'package:farm_dairy/views/screens/home_screen/admin_home_screen/admin_home_screen_widgets/admin_home_screen_body_widget/milk_stock_count_widget/milk_stock_count_widget.dart';
@@ -19,7 +20,8 @@ class AdminHomeScreenBodyWidget extends StatelessWidget {
             MilkStockCountWidget(isDarkMode: isDarkMode, screenSize: screenSize),
             LessiStockCountWidget(screenSize: screenSize, isDarkMode: isDarkMode,isMilkPeda: false,),
             LessiStockCountWidget(screenSize: screenSize, isDarkMode: isDarkMode,isMilkPeda: true,),
-            DriversDetailsWidget(screenSize: screenSize, isDarkMode: isDarkMode)
+            DriversDetailsWidget(screenSize: screenSize, isDarkMode: isDarkMode),
+            AllOrdersWidget(screenSize: screenSize, isDarkMode: isDarkMode)
           ],
         ),
       ),

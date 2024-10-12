@@ -24,6 +24,7 @@ class ViewSalesManOrders extends StatelessWidget {
         isDarkMode: isDarkMode,
         salesManLocation: salesManLocation,
         screenSize: screenSize,
+        salesManName: salesmanName,
       ),
       body: ViewSalesManOrdersBody(screenSize: screenSize, salesManLocation: salesManLocation, salesmanName: salesmanName, isDarkMode: isDarkMode)
     );

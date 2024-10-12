@@ -7,11 +7,13 @@ class ViewSalesManOrdersAppBar extends StatelessWidget implements PreferredSizeW
     required this.isDarkMode,
     required this.salesManLocation,
     required this.screenSize,
+    required this.salesManName
   });
 
   final bool isDarkMode;
   final String salesManLocation;
   final Size screenSize;
+  final String salesManName;
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +25,7 @@ class ViewSalesManOrdersAppBar extends StatelessWidget implements PreferredSizeW
         }, 
         icon: Icon(Icons.arrow_back_ios_new_rounded,color: isDarkMode?Colors.white:Colors.grey,)
       ),
-      title: TextWidget(text: 'Orders From $salesManLocation Panchayath', color: isDarkMode?Colors.white:Colors.blueGrey, size: screenSize.width/28, fontFamily: 'FarmDairyFontNormal', weight: FontWeight.bold),
+      title: TextWidget(text: 'Orders for $salesManName', color: isDarkMode?Colors.white:Colors.blueGrey, size: screenSize.width/28, fontFamily: 'FarmDairyFontNormal', weight: FontWeight.bold),
     );
   }
   @override

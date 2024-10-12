@@ -16,7 +16,10 @@ class DriverDetailsHolder extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.all(screenSize.width / 75),
-      decoration: BoxDecoration(border: Border.all(width: .1, color: isDarkMode ? Colors.white : Colors.black)),
+      decoration: BoxDecoration(
+        border: Border.all(width: .1, color: isDarkMode ? Colors.white : Colors.black),
+        borderRadius: BorderRadius.circular(screenSize.width/75)
+      ),
       width: screenSize.width,
       child: Column(
         children: [
