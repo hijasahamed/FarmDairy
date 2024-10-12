@@ -24,10 +24,10 @@ class AddressWidget extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [                  
-        TextWidget(text: 'Name: $salesmanName', color: isDarkMode ? Colors.white : Colors.black, size: screenSize.width / 30, fontFamily: 'FarmDairyFontNormal', weight: FontWeight.w700),
-        TextWidget(text: 'Vehicle: $vehicleNumber', color: isDarkMode ? Colors.white : Colors.blueGrey, size: screenSize.width / 32, fontFamily: 'FarmDairyFontNormal', weight: FontWeight.w700),
-        TextWidget(text: 'Location: $location', color: isDarkMode ? Colors.white : Colors.blueGrey, size: screenSize.width / 32, fontFamily: 'FarmDairyFontNormal', weight: FontWeight.w700),
-        TextWidget(text: 'Mobile: $mobileNumber', color: isDarkMode ? Colors.white : Colors.blueGrey, size: screenSize.width / 32, fontFamily: 'FarmDairyFontNormal', weight: FontWeight.w700),
+        TextWidget(text: 'Name: $salesmanName', color: isDarkMode ? Colors.white : Colors.black87, size: screenSize.width / 30, fontFamily: 'FarmDairyFontNormal', weight: FontWeight.w700),
+        TextWidget(text: 'Vehicle: $vehicleNumber', color: isDarkMode ? Colors.white70 : Colors.blueGrey, size: screenSize.width / 32, fontFamily: 'FarmDairyFontNormal', weight: FontWeight.w400),
+        TextWidget(text: 'Location: $location', color: isDarkMode ? Colors.white70 : Colors.blueGrey, size: screenSize.width / 32, fontFamily: 'FarmDairyFontNormal', weight: FontWeight.w400),
+        TextWidget(text: 'Mobile: $mobileNumber', color: isDarkMode ? Colors.white70 : Colors.blueGrey, size: screenSize.width / 32, fontFamily: 'FarmDairyFontNormal', weight: FontWeight.w400),
       ],
     );
   }

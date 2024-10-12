@@ -56,9 +56,9 @@ Widget buildOrderList(
                 weight: FontWeight.w500,
               ),
               TextWidget(
-                text: 'Order Status: ${order['update']}',
+                text: '${order['update']}',
                 size: screenSize.width / 32,
-                color: isDarkMode ? Colors.white70 : Colors.black87,
+                color: (order['update'] == 'Order Placed')?Colors.blue:(order['update'] == 'Deliverd')?Colors.green:Colors.grey,
                 fontFamily: 'FarmDairyFontNormal',
                 weight: FontWeight.w500,
               ),

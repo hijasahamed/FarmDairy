@@ -36,7 +36,7 @@ class AddressHolderWidget extends StatelessWidget {
         padding: EdgeInsets.all(screenSize.width / 50),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(screenSize.width/75),
-          color: isDarkMode ? Colors.grey[800] : Colors.grey[200],
+          color: isDarkMode ? Colors.grey[900] : Colors.grey[200],
           border: Border.all(
             color: isDarkMode ? Colors.white70 : Colors.grey,
             width: .2

@@ -4,17 +4,23 @@ import 'package:flutter/material.dart';
 class NoOrderWidget extends StatelessWidget {
   const NoOrderWidget({
     super.key,
-    required this.isDarkMode,
     required this.screenSize,
+    required this.isDarkMode,
   });
 
-  final bool isDarkMode;
   final Size screenSize;
+  final bool isDarkMode;
 
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: TextWidget(text: 'No Orders Till Now', color: isDarkMode?Colors.white:Colors.blueGrey, size: screenSize.width/27, fontFamily: 'FarmDairyFontNormal', weight: FontWeight.w400)
+      child: TextWidget(
+        text: 'No Orders Till Now',
+        size: screenSize.width / 28,
+        weight: FontWeight.bold,
+        color: isDarkMode ? Colors.white : Colors.black,
+        fontFamily: 'FarmDairyFontNormal',
+      ),
     );
   }
 }
