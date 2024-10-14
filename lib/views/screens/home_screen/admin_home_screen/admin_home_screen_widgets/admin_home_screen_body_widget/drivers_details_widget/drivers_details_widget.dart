@@ -12,12 +12,15 @@ class DriversDetailsWidget extends StatelessWidget {
   final bool isDarkMode;
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        SalesTeamTextWidget(screenSize: screenSize,isDarkMode: isDarkMode,),
-        DriverDetailsHolder(screenSize: screenSize, isDarkMode: isDarkMode)
-      ],
+    return Padding(
+      padding: EdgeInsets.only(top: screenSize.width/20,bottom: screenSize.width/75),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          SalesTeamTextWidget(screenSize: screenSize,isDarkMode: isDarkMode,),
+          DriverDetailsHolder(screenSize: screenSize, isDarkMode: isDarkMode)
+        ],
+      ),
     );
   }
 }
