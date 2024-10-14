@@ -1,4 +1,5 @@
-import 'package:farm_dairy/models/common_widgets/text_widget.dart';
+import 'package:farm_dairy/views/screens/home_screen/admin_home_screen/admin_home_screen_widgets/admin_home_screen_body_widget/all_orders_widget/all_orders_text_widget/all_orders_text_widget.dart';
+import 'package:farm_dairy/views/screens/home_screen/admin_home_screen/admin_home_screen_widgets/admin_home_screen_body_widget/all_orders_widget/latest_orders_list_widget/latest_orders_list_widget.dart';
 import 'package:flutter/material.dart';
 
 class AllOrdersWidget extends StatelessWidget {
@@ -16,10 +17,15 @@ class AllOrdersWidget extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.only(top: screenSize.width/20,bottom: screenSize.width/75),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          TextWidget(text: 'All Orders', color: isDarkMode? Colors.white:Colors.black, size: screenSize.width/20, fontFamily: 'FarmDairyFontNormal', weight: FontWeight.bold)
+          AllOrdersTextWidget(isDarkMode: isDarkMode, screenSize: screenSize),
+          LatestOrdersListWidget(screenSize: screenSize, isDarkMode: isDarkMode)
         ],
       ),
     );
   }
 }
+
+
+

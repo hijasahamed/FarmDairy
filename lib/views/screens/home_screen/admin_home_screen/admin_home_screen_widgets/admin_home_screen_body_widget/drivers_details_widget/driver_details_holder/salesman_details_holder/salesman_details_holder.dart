@@ -23,7 +23,7 @@ class SalesManDetailsHolder extends StatelessWidget {
           return DetailsLoadingWidget(screenSize: screenSize);
         }   
         if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
-          return DetailsNotFound(isDarkMode: isDarkMode, screenSize: screenSize);
+          return DetailsNotFound(isDarkMode: isDarkMode, screenSize: screenSize,title: 'No Salesman details available',);
         }    
         final salesManDetails = snapshot.data!.docs;
         return AvailableDetailsWidget(salesManDetails: salesManDetails, screenSize: screenSize, isDarkMode: isDarkMode);
