@@ -7,17 +7,19 @@ class RetailerViewOrderAppBar extends StatelessWidget implements PreferredSizeWi
     super.key,
     required this.isDarkMode,
     required this.screenSize,
+    required this.title
   });
 
   final bool isDarkMode;
   final Size screenSize;
+  final String title;
 
   @override
   Widget build(BuildContext context) {
     return AppBar(
       backgroundColor: isDarkMode?Colors.black:Colors.white,
       leading: AppBarBackButton(isDarkMode: isDarkMode),
-      title: AppBarTitleWidget(isDarkMode: isDarkMode, screenSize: screenSize),
+      title: AppBarTitleWidget(isDarkMode: isDarkMode, screenSize: screenSize,title: title,),
     );
   }
    @override

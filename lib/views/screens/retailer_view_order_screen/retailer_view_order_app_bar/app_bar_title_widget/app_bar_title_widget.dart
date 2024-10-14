@@ -6,13 +6,15 @@ class AppBarTitleWidget extends StatelessWidget {
     super.key,
     required this.isDarkMode,
     required this.screenSize,
+    required this.title
   });
 
   final bool isDarkMode;
   final Size screenSize;
+  final String title;
 
   @override
   Widget build(BuildContext context) {
-    return TextWidget(text: 'My Orders', color: isDarkMode?Colors.white:Colors.blueGrey, size: screenSize.width/30, fontFamily: 'FarmDairyFontNormal', weight: FontWeight.bold);
+    return TextWidget(text: title, color: isDarkMode?Colors.white:Colors.blueGrey, size: screenSize.width/30, fontFamily: 'FarmDairyFontNormal', weight: FontWeight.bold);
   }
 }

@@ -11,9 +11,8 @@ class RetailerViewOrderScreen extends StatelessWidget {
     final isDarkMode = MediaQuery.of(context).platformBrightness == Brightness.dark;
     return Scaffold(
       backgroundColor: isDarkMode?Colors.black:Colors.white,
-      appBar: RetailerViewOrderAppBar(isDarkMode: isDarkMode, screenSize: screenSize),
+      appBar: RetailerViewOrderAppBar(isDarkMode: isDarkMode, screenSize: screenSize,title: 'My Orders',),
       body: RetailerViewOrderBody(screenSize: screenSize,isDarkMode: isDarkMode,userData: userData,),
     );
   }
 }
-
