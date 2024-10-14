@@ -41,7 +41,7 @@ class LatestOrdersListWidget extends StatelessWidget {
             borderRadius: BorderRadius.circular(screenSize.width / 75),
             border: Border.all(
               width: .1,
-              color: isDarkMode ? Colors.white : Colors.black,
+              color: isDarkMode ? Colors.white70 : Colors.grey,
             ),
           ),
           child: ListView.builder(
@@ -58,7 +58,7 @@ class LatestOrdersListWidget extends StatelessWidget {
               var formattedDate = DateFormat('dd/MM/yyyy').format(orderDate);
 
               return Card(
-                color: isDarkMode ? Colors.grey[850] : Colors.white,
+                color: isDarkMode ? Colors.grey[900] : Colors.grey[200],
                 margin: EdgeInsets.symmetric(
                   vertical: screenSize.height / 200,
                   horizontal: screenSize.width / 50,
