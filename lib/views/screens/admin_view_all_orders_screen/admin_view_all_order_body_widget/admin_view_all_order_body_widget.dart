@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:farm_dairy/models/common_widgets/text_widget.dart';
+import 'package:farm_dairy/views/screens/admin_view_all_orders_screen/admin_view_all_order_body_widget/all_orders_holder_widget/all_orders_holder_widget.dart';
 import 'package:farm_dairy/views/screens/home_screen/admin_home_screen/admin_home_screen_widgets/admin_home_screen_body_widget/drivers_details_widget/driver_details_holder/salesman_details_holder/available_details_widget/address_holder_widget/view_sales_man_orders/view_sales_man_orders_body/orders_build_widget/orders_build_widget.dart';
 import 'package:farm_dairy/views/screens/home_screen/admin_home_screen/admin_home_screen_widgets/admin_home_screen_body_widget/drivers_details_widget/driver_details_holder/salesman_details_holder/details_loading_widget/details_loading_widget.dart';
 import 'package:farm_dairy/views/screens/home_screen/admin_home_screen/admin_home_screen_widgets/admin_home_screen_body_widget/drivers_details_widget/driver_details_holder/salesman_details_holder/details_not_found/details_not_found.dart';
@@ -69,7 +70,7 @@ class AdminViewAllOrdersScreenBody extends StatelessWidget {
                       color: isDarkMode ? Colors.white : Colors.black,
                       fontFamily: 'FarmDairyFontNormal',
                     ),
-                    buildOrderList(todayOrders, isDarkMode, screenSize),
+                    adminAllOrdersCardWidget(todayOrders, isDarkMode, screenSize),
                   ],
                   if (yesterdayOrders.isNotEmpty) ...[
                     const SizedBox(height: 16),
@@ -80,7 +81,7 @@ class AdminViewAllOrdersScreenBody extends StatelessWidget {
                       color: isDarkMode ? Colors.white : Colors.black,
                       fontFamily: 'FarmDairyFontNormal',
                     ),
-                    buildOrderList(yesterdayOrders, isDarkMode, screenSize),
+                    adminAllOrdersCardWidget(yesterdayOrders, isDarkMode, screenSize),
                   ],
                   if (earlierOrders.isNotEmpty) ...[
                     const SizedBox(height: 16),
@@ -91,7 +92,7 @@ class AdminViewAllOrdersScreenBody extends StatelessWidget {
                       color: isDarkMode ? Colors.white : Colors.black,
                       fontFamily: 'FarmDairyFontNormal',
                     ),
-                    buildOrderList(earlierOrders, isDarkMode, screenSize),
+                    adminAllOrdersCardWidget(earlierOrders, isDarkMode, screenSize),
                   ],
                 ],
               ),

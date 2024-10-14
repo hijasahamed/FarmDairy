@@ -13,6 +13,6 @@ class AllOrdersTextWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TextWidget(text: 'All Orders', color: isDarkMode? Colors.white:Colors.black, size: screenSize.width/20, fontFamily: 'FarmDairyFontNormal', weight: FontWeight.bold);
+    return TextWidget(text: 'Orders', color: isDarkMode? Colors.white:Colors.black, size: screenSize.width/20, fontFamily: 'FarmDairyFontNormal', weight: FontWeight.bold);
   }
 }

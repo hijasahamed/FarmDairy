@@ -20,7 +20,7 @@ class ViewAllOrdersButton extends StatelessWidget {
           return AdminViewAllOrdersScreen(screenSize: screenSize);
         },));
       }, 
-      child: TextWidget(text: 'View All Orders', color: isDarkMode ? Colors.white : Colors.black87, size: screenSize.width/29, fontFamily: 'FarmDairyFontNormal', weight: FontWeight.w500)
+      child: TextWidget(text: 'View All Orders', color: Colors.green, size: screenSize.width/29, fontFamily: 'FarmDairyFontNormal', weight: FontWeight.w700)
     );
   }
 }
