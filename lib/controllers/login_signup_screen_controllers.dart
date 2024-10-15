@@ -67,7 +67,7 @@ void loginButtonClicked({required BuildContext context,required Size screenSize}
           await sharedPreferenceStorageInstance.setString('userUid', 'NoData');
           await sharedPreferenceStorageInstance.setString('village', salesManData.location);
           Navigator.of(context).pushAndRemoveUntil(
-            MaterialPageRoute(builder: (context) => SalesManHomeScreen()),
+            MaterialPageRoute(builder: (context) => SalesManHomeScreen(screenSize: screenSize,salesmanData: salesManData,)),
             (Route<dynamic> route) => false,
           );          
         }

@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:connectivity/connectivity.dart';
 import 'package:farm_dairy/controllers/login_signup_screen_controllers.dart';
 import 'package:farm_dairy/models/common_widgets/snack_bar_message_widget.dart';
+import 'package:farm_dairy/models/salesman_model/salesman_model.dart';
 import 'package:farm_dairy/views/screens/home_screen/admin_home_screen/admin_home_screen.dart';
 import 'package:farm_dairy/views/screens/home_screen/retailer_home_screen/retailer_home_screen.dart';
 import 'package:farm_dairy/views/screens/home_screen/sales_man_home_screen/sales_man_home_screen.dart';
@@ -21,18 +22,21 @@ Future<void> checkLogging({required context,required Size screenSize,}) async {
   final isLogedIn = sharedPreferenceStorageInstance.getBool(logedInKey);
   final role = sharedPreferenceStorageInstance.getString('role');
   final email = sharedPreferenceStorageInstance.getString('email');
+  final password = sharedPreferenceStorageInstance.getString('password');
   
-  // Check if email is null
   if (email == null || email.isEmpty) {
     await Future.delayed(const Duration(milliseconds: 1500));
     await goToLoginSignupScreen(context: context, screenSize: screenSize);
     return;
   }
 
-  // Fetch user data
   dynamic userData;
   try {
-    userData = await checkIfUserAvailable(email: email);
+    if(role == 'SalesMan'){
+      userData = await checkIfSalesManAvailable(mobileNumber: password!);
+    }else{
+      userData = await checkIfUserAvailable(email: email);
+    }    
   } catch (e) {
     log('Error fetching user data: $e');
     snackbarMessageWidget(
@@ -64,7 +68,7 @@ Future<void> checkLogging({required context,required Size screenSize,}) async {
     await goToAdminHomeScreen(context: context, screenSize: screenSize);
   } else if(isLogedIn == true && role == 'SalesMan') {
     await Future.delayed(const Duration(milliseconds: 1500));
-    await goToSalesManHomeScreen(context: context, screenSize: screenSize);
+    await goToSalesManHomeScreen(context: context, screenSize: screenSize,salesmanData: userData);
   } else if(isLogedIn == true && role == 'Retailer') {
     await Future.delayed(const Duration(milliseconds: 1500));
     await goToRetailersHomeScreen(context: context, screenSize: screenSize,email: email,userData: userData);
@@ -83,9 +87,9 @@ Future<void> goToAdminHomeScreen({required context,required Size screenSize,}) a
   }));
 }
 
-Future<void> goToSalesManHomeScreen({required context,required Size screenSize,}) async {
+Future<void> goToSalesManHomeScreen({required context,required Size screenSize,required SalesmanData salesmanData}) async {
   Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (ctx) {
-    return const SalesManHomeScreen();
+    return SalesManHomeScreen(screenSize: screenSize,salesmanData: salesmanData,);
   }));
 }
 
