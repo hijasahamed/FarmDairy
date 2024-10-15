@@ -30,7 +30,7 @@ class MyApp extends StatelessWidget {
       title: 'FarmDairy',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.orange),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.white),
         useMaterial3: true,        
       ),
       home: SplashScreen(screenSize: screenSize,isDarkMode: isDarkMode,),
