@@ -1,3 +1,9 @@
+import 'package:farm_dairy/views/screens/home_screen/sales_man_home_screen/sales_man_home_screen_body/sales_mans_orders/order_list_widget/order_item_card/order_date_text/order_date_text.dart';
+import 'package:farm_dairy/views/screens/home_screen/sales_man_home_screen/sales_man_home_screen_body/sales_mans_orders/order_list_widget/order_item_card/order_email_text/order_email_text.dart';
+import 'package:farm_dairy/views/screens/home_screen/sales_man_home_screen/sales_man_home_screen_body/sales_mans_orders/order_list_widget/order_item_card/order_name_text/order_name_text.dart';
+import 'package:farm_dairy/views/screens/home_screen/sales_man_home_screen/sales_man_home_screen_body/sales_mans_orders/order_list_widget/order_item_card/order_pcs_count/order_pcs_count.dart';
+import 'package:farm_dairy/views/screens/home_screen/sales_man_home_screen/sales_man_home_screen_body/sales_mans_orders/order_list_widget/order_item_card/order_status_widget/order_status_widget.dart';
+import 'package:farm_dairy/views/screens/home_screen/sales_man_home_screen/sales_man_home_screen_body/sales_mans_orders/order_list_widget/order_item_card/order_title_text/order_title_text.dart';
 import 'package:flutter/material.dart';
 
 class OrderItemCard extends StatelessWidget {
@@ -34,13 +40,12 @@ class OrderItemCard extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text('Title: $title', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: isDarkMode ? Colors.white : Colors.black)),
-            Text('Email: $email', style: TextStyle(fontSize: 16, color: isDarkMode ? Colors.white : Colors.black)),
-            Text('Items: $itemCount', style: TextStyle(fontSize: 16, color: isDarkMode ? Colors.white : Colors.black)),
-            Text('Total Amount: ₹$totalAmount', style: TextStyle(fontSize: 16, color: isDarkMode ? Colors.white : Colors.black)),
-            Text('Order Date: ${orderDate.toLocal().toString().split(' ')[0]}', style: TextStyle(fontSize: 16, color: isDarkMode ? Colors.white : Colors.black)),
-            Text('Status: $update', style: TextStyle(fontSize: 16, color: isDarkMode ? Colors.white : Colors.black)),
-            Text('Document ID: $documentId', style: TextStyle(fontSize: 14, color: isDarkMode ? Colors.white60 : Colors.black54)),
+            OrderTitleText(title: title, isDarkMode: isDarkMode, screenSize: screenSize),
+            OrderNameText(email: email, isDarkMode: isDarkMode, screenSize: screenSize),
+            OrderPcsCount(itemCount: itemCount, isDarkMode: isDarkMode, screenSize: screenSize),
+            OrderEmailText(email: email, isDarkMode: isDarkMode, screenSize: screenSize),
+            OrderDateText(orderDate: orderDate, isDarkMode: isDarkMode, screenSize: screenSize),
+            OrderStatusWidget(update: update, screenSize: screenSize, isDarkMode: isDarkMode),
           ],
         ),
       ),
