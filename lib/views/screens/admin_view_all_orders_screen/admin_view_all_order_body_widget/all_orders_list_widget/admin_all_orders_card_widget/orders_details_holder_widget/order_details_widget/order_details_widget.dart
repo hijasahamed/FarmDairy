@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:farm_dairy/models/common_widgets/text_widget.dart';
+import 'package:farm_dairy/views/screens/admin_view_all_orders_screen/admin_view_all_order_body_widget/all_orders_list_widget/admin_all_orders_card_widget/orders_details_holder_widget/order_details_widget/delete_order_button_widget/delete_order_button_widget.dart';
 import 'package:flutter/material.dart';
 
 class OrderDetailsWidget extends StatelessWidget {
@@ -9,12 +10,14 @@ class OrderDetailsWidget extends StatelessWidget {
     required this.screenSize,
     required this.isDarkMode,
     required this.companyPrefix,
+    required this.documentId
   });
 
   final QueryDocumentSnapshot<Object?> order;
   final Size screenSize;
   final bool isDarkMode;
   final dynamic companyPrefix;
+  final String documentId;
 
   @override
   Widget build(BuildContext context) {
@@ -64,16 +67,9 @@ class OrderDetailsWidget extends StatelessWidget {
           ],
         ),
         const Spacer(),
-        IconButton(
-            onPressed: () {
-              
-            },
-            icon: Icon(
-              Icons.delete,
-              color: Colors.red,
-              size: screenSize.width / 20,
-            )),
+        DeleteOrderButtonWidget(documentId: documentId, screenSize: screenSize,isDarkMode: isDarkMode,),
       ],
     );
   }
 }
+

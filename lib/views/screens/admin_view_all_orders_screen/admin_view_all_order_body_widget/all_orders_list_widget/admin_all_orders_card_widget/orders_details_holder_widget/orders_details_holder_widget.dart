@@ -25,7 +25,7 @@ class OrdersDetailsHolderWidget extends StatelessWidget {
       padding: const EdgeInsets.all(12.0),
       child: Column(
         children: [
-          OrderDetailsWidget(order: order, screenSize: screenSize, isDarkMode: isDarkMode, companyPrefix: companyPrefix),
+          OrderDetailsWidget(order: order, screenSize: screenSize, isDarkMode: isDarkMode, companyPrefix: companyPrefix,documentId: documentId,),
           OrderUpdateAndDate(order: order, screenSize: screenSize, isDarkMode: isDarkMode),
         ],
       ),
