@@ -30,11 +30,14 @@ class FetchOrdersWidget extends StatelessWidget {
         if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
           return NoOrderWidget(isDarkMode: isDarkMode, screenSize: screenSize);
         }
-        final orderDocs = snapshot.data!.docs;
+        final List<QueryDocumentSnapshot> orderDocs = snapshot.data!.docs;
+        orderDocs.sort((a, b) {
+          final Timestamp aOrderDate = a['orderDate'];
+          final Timestamp bOrderDate = b['orderDate'];
+          return bOrderDate.compareTo(aOrderDate);
+        });
         return FetchedOrderWidget(orderDocs: orderDocs, isDarkMode: isDarkMode, screenSize: screenSize);
       },
     );
   }
 }
-
-

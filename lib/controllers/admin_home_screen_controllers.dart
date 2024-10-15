@@ -3,9 +3,11 @@
 import 'dart:developer';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:farm_dairy/controllers/firebase_controllers.dart';
 import 'package:farm_dairy/models/common_widgets/snack_bar_message_widget.dart';
 import 'package:farm_dairy/views/screens/home_screen/admin_home_screen/admin_home_screen_widgets/admin_home_screen_body_widget/drivers_details_widget/driver_details_holder/salesman_add_button/add_details_form/add_details_form.dart';
 import 'package:farm_dairy/views/screens/home_screen/admin_home_screen/bloc/admin_home_screen_bloc.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 // Function to add and reduce the stock of milk stored
@@ -82,6 +84,11 @@ Future<bool> addSalesmanDetails({
   try {
     if(formkey.currentState!.validate()){
       addSalesPersonRefreshInstance.add(AddSalesManRefreshEvent());
+      await firebaseAuthServiceInstance.userSignup(
+        context: context,
+        email: 'farmDairy$location@gmail.com',
+        password: mobileNumber,
+      );
       CollectionReference salesManCollection =
           FirebaseFirestore.instance.collection('salesManDetails');
 
@@ -89,6 +96,7 @@ Future<bool> addSalesmanDetails({
         'salesmanName': salesmanName,
         'vehicleNumber': vehicleNumber,
         'location': location,
+        'role': 'SalesMan',
         'mobileNumber': mobileNumber,
         'timestamp': FieldValue.serverTimestamp(),
       });
@@ -142,6 +150,8 @@ Future<bool> deleteSalesMan({
     CollectionReference salesManCollection = FirebaseFirestore.instance.collection('salesManDetails');
 
     await salesManCollection.doc(documentId).delete();
+
+    await FirebaseAuth.instance.currentUser!.delete();
 
     snackbarMessageWidget(
       text: 'SalesMan Deleted Successfully',

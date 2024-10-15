@@ -6,6 +6,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:farm_dairy/controllers/firebase_controllers.dart';
 import 'package:farm_dairy/controllers/splash_screen_controllers.dart';
 import 'package:farm_dairy/models/common_widgets/snack_bar_message_widget.dart';
+import 'package:farm_dairy/models/salesman_model/salesman_model.dart';
 import 'package:farm_dairy/models/user_model/user_model.dart';
 import 'package:farm_dairy/views/screens/home_screen/admin_home_screen/admin_home_screen.dart';
 import 'package:farm_dairy/views/screens/home_screen/retailer_home_screen/retailer_home_screen.dart';
@@ -54,7 +55,23 @@ void loginButtonClicked({required BuildContext context,required Size screenSize}
   if(userLoginformkey.currentState!.validate()){
     signUpAndLoginCircularBlocInstance.add(SignUpAndLoginCircularIndicatorEvent());
     User? user = await firebaseAuthServiceInstance.userLogin(context: context,email: emailController.text,password: passwordController.text);
-    if(user!=null){     
+    if(user!=null){
+      if(roleController.text == 'SalesMan'){
+        dynamic salesManData = await checkIfSalesManAvailable(mobileNumber: passwordController.text);
+        if(salesManData != null){
+          final sharedPreferenceStorageInstance = await SharedPreferences.getInstance();
+          await sharedPreferenceStorageInstance.setBool(logedInKey, true);
+          await sharedPreferenceStorageInstance.setString('email', 'NoData');
+          await sharedPreferenceStorageInstance.setString('password', salesManData.mobileNumber);
+          await sharedPreferenceStorageInstance.setString('role', salesManData.role);
+          await sharedPreferenceStorageInstance.setString('userUid', 'NoData');
+          await sharedPreferenceStorageInstance.setString('village', salesManData.location);
+          Navigator.of(context).pushAndRemoveUntil(
+            MaterialPageRoute(builder: (context) => SalesManHomeScreen()),
+            (Route<dynamic> route) => false,
+          );          
+        }
+      }else{
         dynamic userData = await checkIfUserAvailable(email: user.email!);
         if(userData != null){
           final sharedPreferenceStorageInstance = await SharedPreferences.getInstance();
@@ -69,11 +86,6 @@ void loginButtonClicked({required BuildContext context,required Size screenSize}
               MaterialPageRoute(builder: (context) => AdminHomescreen(screenSize: screenSize,)),
               (Route<dynamic> route) => false,
             );
-          }else if(userData.role == 'SalesMan' && roleController.text == userData.role){
-            Navigator.of(context).pushAndRemoveUntil(
-              MaterialPageRoute(builder: (context) => SalesManHomeScreen()),
-              (Route<dynamic> route) => false,
-            );
           }else if(userData.role == 'Retailer' && roleController.text == userData.role){
             Navigator.of(context).pushAndRemoveUntil(
               MaterialPageRoute(builder: (context) => RetailerHomeScreen(screenSize: screenSize,email: userData.email,userData: userData,)),
@@ -81,9 +93,9 @@ void loginButtonClicked({required BuildContext context,required Size screenSize}
             );
           }else{
             snackbarMessageWidget(text: 'UnRegisterd Role', context: context, color: Colors.red, textColor: Colors.white, behavior: SnackBarBehavior.floating, time: 3000);
-          }
-          
+          }          
         }
+      }             
     }
     signUpAndLoginCircularBlocInstance.add(SignUpAndLoginCircularIndicatorStopEvent());
   }
@@ -187,6 +199,27 @@ Future<UserData?> checkIfUserAvailable({required String email}) async {
       QueryDocumentSnapshot doc = querySnapshot.docs.first;
       UserData userData = UserData(email: doc['email'], password: doc['password'], role: doc['role'], userUid: doc['userUid'],village: doc['village']);
       return userData;
+    } else {
+      return null;
+    }
+  } catch (e) {
+    log(e.toString());
+  }
+  return null;
+}
+
+
+// Function to check if the Saleman is in db and get the details of that SalesMan
+Future<SalesmanData?> checkIfSalesManAvailable({required String mobileNumber}) async {
+  final CollectionReference instance = FirebaseFirestore.instance.collection('salesManDetails');
+
+  try {
+    QuerySnapshot querySnapshot = await instance.where('mobileNumber', isEqualTo: mobileNumber).get();
+
+    if (querySnapshot.docs.isNotEmpty) {
+      QueryDocumentSnapshot doc = querySnapshot.docs.first;
+      SalesmanData data =SalesmanData(location: doc['location'], mobileNumber: doc['mobileNumber'], role: doc['role'], salesManName: doc['salesmanName'], vehicleNumber: doc['vehicleNumber']);
+      return data;
     } else {
       return null;
     }
