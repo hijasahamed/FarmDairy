@@ -1,4 +1,5 @@
 import 'package:farm_dairy/views/screens/home_screen/admin_home_screen/admin_home_screen_widgets/admin_home_screen_body_widget/all_orders_widget/latest_orders_list_widget/latest_orders_holder_widget/latest_orders_holder_widget.dart';
+import 'package:farm_dairy/views/screens/home_screen/admin_home_screen/admin_home_screen_widgets/admin_home_screen_body_widget/all_orders_widget/latest_orders_list_widget/latest_orders_text_widget/latest_orders_text_widget.dart';
 import 'package:farm_dairy/views/screens/home_screen/admin_home_screen/admin_home_screen_widgets/admin_home_screen_body_widget/all_orders_widget/latest_orders_list_widget/view_all_orders_button/view_all_orders_button.dart';
 import 'package:flutter/material.dart';
 
@@ -24,6 +25,7 @@ class LatestOrdersListWidget extends StatelessWidget {
       width: screenSize.width,
       child: Column(
         children: [
+          LatestOrdersTextWidget(isDarkMode: isDarkMode, screenSize: screenSize),
           LatestOrdersHolderWidget(screenSize: screenSize, isDarkMode: isDarkMode),
           ViewAllOrdersButton(isDarkMode: isDarkMode, screenSize: screenSize)
         ],
@@ -31,3 +33,4 @@ class LatestOrdersListWidget extends StatelessWidget {
     );
   }
 }
+
