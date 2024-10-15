@@ -23,10 +23,10 @@ class AdminViewAllOrdersScreenBody extends StatelessWidget {
           .orderBy('orderDate', descending: true)
           .snapshots(),
       builder: (context, snapshot) {
-        List<QueryDocumentSnapshot> orders = snapshot.data!.docs;
         if (!snapshot.hasData) {
           return DetailsLoadingWidget(screenSize: screenSize);
         }
+        List<QueryDocumentSnapshot> orders = snapshot.data!.docs;
         if (orders.isEmpty) {
           return DetailsNotFound(
             isDarkMode: isDarkMode,
