@@ -24,13 +24,6 @@ Future<void> checkLogging({required context,required Size screenSize,}) async {
   
   // Check if email is null
   if (email == null || email.isEmpty) {
-    snackbarMessageWidget(
-        text: 'You are Loged Out. Please login again.',
-        context: context,
-        time: 5000,
-        color: Colors.red,
-        textColor: Colors.white,
-        behavior: SnackBarBehavior.floating);
     await Future.delayed(const Duration(milliseconds: 1500));
     await goToLoginSignupScreen(context: context, screenSize: screenSize);
     return;

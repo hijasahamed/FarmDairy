@@ -107,6 +107,7 @@ void signUpButtonClicked({required BuildContext context,required Size screenSize
           behavior: SnackBarBehavior.floating, 
           time: 3000
         );
+        signUpAndLoginCircularBlocInstance.add(SignUpAndLoginCircularIndicatorStopEvent());
         return;
       }
       User? user = await firebaseAuthServiceInstance.userSignup(
