@@ -98,6 +98,17 @@ void signUpButtonClicked({required BuildContext context,required Size screenSize
   if (userLoginformkey.currentState!.validate()) {
     signUpAndLoginCircularBlocInstance.add(SignUpAndLoginCircularIndicatorEvent());
     try {
+      if(roleController.text == 'SalesMan'){
+        snackbarMessageWidget(
+          text: 'SalesMan Account Cannot Be Created. Please Contact The Admin For Account Details', 
+          context: context, 
+          color: Colors.red, 
+          textColor: Colors.white, 
+          behavior: SnackBarBehavior.floating, 
+          time: 3000
+        );
+        return;
+      }
       User? user = await firebaseAuthServiceInstance.userSignup(
         context: context,
         email: emailController.text,
@@ -119,10 +130,7 @@ void signUpButtonClicked({required BuildContext context,required Size screenSize
             (Route<dynamic> route) => false,
           );
         }else if(userData.role == 'SalesMan'){
-          Navigator.of(context).pushAndRemoveUntil(
-            MaterialPageRoute(builder: (context) => SalesManHomeScreen()),
-            (Route<dynamic> route) => false,
-          );
+          return;
         }else if(userData.role == 'Retailer'){
           Navigator.of(context).pushAndRemoveUntil(
             MaterialPageRoute(builder: (context) => RetailerHomeScreen(screenSize: screenSize,email: userData.email,userData: userData,)),

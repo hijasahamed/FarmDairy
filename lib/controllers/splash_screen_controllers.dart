@@ -21,7 +21,37 @@ Future<void> checkLogging({required context,required Size screenSize,}) async {
   final isLogedIn = sharedPreferenceStorageInstance.getBool(logedInKey);
   final role = sharedPreferenceStorageInstance.getString('role');
   final email = sharedPreferenceStorageInstance.getString('email');
-  dynamic userData = await checkIfUserAvailable(email: email!);
+  
+  // Check if email is null
+  if (email == null || email.isEmpty) {
+    snackbarMessageWidget(
+        text: 'You are Loged Out. Please login again.',
+        context: context,
+        time: 5000,
+        color: Colors.red,
+        textColor: Colors.white,
+        behavior: SnackBarBehavior.floating);
+    await Future.delayed(const Duration(milliseconds: 1500));
+    await goToLoginSignupScreen(context: context, screenSize: screenSize);
+    return;
+  }
+
+  // Fetch user data
+  dynamic userData;
+  try {
+    userData = await checkIfUserAvailable(email: email);
+  } catch (e) {
+    log('Error fetching user data: $e');
+    snackbarMessageWidget(
+        text: 'Error fetching user data',
+        context: context,
+        time: 5000,
+        color: Colors.red,
+        textColor: Colors.white,
+        behavior: SnackBarBehavior.floating);
+    return;
+  }
+
   log(isLogedIn.toString());
   log(role.toString());
   if (connectivityResult == ConnectivityResult.none) {
