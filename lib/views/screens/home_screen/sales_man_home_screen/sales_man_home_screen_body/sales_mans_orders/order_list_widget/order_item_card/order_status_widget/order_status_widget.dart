@@ -8,11 +8,13 @@ class OrderStatusWidget extends StatelessWidget {
     required this.update,
     required this.screenSize,
     required this.isDarkMode,
+    required this.documentId
   });
 
   final String update;
   final Size screenSize;
   final bool isDarkMode;
+  final String documentId;
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +32,7 @@ class OrderStatusWidget extends StatelessWidget {
           weight: FontWeight.bold,
         ),
         const Spacer(),
-        UpdateOrderStatusButtonWidget(isDarkMode: isDarkMode, screenSize: screenSize)
+        UpdateOrderStatusButtonWidget(isDarkMode: isDarkMode, screenSize: screenSize,documentId: documentId,)
       ],
     );
   }

@@ -6,16 +6,18 @@ class UpdateOrderStatusButtonWidget extends StatelessWidget {
     super.key,
     required this.isDarkMode,
     required this.screenSize,
+    required this.documentId
   });
 
   final bool isDarkMode;
   final Size screenSize;
-
+  final String documentId;
+  
   @override
   Widget build(BuildContext context) {
     return TextButton(
       onPressed: () {
-        
+         
       },
       child: TextWidget(
         text: 'Update Status',
