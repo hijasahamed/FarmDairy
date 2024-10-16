@@ -24,9 +24,9 @@ class OrderUpdateAndDate extends StatelessWidget {
           size: screenSize.width / 32,
           color: (order['update'] == 'Order Placed')
               ? Colors.blue
-              : (order['update'] == 'Deliverd')
+              : (order['update'] == 'Delivered')
                   ? Colors.green
-                  : Colors.grey,
+                  : Colors.orange,
           fontFamily: 'FarmDairyFontNormal',
           weight: FontWeight.w500,
         ),

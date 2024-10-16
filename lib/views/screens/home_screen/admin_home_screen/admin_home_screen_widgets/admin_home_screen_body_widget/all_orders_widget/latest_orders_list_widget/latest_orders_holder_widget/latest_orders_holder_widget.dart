@@ -104,7 +104,7 @@ class LatestOrdersHolderWidget extends StatelessWidget {
                     SizedBox(height: screenSize.height / 300),
                     TextWidget(
                       text: '$updateStatus',
-                      color: (updateStatus=='Order Placed'?Colors.blue:Colors.green),
+                      color: (updateStatus=='Order Placed'?Colors.blue:(updateStatus=='Delivered')?Colors.green:Colors.orange),
                       size: screenSize.width / 38,
                       fontFamily: 'FarmDairyFontNormal',
                       weight: FontWeight.w700,

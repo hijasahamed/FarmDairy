@@ -36,6 +36,7 @@ class OrderStatusWidget extends StatelessWidget {
           weight: FontWeight.bold,
         ),
         const Spacer(),
+        if(update != 'Delivered')
         UpdateOrderStatusButtonWidget(isDarkMode: isDarkMode, screenSize: screenSize,documentId: documentId,title: title,pcs: pcs,)
       ],
     );
