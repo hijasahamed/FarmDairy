@@ -45,7 +45,7 @@ class OrderItemCard extends StatelessWidget {
             OrderPcsCount(itemCount: itemCount, isDarkMode: isDarkMode, screenSize: screenSize),
             OrderEmailText(email: email, isDarkMode: isDarkMode, screenSize: screenSize),
             OrderDateText(orderDate: orderDate, isDarkMode: isDarkMode, screenSize: screenSize),
-            OrderStatusWidget(update: update, screenSize: screenSize, isDarkMode: isDarkMode,documentId: documentId,),
+            OrderStatusWidget(update: update, screenSize: screenSize, isDarkMode: isDarkMode,documentId: documentId,title: title,pcs: itemCount,),
           ],
         ),
       ),

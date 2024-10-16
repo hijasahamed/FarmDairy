@@ -8,13 +8,17 @@ class OrderStatusWidget extends StatelessWidget {
     required this.update,
     required this.screenSize,
     required this.isDarkMode,
-    required this.documentId
+    required this.documentId,
+    required this.title,
+    required this.pcs
   });
 
   final String update;
   final Size screenSize;
   final bool isDarkMode;
   final String documentId;
+  final String title;
+  final int pcs;
 
   @override
   Widget build(BuildContext context) {
@@ -24,15 +28,15 @@ class OrderStatusWidget extends StatelessWidget {
           text: update,
           color: (update == 'Order Placed')
               ? Colors.lightBlue
-              : (update == 'Deliverd')
+              : (update == 'Delivered')
                   ? Colors.green
-                  : Colors.redAccent,
+                  : Colors.orange,
           size: screenSize.width / 25,
           fontFamily: 'FarmDairyFontNormal',
           weight: FontWeight.bold,
         ),
         const Spacer(),
-        UpdateOrderStatusButtonWidget(isDarkMode: isDarkMode, screenSize: screenSize,documentId: documentId,)
+        UpdateOrderStatusButtonWidget(isDarkMode: isDarkMode, screenSize: screenSize,documentId: documentId,title: title,pcs: pcs,)
       ],
     );
   }

@@ -17,7 +17,11 @@ class OrderUpdate extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextWidget(
         text: update,
-        color: (update == 'Order Placed')?Colors.blue:Colors.green,
+        color: (update == 'Order Placed')
+              ? Colors.lightBlue
+              : (update == 'Delivered')
+                  ? Colors.green
+                  : Colors.orange,
         size: screenSize.width / 29,
         fontFamily: 'FarmDairyFontNormal',
         weight: FontWeight.w500);
