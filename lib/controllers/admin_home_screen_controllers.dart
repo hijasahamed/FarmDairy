@@ -189,3 +189,17 @@ void deleteRetailersOrder({required BuildContext context,required bool isDarkMod
       snackbarMessageWidget(text: 'Failed to delete the order', context: context, color: Colors.red, textColor: Colors.white, behavior: SnackBarBehavior.floating, time: 3000); 
     }
   }
+
+// Function to delete the retailer by the admin
+Future<void> deleteRetailer({required String docId,required BuildContext context}) async {
+  try {
+    await FirebaseFirestore.instance
+        .collection('userSignupData')
+        .doc(docId)
+        .delete();
+
+    snackbarMessageWidget(text: 'Retailer deleted successfully', context: context, color:Colors.green, textColor: Colors.white, behavior: SnackBarBehavior.floating, time: 3000);
+  } catch (e) {
+    snackbarMessageWidget(text: 'Failed to delete', context: context, color:Colors.red, textColor: Colors.white, behavior: SnackBarBehavior.floating, time: 3000);
+  }
+}
