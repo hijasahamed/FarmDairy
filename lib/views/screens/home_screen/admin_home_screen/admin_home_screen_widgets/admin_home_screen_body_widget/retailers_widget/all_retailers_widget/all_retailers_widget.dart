@@ -48,6 +48,7 @@ class AllRetailersWidget extends StatelessWidget {
             );
           }
           return ListView.builder(
+            physics: const NeverScrollableScrollPhysics(),
             shrinkWrap: true,
             itemCount: snapshot.data!.docs.length,
             itemBuilder: (context, index) {
@@ -69,7 +70,7 @@ class AllRetailersWidget extends StatelessWidget {
                   color: isDarkMode ? Colors.white54 : Colors.black54,
                   size: screenSize.width / 35,
                   fontFamily: 'FarmDairyFontNormal',
-                  weight: FontWeight.normal,
+                  weight: FontWeight.w600,
                 ),
                 trailing: IconButton(
                   icon: Icon(Icons.delete, color: isDarkMode ? Colors.white : Colors.black,size: screenSize.width/25,),

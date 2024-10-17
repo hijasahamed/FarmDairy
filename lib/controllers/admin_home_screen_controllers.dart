@@ -178,17 +178,18 @@ Future<bool> deleteSalesMan({
 
 // Function to delete Orders Placed by the retailers
 void deleteRetailersOrder({required BuildContext context,required bool isDarkMode,required Size screenSize,required String documentId}) async {
-    try {
-      await FirebaseFirestore.instance
-          .collection('productOrders')
-          .doc(documentId)
-          .delete();
-      snackbarMessageWidget(text: 'Order deleted successfully.', context: context, color: Colors.green, textColor: Colors.white, behavior: SnackBarBehavior.floating, time: 3000);    
-      Navigator.of(context).pop();
-    } catch (e) {
-      snackbarMessageWidget(text: 'Failed to delete the order', context: context, color: Colors.red, textColor: Colors.white, behavior: SnackBarBehavior.floating, time: 3000); 
-    }
+  try {
+    await FirebaseFirestore.instance
+        .collection('productOrders')
+        .doc(documentId)
+        .delete();
+    await FirebaseAuth.instance.currentUser!.delete();
+    snackbarMessageWidget(text: 'Order deleted successfully.', context: context, color: Colors.green, textColor: Colors.white, behavior: SnackBarBehavior.floating, time: 3000);    
+    Navigator.of(context).pop();
+  } catch (e) {
+    snackbarMessageWidget(text: 'Failed to delete the order', context: context, color: Colors.red, textColor: Colors.white, behavior: SnackBarBehavior.floating, time: 3000); 
   }
+}
 
 // Function to delete the retailer by the admin
 Future<void> deleteRetailer({required String docId,required BuildContext context}) async {
@@ -197,7 +198,7 @@ Future<void> deleteRetailer({required String docId,required BuildContext context
         .collection('userSignupData')
         .doc(docId)
         .delete();
-
+    await FirebaseAuth.instance.currentUser!.delete();
     snackbarMessageWidget(text: 'Retailer deleted successfully', context: context, color:Colors.green, textColor: Colors.white, behavior: SnackBarBehavior.floating, time: 3000);
   } catch (e) {
     snackbarMessageWidget(text: 'Failed to delete', context: context, color:Colors.red, textColor: Colors.white, behavior: SnackBarBehavior.floating, time: 3000);
