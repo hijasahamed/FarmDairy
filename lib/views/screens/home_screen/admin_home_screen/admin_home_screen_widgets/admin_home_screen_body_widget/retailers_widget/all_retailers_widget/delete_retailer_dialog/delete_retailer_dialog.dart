@@ -1,9 +1,11 @@
+import 'package:farm_dairy/controllers/admin_home_screen_controllers.dart';
 import 'package:farm_dairy/models/common_widgets/text_widget.dart';
 import 'package:flutter/material.dart';
 
 Future<dynamic> deleteRetailerDialog(
     {required BuildContext context,
     required Size screenSize,
+    required String docId,
     required bool isDarkMode}) {
   return showDialog(
     context: context,
@@ -38,6 +40,7 @@ Future<dynamic> deleteRetailerDialog(
           ),
           TextButton(
             onPressed: () {
+              deleteRetailer(docId: docId, context: context);
               Navigator.of(context).pop();
             },
             child: TextWidget(

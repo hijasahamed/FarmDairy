@@ -47,7 +47,6 @@ class AllRetailersWidget extends StatelessWidget {
               title: 'No Data',
             );
           }
-
           return ListView.builder(
             shrinkWrap: true,
             itemCount: snapshot.data!.docs.length,
@@ -73,9 +72,9 @@ class AllRetailersWidget extends StatelessWidget {
                   weight: FontWeight.normal,
                 ),
                 trailing: IconButton(
-                  icon: Icon(Icons.delete, color: isDarkMode ? Colors.white : Colors.black),
+                  icon: Icon(Icons.delete, color: isDarkMode ? Colors.white : Colors.black,size: screenSize.width/25,),
                   onPressed: () {
-                    deleteRetailerDialog(context: context,isDarkMode: isDarkMode,screenSize: screenSize);
+                    deleteRetailerDialog(context: context,isDarkMode: isDarkMode,screenSize: screenSize,docId: docId);
                   },
                 ),
               );
