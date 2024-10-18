@@ -1,5 +1,4 @@
 import 'package:farm_dairy/models/common_widgets/text_widget.dart';
-import 'package:farm_dairy/views/screens/google_map_screen/google_map_screen.dart';
 import 'package:flutter/material.dart';
 
 class ShowDirectionWidget extends StatelessWidget {
@@ -17,9 +16,9 @@ class ShowDirectionWidget extends StatelessWidget {
     return Expanded(
       child: InkWell(
         onTap: () {
-          Navigator.of(context).push(MaterialPageRoute(builder: (context) {
-            return const GoogleMapScreen();
-          },));
+          // Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+          //   return GoogleMapLocationPickScreen(isDarkMode: isDarkMode,screenSize: screenSize,);
+          // },));
         },
         child: Ink(
           height: screenSize.height/25,
