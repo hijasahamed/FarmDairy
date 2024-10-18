@@ -2,7 +2,9 @@
 
 import 'dart:developer';
 
+import 'package:farm_dairy/controllers/login_signup_screen_controllers.dart';
 import 'package:farm_dairy/views/screens/google_map_location_pick_screen/bloc/google_map_location_pick_bloc.dart';
+import 'package:farm_dairy/views/screens/login_signup_screen/bloc/login_signup_screen_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -47,7 +49,9 @@ Future<void> fetchCurrentLocation({required BuildContext context}) async {
 
     // Update the current location state
     currentLocation = LatLng(position.latitude, position.longitude);
+    draggedPosition = currentLocation;
     googleMapLocationPickScreenBlocInstence.add(GoogleMapLocationPickScreenRefreshEvent());
+    fetchedLocationRefreshBlocInstance.add(LocationFetchedRefreshEvent());
 
     // Move the camera to the user's current location when it's fetched
     mapController?.animateCamera(CameraUpdate.newLatLng(currentLocation!));

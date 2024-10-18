@@ -1,8 +1,10 @@
 import 'dart:developer';
 
 import 'package:farm_dairy/controllers/google_map_controllers.dart';
+import 'package:farm_dairy/controllers/login_signup_screen_controllers.dart';
 import 'package:farm_dairy/models/common_widgets/text_widget.dart';
 import 'package:farm_dairy/views/screens/google_map_location_pick_screen/bloc/google_map_location_pick_bloc.dart';
+import 'package:farm_dairy/views/screens/login_signup_screen/bloc/login_signup_screen_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -45,7 +47,7 @@ class _GoogleMapLocationPickScreenState
           body: currentLocation == null // Check if location is fetched
               ? const Center(
                   child:
-                      CircularProgressIndicator()) // Show loading until location is fetched
+                      CircularProgressIndicator(color: Colors.blue,)) // Show loading until location is fetched
               : GoogleMap(
                   initialCameraPosition: CameraPosition(
                     target: currentLocation!,
@@ -62,8 +64,10 @@ class _GoogleMapLocationPickScreenState
                       onDragEnd: (LatLng newPosition) {                        
                         draggedPosition = newPosition;
                         googleMapLocationPickScreenBlocInstence.add(GoogleMapLocationPickScreenRefreshEvent());
+                        fetchedLocationRefreshBlocInstance.add(LocationFetchedRefreshEvent());
                         log(
                             "Marker dragged to: ${newPosition.latitude}, ${newPosition.longitude}");
+                            
                       },
                     ),
                   },

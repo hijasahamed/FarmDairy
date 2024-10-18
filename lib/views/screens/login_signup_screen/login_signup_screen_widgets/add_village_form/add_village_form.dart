@@ -21,6 +21,7 @@ class AddVillageForm extends StatelessWidget {
       builder: (context, state) {
         if(state is ShowSignupFunctionsWhenCreatingAccountState && roleController.text == 'Retailer'){
            return Column(
+            mainAxisAlignment: MainAxisAlignment.start,
             children: [
               CustomTextFormField(
                 controller: villageController,

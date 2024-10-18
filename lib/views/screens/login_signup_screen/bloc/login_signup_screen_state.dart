@@ -14,3 +14,5 @@ class SignUpAndLoginCircularIndicatorState extends LoginSignupScreenState {}
 class SignUpAndLoginCircularIndicatorStopState extends LoginSignupScreenState {}
 
 class ShowAddVillageFormForRetailerState extends LoginSignupScreenState {}
+
+class LocationFetchedRefreshState extends LoginSignupScreenState {}

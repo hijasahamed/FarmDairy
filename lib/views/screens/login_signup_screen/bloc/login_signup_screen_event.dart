@@ -12,3 +12,5 @@ class SignUpAndLoginCircularIndicatorEvent extends LoginSignupScreenEvent {}
 class SignUpAndLoginCircularIndicatorStopEvent extends LoginSignupScreenEvent {}
 
 class ShowAddVillageFormForRetailerEvent extends LoginSignupScreenEvent {}
+
+class LocationFetchedRefreshEvent extends LoginSignupScreenEvent {}

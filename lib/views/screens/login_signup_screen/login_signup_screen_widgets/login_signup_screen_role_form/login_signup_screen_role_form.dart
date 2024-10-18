@@ -25,7 +25,7 @@ class LoginSignUpScreenRoleForm extends StatelessWidget {
           isDarkMode: isDarkMode,
           isRole: true,
         ),
-        SizedBox(height: screenSize.height / 20),
+        SizedBox(height: screenSize.height / 30),
       ],
     );
   }

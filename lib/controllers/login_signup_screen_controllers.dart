@@ -4,6 +4,7 @@ import 'dart:developer';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:farm_dairy/controllers/firebase_controllers.dart';
+import 'package:farm_dairy/controllers/google_map_controllers.dart';
 import 'package:farm_dairy/controllers/splash_screen_controllers.dart';
 import 'package:farm_dairy/models/common_widgets/snack_bar_message_widget.dart';
 import 'package:farm_dairy/models/salesman_model/salesman_model.dart';
@@ -18,6 +19,8 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 LoginSignupScreenBloc showSignupFunctionBlocInstance = LoginSignupScreenBloc();
+
+LoginSignupScreenBloc fetchedLocationRefreshBlocInstance = LoginSignupScreenBloc();
 
 LoginSignupScreenBloc showAddVillageFormBlocInstance = LoginSignupScreenBloc();
 
@@ -108,54 +111,66 @@ void loginButtonClicked({required BuildContext context,required Size screenSize}
 // function when user click on the Signup button
 void signUpButtonClicked({required BuildContext context,required Size screenSize}) async {
   if (userLoginformkey.currentState!.validate()) {
-    signUpAndLoginCircularBlocInstance.add(SignUpAndLoginCircularIndicatorEvent());
-    try {
-      if(roleController.text == 'SalesMan'){
-        snackbarMessageWidget(
-          text: 'SalesMan Account Cannot Be Created. Please Contact The Admin For Account Details', 
-          context: context, 
-          color: Colors.red, 
-          textColor: Colors.white, 
-          behavior: SnackBarBehavior.floating, 
-          time: 3000
-        );
-        signUpAndLoginCircularBlocInstance.add(SignUpAndLoginCircularIndicatorStopEvent());
-        return;
-      }
-      User? user = await firebaseAuthServiceInstance.userSignup(
-        context: context,
-        email: emailController.text,
-        password: passwordController.text,
-      );
-      if(user!=null){
-        await addUserSignupDataToFirebaseDbCollection(userUid: user.uid);
-        dynamic userData = await checkIfUserAvailable(email: user.email!);
-        final sharedPreferenceStorageInstance = await SharedPreferences.getInstance();
-        await sharedPreferenceStorageInstance.setBool(logedInKey, true);
-        await sharedPreferenceStorageInstance.setString('email', userData.email);
-        await sharedPreferenceStorageInstance.setString('password', userData.password);
-        await sharedPreferenceStorageInstance.setString('role', userData.role);
-        await sharedPreferenceStorageInstance.setString('userUid', userData.userUid);
-        await sharedPreferenceStorageInstance.setString('village', userData.village);
-        if(userData.role == 'Admin'){
-          Navigator.of(context).pushAndRemoveUntil(
-            MaterialPageRoute(builder: (context) => AdminHomescreen(screenSize: screenSize,)),
-            (Route<dynamic> route) => false,
+    if(draggedPosition != null){
+      signUpAndLoginCircularBlocInstance.add(SignUpAndLoginCircularIndicatorEvent());
+      try {
+        if(roleController.text == 'SalesMan'){
+          snackbarMessageWidget(
+            text: 'SalesMan Account Cannot Be Created. Please Contact The Admin For Account Details', 
+            context: context, 
+            color: Colors.red, 
+            textColor: Colors.white, 
+            behavior: SnackBarBehavior.floating, 
+            time: 3000
           );
-        }else if(userData.role == 'SalesMan'){
+          signUpAndLoginCircularBlocInstance.add(SignUpAndLoginCircularIndicatorStopEvent());
           return;
-        }else if(userData.role == 'Retailer'){
-          Navigator.of(context).pushAndRemoveUntil(
-            MaterialPageRoute(builder: (context) => RetailerHomeScreen(screenSize: screenSize,email: userData.email,userData: userData,)),
-            (Route<dynamic> route) => false,
-          );
         }
-        signUpAndLoginCircularBlocInstance.add(SignUpAndLoginCircularIndicatorStopEvent());
-      }
+        User? user = await firebaseAuthServiceInstance.userSignup(
+          context: context,
+          email: emailController.text,
+          password: passwordController.text,
+        );
+        if(user!=null){
+          await addUserSignupDataToFirebaseDbCollection(userUid: user.uid);
+          dynamic userData = await checkIfUserAvailable(email: user.email.toString());
+          final sharedPreferenceStorageInstance = await SharedPreferences.getInstance();
+          await sharedPreferenceStorageInstance.setBool(logedInKey, true);
+          await sharedPreferenceStorageInstance.setString('email', userData.email);
+          await sharedPreferenceStorageInstance.setString('password', userData.password);
+          await sharedPreferenceStorageInstance.setString('role', userData.role);
+          await sharedPreferenceStorageInstance.setString('userUid', userData.userUid);
+          await sharedPreferenceStorageInstance.setString('village', userData.village);
+          if(userData.role == 'Admin'){
+            Navigator.of(context).pushAndRemoveUntil(
+              MaterialPageRoute(builder: (context) => AdminHomescreen(screenSize: screenSize,)),
+              (Route<dynamic> route) => false,
+            );
+          }else if(userData.role == 'SalesMan'){
+            return;
+          }else if(userData.role == 'Retailer'){
+            Navigator.of(context).pushAndRemoveUntil(
+              MaterialPageRoute(builder: (context) => RetailerHomeScreen(screenSize: screenSize,email: userData.email,userData: userData,)),
+              (Route<dynamic> route) => false,
+            );
+          }
+          signUpAndLoginCircularBlocInstance.add(SignUpAndLoginCircularIndicatorStopEvent());
+        }
 
-    } catch (e) {
-      signUpAndLoginCircularBlocInstance.add(SignUpAndLoginCircularIndicatorStopEvent());
-      log('SignUp Failed: $e');      
+      } catch (e) {
+        signUpAndLoginCircularBlocInstance.add(SignUpAndLoginCircularIndicatorStopEvent());
+        log('SignUp Failed: $e');      
+      }
+    }else{
+      
+    snackbarMessageWidget(
+        text: 'Add Location',
+        context: context,
+        time: 3000,
+        color: Colors.red,
+        textColor: Colors.white,
+        behavior: SnackBarBehavior.floating,
+      );
     }
   } else {
     signUpAndLoginCircularBlocInstance.add(SignUpAndLoginCircularIndicatorStopEvent());
@@ -179,7 +194,13 @@ addUserSignupDataToFirebaseDbCollection({required userUid}) async {
       'password': passwordController.text,
       'role': roleController.text,
       'userUid': userUid,
-      'village' : villageController.text.isNotEmpty ? villageController.text : 'noData'
+      'village' : villageController.text.isNotEmpty ? villageController.text : 'noData',
+      'location': draggedPosition != null
+      ? {
+          'latitude': draggedPosition!.latitude,
+          'longitude': draggedPosition!.longitude,
+        }
+      : 'noLocation',
     };
     await instance.add(data);
   } catch (e) {
@@ -203,7 +224,7 @@ Future<UserData?> checkIfUserAvailable({required String email}) async {
       return null;
     }
   } catch (e) {
-    log(e.toString());
+    log('checkIfUserAvailable ${e.toString()}');
   }
   return null;
 }

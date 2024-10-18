@@ -17,6 +17,7 @@ class LoginSignupScreenBloc extends Bloc<LoginSignupScreenEvent, LoginSignupScre
     on<SignUpAndLoginCircularIndicatorEvent>(signUpAndLoginCircularIndicatorEvent);
     on<SignUpAndLoginCircularIndicatorStopEvent>(signUpAndLoginCircularIndicatorStopEvent);
     on<ShowAddVillageFormForRetailerEvent>(showAddVillageFormForRetailerEvent);
+    on<LocationFetchedRefreshEvent>(locationFetchedRefreshEvent);
   }
 
   FutureOr<void> showSignupFunctionsWhenCreatingAccountEvent(
@@ -43,5 +44,10 @@ class LoginSignupScreenBloc extends Bloc<LoginSignupScreenEvent, LoginSignupScre
   FutureOr<void> showAddVillageFormForRetailerEvent(
     ShowAddVillageFormForRetailerEvent event, Emitter<LoginSignupScreenState> emit) {
       emit(ShowAddVillageFormForRetailerState());
+  }
+
+  FutureOr<void> locationFetchedRefreshEvent(
+    LocationFetchedRefreshEvent event, Emitter<LoginSignupScreenState> emit) {
+      emit(LocationFetchedRefreshState());
   }
 }
