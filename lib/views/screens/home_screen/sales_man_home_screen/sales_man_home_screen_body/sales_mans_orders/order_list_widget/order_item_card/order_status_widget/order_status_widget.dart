@@ -1,4 +1,5 @@
 import 'package:farm_dairy/models/common_widgets/text_widget.dart';
+import 'package:farm_dairy/views/screens/home_screen/sales_man_home_screen/sales_man_home_screen_body/sales_mans_orders/order_list_widget/order_item_card/order_status_widget/show_direction_widget/show_direction_widget.dart';
 import 'package:farm_dairy/views/screens/home_screen/sales_man_home_screen/sales_man_home_screen_body/sales_mans_orders/order_list_widget/order_item_card/order_status_widget/update_order_status_button_widget/update_order_status_button_widget.dart';
 import 'package:flutter/material.dart';
 
@@ -35,9 +36,12 @@ class OrderStatusWidget extends StatelessWidget {
           fontFamily: 'FarmDairyFontNormal',
           weight: FontWeight.bold,
         ),
-        const Spacer(),
+        if(update != 'Order Packed')
+          const Spacer(),
         if(update != 'Delivered')
-        UpdateOrderStatusButtonWidget(isDarkMode: isDarkMode, screenSize: screenSize,documentId: documentId,title: title,pcs: pcs,)
+          UpdateOrderStatusButtonWidget(isDarkMode: isDarkMode, screenSize: screenSize,documentId: documentId,title: title,pcs: pcs,),
+        if (update == 'Order Packed')
+          ShowDirectionWidget(screenSize: screenSize, isDarkMode: isDarkMode),
       ],
     );
   }
