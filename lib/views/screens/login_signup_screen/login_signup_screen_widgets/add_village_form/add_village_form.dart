@@ -1,6 +1,7 @@
 import 'package:farm_dairy/controllers/login_signup_screen_controllers.dart';
 import 'package:farm_dairy/models/common_widgets/text_form_field_widget.dart';
 import 'package:farm_dairy/views/screens/login_signup_screen/bloc/login_signup_screen_bloc.dart';
+import 'package:farm_dairy/views/screens/login_signup_screen/login_signup_screen_widgets/add_village_form/fetch_retailer_location_widget/fetch_retailer_location_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -30,7 +31,7 @@ class AddVillageForm extends StatelessWidget {
                 isDarkMode: isDarkMode,
                 isVillage: true,
               ),
-              SizedBox(height: screenSize.height / 20),
+              FetchRetailersLocationWidget(screenSize: screenSize, isDarkMode: isDarkMode),
             ],
           );
         }
@@ -39,3 +40,4 @@ class AddVillageForm extends StatelessWidget {
     );
   }
 }
+

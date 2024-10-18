@@ -16,7 +16,7 @@ class BackToLoginButton extends StatelessWidget {
     return Column(
       children: [
         SizedBox(
-          height: screenSize.height / 20,
+          height: screenSize.height / 40,
         ),
         TextButton(
             onPressed: () {

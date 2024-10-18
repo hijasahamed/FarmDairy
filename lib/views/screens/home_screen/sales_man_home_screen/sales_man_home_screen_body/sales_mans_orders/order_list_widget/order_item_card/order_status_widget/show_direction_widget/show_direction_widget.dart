@@ -16,9 +16,7 @@ class ShowDirectionWidget extends StatelessWidget {
     return Expanded(
       child: InkWell(
         onTap: () {
-          // Navigator.of(context).push(MaterialPageRoute(builder: (context) {
-          //   return GoogleMapLocationPickScreen(isDarkMode: isDarkMode,screenSize: screenSize,);
-          // },));
+          
         },
         child: Ink(
           height: screenSize.height/25,
