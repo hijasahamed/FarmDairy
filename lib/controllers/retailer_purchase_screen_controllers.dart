@@ -34,7 +34,8 @@ Future<void> addProductOrder({
   required String title,
   required int stockValue,
   required context,
-  required email
+  required email,
+  required dynamic userData
 }) async {
   int parsedItemCount = int.parse(itemCount);
   String numericPrice = price.replaceAll(RegExp(r'[^0-9]'), '');
@@ -57,7 +58,8 @@ Future<void> addProductOrder({
         'orderDate': orderDate,
         'email' : email,
         'title' : title,
-        'update' : 'Order Placed'
+        'update' : 'Order Placed',
+        'location' : userData.location
       };
 
       await FirebaseFirestore.instance.collection('productOrders').add(orderData);

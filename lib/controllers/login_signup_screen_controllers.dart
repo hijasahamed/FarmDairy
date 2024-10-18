@@ -111,7 +111,6 @@ void loginButtonClicked({required BuildContext context,required Size screenSize}
 // function when user click on the Signup button
 void signUpButtonClicked({required BuildContext context,required Size screenSize}) async {
   if (userLoginformkey.currentState!.validate()) {
-    if(draggedPosition != null){
       signUpAndLoginCircularBlocInstance.add(SignUpAndLoginCircularIndicatorEvent());
       try {
         if(roleController.text == 'SalesMan'){
@@ -156,22 +155,10 @@ void signUpButtonClicked({required BuildContext context,required Size screenSize
           }
           signUpAndLoginCircularBlocInstance.add(SignUpAndLoginCircularIndicatorStopEvent());
         }
-
       } catch (e) {
         signUpAndLoginCircularBlocInstance.add(SignUpAndLoginCircularIndicatorStopEvent());
         log('SignUp Failed: $e');      
-      }
-    }else{
-      
-    snackbarMessageWidget(
-        text: 'Add Location',
-        context: context,
-        time: 3000,
-        color: Colors.red,
-        textColor: Colors.white,
-        behavior: SnackBarBehavior.floating,
-      );
-    }
+      }    
   } else {
     signUpAndLoginCircularBlocInstance.add(SignUpAndLoginCircularIndicatorStopEvent());
     snackbarMessageWidget(
@@ -218,7 +205,7 @@ Future<UserData?> checkIfUserAvailable({required String email}) async {
 
     if (querySnapshot.docs.isNotEmpty) {
       QueryDocumentSnapshot doc = querySnapshot.docs.first;
-      UserData userData = UserData(email: doc['email'], password: doc['password'], role: doc['role'], userUid: doc['userUid'],village: doc['village']);
+      UserData userData = UserData(email: doc['email'], password: doc['password'], role: doc['role'], userUid: doc['userUid'],village: doc['village'],location: doc['location']);
       return userData;
     } else {
       return null;

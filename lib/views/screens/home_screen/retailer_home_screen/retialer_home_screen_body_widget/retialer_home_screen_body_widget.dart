@@ -8,11 +8,13 @@ class RetailerHomeScreenBodyWidget extends StatelessWidget {
     required this.email,
     required this.isDarkMode,
     required this.screenSize,
+    required this.userData
   });
 
   final String email;
   final bool isDarkMode;
   final Size screenSize;
+  final dynamic userData;
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +24,7 @@ class RetailerHomeScreenBodyWidget extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           WelcomeText(isDarkMode: isDarkMode, screenSize: screenSize, email: email),
-          AvailableProductsWidget(isDarkMode: isDarkMode, screenSize: screenSize,email: email,),          
+          AvailableProductsWidget(isDarkMode: isDarkMode, screenSize: screenSize,email: email,userData: userData,),          
         ],
       ),
     );

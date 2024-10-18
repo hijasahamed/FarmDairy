@@ -12,7 +12,8 @@ class BuyProductButton extends StatelessWidget {
     required this.title,
     required this.price,
     required this.stockName,
-    required this.email
+    required this.email,
+    required this.userData
   });
   final Size screenSize;
   final bool isDarkMode;
@@ -21,6 +22,7 @@ class BuyProductButton extends StatelessWidget {
   final String price;
   final String stockName;
   final String email;
+  final dynamic userData;
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<DocumentSnapshot>(
@@ -42,7 +44,7 @@ class BuyProductButton extends StatelessWidget {
         if(stock == '0'){
           return NoStockButton(screenSize: screenSize);
         }else{
-          return StockAvailableButton(screenSize: screenSize,isDarkMode: isDarkMode,imageUrl: imageUrl,price: price,stockName: stockName,title: title,email: email,);
+          return StockAvailableButton(screenSize: screenSize,isDarkMode: isDarkMode,imageUrl: imageUrl,price: price,stockName: stockName,title: title,email: email,userData: userData,);
         }
       },
     );

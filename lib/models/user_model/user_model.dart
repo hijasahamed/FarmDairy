@@ -4,5 +4,6 @@ class UserData {
   final String role;
   final String userUid;
   final String village;
-  UserData({required this.email,required this.password, required this.role, required this.userUid,required this.village});
+  final dynamic location;
+  UserData({required this.email,required this.password, required this.role, required this.userUid,required this.village,required this.location});
 }

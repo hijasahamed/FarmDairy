@@ -11,7 +11,8 @@ class StockAvailableButton extends StatelessWidget {
     required this.title,
     required this.price,
     required this.stockName,
-    required this.email
+    required this.email,
+    required this.userData
   });
 
   final Size screenSize;
@@ -21,12 +22,13 @@ class StockAvailableButton extends StatelessWidget {
   final String price;
   final String stockName;
   final String email;
+  final dynamic userData;
   @override
   Widget build(BuildContext context) {
     return TextButton(
       onPressed: () {
         Navigator.of(context).push(MaterialPageRoute(builder: (context) {
-          return RetailerPurchaseScreen(screenSize: screenSize,imageUrl: imageUrl,price: price,stockName: stockName,title: title,email: email,);
+          return RetailerPurchaseScreen(screenSize: screenSize,imageUrl: imageUrl,price: price,stockName: stockName,title: title,email: email,userData: userData,);
         },));
       }, 
       child: TextWidget(

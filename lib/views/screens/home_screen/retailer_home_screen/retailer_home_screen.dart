@@ -14,7 +14,7 @@ class RetailerHomeScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: isDarkMode ? Colors.black : Colors.white,
       appBar: RetailerHomeScreenAppbar(screenSize: screenSize, isDarkMode: isDarkMode),
-      body: RetailerHomeScreenBodyWidget(email: email, isDarkMode: isDarkMode, screenSize: screenSize), 
+      body: RetailerHomeScreenBodyWidget(email: email, isDarkMode: isDarkMode, screenSize: screenSize,userData: userData,), 
       bottomNavigationBar: RetailersHomeScreenBottomApp(screenSize: screenSize, isDarkMode: isDarkMode,userData: userData,),    
     );
   }

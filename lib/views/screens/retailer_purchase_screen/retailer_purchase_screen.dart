@@ -12,7 +12,8 @@ class RetailerPurchaseScreen extends StatefulWidget {
     required this.title,
     required this.price,
     required this.stockName,
-    required this.email
+    required this.email,
+    required this.userData
     });
   final Size screenSize;
   final String imageUrl;
@@ -20,6 +21,7 @@ class RetailerPurchaseScreen extends StatefulWidget {
   final String price;
   final String stockName;
   final String email;
+  final dynamic userData;
 
   @override
   State<RetailerPurchaseScreen> createState() => _RetailerPurchaseScreenState();
@@ -49,7 +51,7 @@ class _RetailerPurchaseScreenState extends State<RetailerPurchaseScreen> {
       backgroundColor: isDarkMode?Colors.black:Colors.white,
       appBar: PurchaseAppBar(isDarkMode: isDarkMode, screenSize: widget.screenSize),
       body: PurchaseBodyWidget(widget: widget, isDarkMode: isDarkMode,stockValue: stockValue,),
-      bottomNavigationBar: BottomAppBarWidget(isDarkMode: isDarkMode, widget: widget,stockValue: stockValue,email: widget.email,),
+      bottomNavigationBar: BottomAppBarWidget(isDarkMode: isDarkMode, widget: widget,stockValue: stockValue,email: widget.email,userData: widget.userData,),
     );
   }
 }

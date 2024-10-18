@@ -10,20 +10,22 @@ class BottomAppBarWidget extends StatelessWidget {
     required this.isDarkMode,
     required this.widget,
     required this.stockValue,
-    required this.email
+    required this.email,
+    required this.userData
   });
 
   final bool isDarkMode;
   final RetailerPurchaseScreen widget;
   final int stockValue;
   final String email;
+  final dynamic userData;
   @override
   Widget build(BuildContext context) {
     return BottomAppBar(
       color: isDarkMode?Colors.black:Colors.white,
       child: InkWell(
         onTap: () {
-          addProductOrder(itemCount: itemCountController.text, village: villageController.text, price: widget.price,stockValue: stockValue,context: context,email: email,title: widget.title);
+          addProductOrder(itemCount: itemCountController.text, village: villageController.text, price: widget.price,stockValue: stockValue,context: context,email: email,title: widget.title,userData: userData);
         },
         child: Ink(
           height: widget.screenSize.height/15,
