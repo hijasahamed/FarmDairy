@@ -57,3 +57,27 @@ Future<void> fetchSalesManCurrentLocation(
         context: context, message: 'Failed to fetch your current location.');
   }
 }
+
+
+// Future<List<LatLng>> fetchPolylinePoints(LatLng currentLoc, LatLng destinationLoc) async {
+//   // Initialize PolylinePoints
+//   final polylinePoints = PolylinePoints();
+  
+//   // Call the method to fetch the polyline points
+//   PolylineResult result = await polylinePoints.getRouteBetweenCoordinates(
+//     "YOUR_GOOGLE_API_KEY", // Replace with your Google Maps API Key
+//     PointLatLng(currentLoc.latitude, currentLoc.longitude), // Start location (currentLoc)
+//     PointLatLng(destinationLoc.latitude, destinationLoc.longitude), // End location (destinationLoc)
+//     travelMode: TravelMode.driving,  // You can change this to 'walking' or 'bicycling' if needed
+//   );
+
+//   // Check if the result is successful
+//   if (result.points.isNotEmpty) {
+//     // Convert the polyline points into a list of LatLng
+//     return result.points.map((point) => LatLng(point.latitude, point.longitude)).toList();
+//   } else {
+//     // Handle if there are no points found or an error occurred
+//     print('No polyline points found or an error occurred.');
+//     return [];
+//   }
+// }

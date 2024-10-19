@@ -31,7 +31,7 @@ class _MapDirectionScreenState extends State<MapDirectionScreen> {
           appBar: AppBar(
             backgroundColor: Colors.white,
             title: TextWidget(
-                text: 'Direction',
+                text: widget.shopName.toUpperCase(),
                 color: Colors.blueGrey,
                 size: widget.screenSize.width / 25,
                 fontFamily: 'FarmDairyFontNormal',
