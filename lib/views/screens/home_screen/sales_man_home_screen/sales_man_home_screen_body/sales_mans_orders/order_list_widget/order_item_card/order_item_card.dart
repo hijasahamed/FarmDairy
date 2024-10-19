@@ -5,6 +5,7 @@ import 'package:farm_dairy/views/screens/home_screen/sales_man_home_screen/sales
 import 'package:farm_dairy/views/screens/home_screen/sales_man_home_screen/sales_man_home_screen_body/sales_mans_orders/order_list_widget/order_item_card/order_status_widget/order_status_widget.dart';
 import 'package:farm_dairy/views/screens/home_screen/sales_man_home_screen/sales_man_home_screen_body/sales_mans_orders/order_list_widget/order_item_card/order_title_text/order_title_text.dart';
 import 'package:flutter/material.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class OrderItemCard extends StatelessWidget {
   const OrderItemCard({
@@ -18,6 +19,7 @@ class OrderItemCard extends StatelessWidget {
     required this.documentId,
     required this.isDarkMode,
     required this.screenSize,
+    required this.destination
   });
 
   final String email;
@@ -29,6 +31,7 @@ class OrderItemCard extends StatelessWidget {
   final String documentId;
   final bool isDarkMode;
   final Size screenSize;
+  final LatLng destination;
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +48,7 @@ class OrderItemCard extends StatelessWidget {
             OrderPcsCount(itemCount: itemCount, isDarkMode: isDarkMode, screenSize: screenSize),
             OrderEmailText(email: email, isDarkMode: isDarkMode, screenSize: screenSize),
             OrderDateText(orderDate: orderDate, isDarkMode: isDarkMode, screenSize: screenSize),
-            OrderStatusWidget(update: update, screenSize: screenSize, isDarkMode: isDarkMode,documentId: documentId,title: title,pcs: itemCount,),
+            OrderStatusWidget(update: update, screenSize: screenSize, isDarkMode: isDarkMode,documentId: documentId,title: title,pcs: itemCount,destination: destination,),
           ],
         ),
       ),

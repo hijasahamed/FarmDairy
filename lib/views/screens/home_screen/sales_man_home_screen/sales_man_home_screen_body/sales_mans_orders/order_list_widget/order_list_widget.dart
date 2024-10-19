@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:farm_dairy/views/screens/home_screen/sales_man_home_screen/sales_man_home_screen_body/sales_mans_orders/order_list_widget/order_item_card/order_item_card.dart';
 import 'package:flutter/material.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class OrderList extends StatelessWidget {
   const OrderList({
@@ -31,6 +32,14 @@ class OrderList extends StatelessWidget {
         final String update = orderData['update'];
         final String documentId = orderData.id;
 
+        // Extract location data (latitude and longitude)
+        final Map<String, dynamic> location = orderData['location'];
+        final double latitude = location['latitude'];
+        final double longitude = location['longitude'];
+
+        // Create LatLng object using Firebase data
+        final LatLng destination = LatLng(latitude, longitude);
+
         return OrderItemCard(
           email: email,
           itemCount: itemCount,
@@ -41,6 +50,7 @@ class OrderList extends StatelessWidget {
           documentId: documentId,
           isDarkMode: isDarkMode,
           screenSize: screenSize,
+          destination: destination,
         );
       },
     );

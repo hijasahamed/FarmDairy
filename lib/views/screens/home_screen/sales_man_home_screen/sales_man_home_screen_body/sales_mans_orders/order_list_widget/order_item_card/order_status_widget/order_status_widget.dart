@@ -2,6 +2,7 @@ import 'package:farm_dairy/models/common_widgets/text_widget.dart';
 import 'package:farm_dairy/views/screens/home_screen/sales_man_home_screen/sales_man_home_screen_body/sales_mans_orders/order_list_widget/order_item_card/order_status_widget/show_direction_widget/show_direction_widget.dart';
 import 'package:farm_dairy/views/screens/home_screen/sales_man_home_screen/sales_man_home_screen_body/sales_mans_orders/order_list_widget/order_item_card/order_status_widget/update_order_status_button_widget/update_order_status_button_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class OrderStatusWidget extends StatelessWidget {
   const OrderStatusWidget({
@@ -11,7 +12,8 @@ class OrderStatusWidget extends StatelessWidget {
     required this.isDarkMode,
     required this.documentId,
     required this.title,
-    required this.pcs
+    required this.pcs,
+    required this.destination
   });
 
   final String update;
@@ -20,6 +22,7 @@ class OrderStatusWidget extends StatelessWidget {
   final String documentId;
   final String title;
   final int pcs;
+  final LatLng destination;
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +44,7 @@ class OrderStatusWidget extends StatelessWidget {
         if(update != 'Delivered')
           UpdateOrderStatusButtonWidget(isDarkMode: isDarkMode, screenSize: screenSize,documentId: documentId,title: title,pcs: pcs,),
         if (update == 'Order Packed')
-          ShowDirectionWidget(screenSize: screenSize, isDarkMode: isDarkMode),
+          ShowDirectionWidget(screenSize: screenSize, isDarkMode: isDarkMode,destination: destination,),
       ],
     );
   }
