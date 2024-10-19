@@ -14,7 +14,7 @@ LatLng? currentLocation; // Variable to store the fetched current location
 LatLng? draggedPosition; // Variable to store the dragged marker position
 GoogleMapController? mapController; // To control the GoogleMap view
 
-// Method to fetch the current location
+// Method to fetch the current location for retailer location fetching
 Future<void> fetchCurrentLocation({required BuildContext context}) async {
   try {
     // Check if location services are enabled

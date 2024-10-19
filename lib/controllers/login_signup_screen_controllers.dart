@@ -4,7 +4,7 @@ import 'dart:developer';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:farm_dairy/controllers/firebase_controllers.dart';
-import 'package:farm_dairy/controllers/google_map_controllers.dart';
+import 'package:farm_dairy/controllers/google_map_fetch_location_controllers.dart';
 import 'package:farm_dairy/controllers/splash_screen_controllers.dart';
 import 'package:farm_dairy/models/common_widgets/snack_bar_message_widget.dart';
 import 'package:farm_dairy/models/salesman_model/salesman_model.dart';

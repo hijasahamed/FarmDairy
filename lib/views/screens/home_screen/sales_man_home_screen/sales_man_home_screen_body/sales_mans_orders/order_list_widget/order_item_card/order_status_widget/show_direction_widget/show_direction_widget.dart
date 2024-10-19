@@ -1,5 +1,7 @@
 import 'package:farm_dairy/models/common_widgets/text_widget.dart';
+import 'package:farm_dairy/views/screens/home_screen/sales_man_home_screen/sales_man_home_screen_body/sales_mans_orders/order_list_widget/order_item_card/order_status_widget/show_direction_widget/map_direction_screen/map_direction_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class ShowDirectionWidget extends StatelessWidget {
   const ShowDirectionWidget({
@@ -16,7 +18,13 @@ class ShowDirectionWidget extends StatelessWidget {
     return Expanded(
       child: InkWell(
         onTap: () {
-          
+          LatLng destination = const LatLng(11.172906961478494, 75.90066589415073);
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => MapDirectionScreen(locationLatLng: destination,),
+            ),
+          );
         },
         child: Ink(
           height: screenSize.height/25,

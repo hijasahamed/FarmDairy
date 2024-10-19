@@ -1,4 +1,4 @@
-import 'package:farm_dairy/controllers/google_map_controllers.dart';
+import 'package:farm_dairy/controllers/google_map_fetch_location_controllers.dart';
 import 'package:farm_dairy/controllers/login_signup_screen_controllers.dart';
 import 'package:farm_dairy/models/common_widgets/text_widget.dart';
 import 'package:farm_dairy/views/screens/google_map_location_pick_screen/google_map_location_pick_screen.dart';
