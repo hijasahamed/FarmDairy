@@ -8,12 +8,14 @@ class ShowDirectionWidget extends StatelessWidget {
     super.key,
     required this.screenSize,
     required this.isDarkMode,
-    required this.destination
+    required this.destination,
+    required this.shopName,
   });
 
   final Size screenSize;
   final bool isDarkMode;
   final LatLng destination;
+  final String shopName;
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +25,7 @@ class ShowDirectionWidget extends StatelessWidget {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => MapDirectionScreen(locationLatLng: destination,screenSize: screenSize,),
+              builder: (context) => MapDirectionScreen(locationLatLng: destination,screenSize: screenSize,shopName: shopName,),
             ),
           );
         },

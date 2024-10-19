@@ -19,7 +19,8 @@ class OrderItemCard extends StatelessWidget {
     required this.documentId,
     required this.isDarkMode,
     required this.screenSize,
-    required this.destination
+    required this.destination,
+    required this.shopName
   });
 
   final String email;
@@ -32,6 +33,7 @@ class OrderItemCard extends StatelessWidget {
   final bool isDarkMode;
   final Size screenSize;
   final LatLng destination;
+  final String shopName;
 
   @override
   Widget build(BuildContext context) {
@@ -48,7 +50,7 @@ class OrderItemCard extends StatelessWidget {
             OrderPcsCount(itemCount: itemCount, isDarkMode: isDarkMode, screenSize: screenSize),
             OrderEmailText(email: email, isDarkMode: isDarkMode, screenSize: screenSize),
             OrderDateText(orderDate: orderDate, isDarkMode: isDarkMode, screenSize: screenSize),
-            OrderStatusWidget(update: update, screenSize: screenSize, isDarkMode: isDarkMode,documentId: documentId,title: title,pcs: itemCount,destination: destination,),
+            OrderStatusWidget(update: update, screenSize: screenSize, isDarkMode: isDarkMode,documentId: documentId,title: title,pcs: itemCount,destination: destination,shopName: shopName,),
           ],
         ),
       ),

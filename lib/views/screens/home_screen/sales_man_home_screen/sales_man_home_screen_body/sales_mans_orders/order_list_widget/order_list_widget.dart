@@ -40,6 +40,8 @@ class OrderList extends StatelessWidget {
         // Create LatLng object using Firebase data
         final LatLng destination = LatLng(latitude, longitude);
 
+        final String shopName = email.split('@')[0];
+
         return OrderItemCard(
           email: email,
           itemCount: itemCount,
@@ -51,6 +53,7 @@ class OrderList extends StatelessWidget {
           isDarkMode: isDarkMode,
           screenSize: screenSize,
           destination: destination,
+          shopName: shopName,
         );
       },
     );

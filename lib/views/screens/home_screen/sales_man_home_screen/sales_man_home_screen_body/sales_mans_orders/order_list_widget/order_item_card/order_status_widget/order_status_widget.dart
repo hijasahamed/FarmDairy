@@ -13,7 +13,8 @@ class OrderStatusWidget extends StatelessWidget {
     required this.documentId,
     required this.title,
     required this.pcs,
-    required this.destination
+    required this.destination,
+    required this.shopName
   });
 
   final String update;
@@ -23,6 +24,7 @@ class OrderStatusWidget extends StatelessWidget {
   final String title;
   final int pcs;
   final LatLng destination;
+  final String shopName;
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +46,7 @@ class OrderStatusWidget extends StatelessWidget {
         if(update != 'Delivered')
           UpdateOrderStatusButtonWidget(isDarkMode: isDarkMode, screenSize: screenSize,documentId: documentId,title: title,pcs: pcs,),
         if (update == 'Order Packed')
-          ShowDirectionWidget(screenSize: screenSize, isDarkMode: isDarkMode,destination: destination,),
+          ShowDirectionWidget(screenSize: screenSize, isDarkMode: isDarkMode,destination: destination,shopName: shopName,),
       ],
     );
   }

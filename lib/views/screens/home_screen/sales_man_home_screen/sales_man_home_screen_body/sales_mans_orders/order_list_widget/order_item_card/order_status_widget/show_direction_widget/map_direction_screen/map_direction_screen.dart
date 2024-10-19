@@ -7,9 +7,10 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class MapDirectionScreen extends StatefulWidget {
   const MapDirectionScreen(
-      {super.key, required this.locationLatLng, required this.screenSize});
+      {super.key, required this.locationLatLng, required this.screenSize,required this.shopName});
   final LatLng locationLatLng;
   final Size screenSize;
+  final String shopName;
   @override
   State<MapDirectionScreen> createState() => _MapDirectionScreenState();
 }
