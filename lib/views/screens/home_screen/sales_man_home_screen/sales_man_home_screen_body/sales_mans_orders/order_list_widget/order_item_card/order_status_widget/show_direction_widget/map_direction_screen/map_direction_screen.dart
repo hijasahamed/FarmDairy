@@ -19,7 +19,7 @@ class _MapDirectionScreenState extends State<MapDirectionScreen> {
   @override
   void initState() {
     super.initState();
-    fetchSalesManCurrentLocation(context: context);
+    fetchSalesManCurrentLocation(context: context,destination: widget.locationLatLng);
   }
 
   @override
@@ -45,23 +45,26 @@ class _MapDirectionScreenState extends State<MapDirectionScreen> {
               : GoogleMap(
                   initialCameraPosition: CameraPosition(
                     target: salesManCurrentLocation!,
-                    zoom: 15,
+                    zoom: 14,
                   ),
                   onMapCreated: (GoogleMapController controller) {
                     salesManCurrentLocationMapController = controller;
                   },
-                  markers: {
-                    Marker(
-                      markerId: const MarkerId('_salesmanCurrentLoc'),
-                      position: salesManCurrentLocation!,
-                      draggable: true,
-                    ),
-                    Marker(
-                      markerId: const MarkerId('_destinationLoc'),
-                      position: widget.locationLatLng,
-                      draggable: true,
-                    ),
-                  },
+                  myLocationButtonEnabled: true,
+                  // markers: {
+                  //   Marker(
+                  //     markerId: const MarkerId('_salesmanCurrentLoc'),
+                  //     position: salesManCurrentLocation!,
+                  //     draggable: true,
+                  //   ),
+                  //   Marker(
+                  //     markerId: const MarkerId('_destinationLoc'),
+                  //     position: widget.locationLatLng,
+                  //     draggable: true,
+                  //   ),
+                  // },
+                  markers: markers,
+                  polylines: polyline,
                 ),
         );
       },

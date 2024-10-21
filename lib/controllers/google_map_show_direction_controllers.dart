@@ -10,9 +10,12 @@ LatLng? salesManCurrentLocation; // Variable to store the fetched current locati
 GoogleMapController? salesManCurrentLocationMapController; // To control the GoogleMap view
 SalesmanHomeScreenBloc salesManCurrentLocationPickedRefreshBlocInstance = SalesmanHomeScreenBloc();
 
+final Set<Polyline> polyline = {};
+Set<Marker> markers = {};
+List<LatLng> pointsOnMap = [];
+
 // Method to fetch the current location
-Future<void> fetchSalesManCurrentLocation(
-    {required BuildContext context}) async {
+Future<void> fetchSalesManCurrentLocation({required BuildContext context,required LatLng destination}) async {
   try {
     // Check if location services are enabled
     bool serviceEnabled = await Geolocator.isLocationServiceEnabled();
@@ -48,6 +51,35 @@ Future<void> fetchSalesManCurrentLocation(
 
     // Update the current location state
     salesManCurrentLocation = LatLng(position.latitude, position.longitude);
+
+    // add locations to the List
+    pointsOnMap
+    ..add(salesManCurrentLocation!)
+    ..add(destination);
+
+    for(int i =0;i < pointsOnMap.length;i++){
+      markers.add(
+        Marker(
+          markerId: MarkerId(
+            i.toString()
+          ),
+          position: pointsOnMap[i],
+          infoWindow: const InfoWindow(
+            title: '',
+            snippet: '',           
+          ),
+          icon: BitmapDescriptor.defaultMarker
+        )
+      );
+      polyline.add(
+        Polyline(
+          polylineId: const PolylineId('Id'),
+          points: pointsOnMap,
+          color: Colors.blue        
+          )
+      );
+    }
+    
     salesManCurrentLocationPickedRefreshBlocInstance.add(SalesManCurrentLocationPickedRefreshEvent());
 
     // Move the camera to the user's current location when it's fetched
@@ -57,27 +89,3 @@ Future<void> fetchSalesManCurrentLocation(
         context: context, message: 'Failed to fetch your current location.');
   }
 }
-
-
-// Future<List<LatLng>> fetchPolylinePoints(LatLng currentLoc, LatLng destinationLoc) async {
-//   // Initialize PolylinePoints
-//   final polylinePoints = PolylinePoints();
-  
-//   // Call the method to fetch the polyline points
-//   PolylineResult result = await polylinePoints.getRouteBetweenCoordinates(
-//     "YOUR_GOOGLE_API_KEY", // Replace with your Google Maps API Key
-//     PointLatLng(currentLoc.latitude, currentLoc.longitude), // Start location (currentLoc)
-//     PointLatLng(destinationLoc.latitude, destinationLoc.longitude), // End location (destinationLoc)
-//     travelMode: TravelMode.driving,  // You can change this to 'walking' or 'bicycling' if needed
-//   );
-
-//   // Check if the result is successful
-//   if (result.points.isNotEmpty) {
-//     // Convert the polyline points into a list of LatLng
-//     return result.points.map((point) => LatLng(point.latitude, point.longitude)).toList();
-//   } else {
-//     // Handle if there are no points found or an error occurred
-//     print('No polyline points found or an error occurred.');
-//     return [];
-//   }
-// }
