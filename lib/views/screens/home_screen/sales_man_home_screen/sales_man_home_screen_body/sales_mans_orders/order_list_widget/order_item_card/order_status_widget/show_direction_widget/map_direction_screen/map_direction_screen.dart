@@ -19,8 +19,8 @@ class _MapDirectionScreenState extends State<MapDirectionScreen> {
   @override
   void initState() {
     super.initState();
-    fetchSalesManCurrentLocation(context: context,destination: widget.locationLatLng);
-  }
+    WidgetsBinding.instance.addPostFrameCallback((_) async => await initializeMap(context: context,destination: widget.locationLatLng));   
+  }  
 
   @override
   Widget build(BuildContext context) {
@@ -51,23 +51,40 @@ class _MapDirectionScreenState extends State<MapDirectionScreen> {
                     salesManCurrentLocationMapController = controller;
                   },
                   myLocationButtonEnabled: true,
-                  // markers: {
-                  //   Marker(
-                  //     markerId: const MarkerId('_salesmanCurrentLoc'),
-                  //     position: salesManCurrentLocation!,
-                  //     draggable: true,
-                  //   ),
-                  //   Marker(
-                  //     markerId: const MarkerId('_destinationLoc'),
-                  //     position: widget.locationLatLng,
-                  //     draggable: true,
-                  //   ),
-                  // },
-                  markers: markers,
-                  polylines: polyline,
+                  markers: {
+                    Marker(
+                      markerId: const MarkerId('_salesmanCurrentLoc'),
+                      position: salesManCurrentLocation!,
+                      draggable: true,
+                    ),
+                    Marker(
+                      markerId: const MarkerId('_destinationLoc'),
+                      position: widget.locationLatLng,
+                      draggable: true,
+                    ),
+                  },
+                  polylines: Set<Polyline>.of(polylines.values),
                 ),
         );
       },
     );
   }
+
+  Future<void> generatePolyLineFromPoints(List<LatLng> polylineCoordinates) async {
+    const id = PolylineId('polyline');
+    final polyline = Polyline(
+      polylineId: id,
+      color: Colors.blueAccent,
+      points: polylineCoordinates,
+      width: 5,
+    );
+    setState(() => polylines[id] = polyline);
+  }
+
+  Future<void> initializeMap({required BuildContext context,required LatLng destination}) async {
+    await fetchSalesManCurrentLocation(context: context,destination: destination);
+    final coordinates = await fetchPolylinePoints(destination: destination);
+    generatePolyLineFromPoints(coordinates);
+  }
+
 }

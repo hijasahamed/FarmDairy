@@ -3,6 +3,7 @@
 import 'package:farm_dairy/controllers/google_map_fetch_location_controllers.dart';
 import 'package:farm_dairy/views/screens/home_screen/sales_man_home_screen/bloc/salesman_home_screen_bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_polyline_points/flutter_polyline_points.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
@@ -10,9 +11,8 @@ LatLng? salesManCurrentLocation; // Variable to store the fetched current locati
 GoogleMapController? salesManCurrentLocationMapController; // To control the GoogleMap view
 SalesmanHomeScreenBloc salesManCurrentLocationPickedRefreshBlocInstance = SalesmanHomeScreenBloc();
 
-final Set<Polyline> polyline = {};
+Map<PolylineId, Polyline> polylines = {};
 Set<Marker> markers = {};
-List<LatLng> pointsOnMap = [];
 
 // Method to fetch the current location
 Future<void> fetchSalesManCurrentLocation({required BuildContext context,required LatLng destination}) async {
@@ -51,34 +51,6 @@ Future<void> fetchSalesManCurrentLocation({required BuildContext context,require
 
     // Update the current location state
     salesManCurrentLocation = LatLng(position.latitude, position.longitude);
-
-    // add locations to the List
-    pointsOnMap
-    ..add(salesManCurrentLocation!)
-    ..add(destination);
-
-    for(int i =0;i < pointsOnMap.length;i++){
-      markers.add(
-        Marker(
-          markerId: MarkerId(
-            i.toString()
-          ),
-          position: pointsOnMap[i],
-          infoWindow: const InfoWindow(
-            title: '',
-            snippet: '',           
-          ),
-          icon: BitmapDescriptor.defaultMarker
-        )
-      );
-      polyline.add(
-        Polyline(
-          polylineId: const PolylineId('Id'),
-          points: pointsOnMap,
-          color: Colors.blue        
-          )
-      );
-    }
     
     salesManCurrentLocationPickedRefreshBlocInstance.add(SalesManCurrentLocationPickedRefreshEvent());
 
@@ -87,5 +59,25 @@ Future<void> fetchSalesManCurrentLocation({required BuildContext context,require
   } catch (e) {
     showErrorDialog(
         context: context, message: 'Failed to fetch your current location.');
+  }
+}
+
+Future<List<LatLng>> fetchPolylinePoints({required LatLng destination}) async {
+  final polylinePoints = PolylinePoints();
+  final result = await polylinePoints.getRouteBetweenCoordinates(
+    googleApiKey: 'AIzaSyAoQn5X1kSsKA5ldOr9c2O1QtDYKIrfDpo',
+    request: PolylineRequest(
+      origin: PointLatLng(salesManCurrentLocation!.latitude,salesManCurrentLocation!.longitude),
+      destination: PointLatLng(destination.latitude,destination.longitude),
+      mode: TravelMode.driving,
+    ),
+  );
+  if (result.points.isNotEmpty) {
+    return result.points
+        .map((point) => LatLng(point.latitude, point.longitude))
+        .toList();
+  } else {
+    debugPrint(result.errorMessage);
+    return [];
   }
 }
