@@ -1,5 +1,6 @@
 // ignore_for_file: use_build_context_synchronously
 
+import 'dart:async';
 import 'dart:developer';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -10,6 +11,7 @@ import 'package:farm_dairy/models/common_widgets/snack_bar_message_widget.dart';
 import 'package:farm_dairy/models/salesman_model/salesman_model.dart';
 import 'package:farm_dairy/models/user_model/user_model.dart';
 import 'package:farm_dairy/views/screens/home_screen/admin_home_screen/admin_home_screen.dart';
+import 'package:farm_dairy/views/screens/home_screen/admin_home_screen/admin_home_screen_widgets/admin_home_screen_body_widget/drivers_details_widget/driver_details_holder/salesman_add_button/add_details_form/add_details_form.dart';
 import 'package:farm_dairy/views/screens/home_screen/retailer_home_screen/retailer_home_screen.dart';
 import 'package:farm_dairy/views/screens/home_screen/sales_man_home_screen/sales_man_home_screen.dart';
 import 'package:farm_dairy/views/screens/login_signup_screen/bloc/login_signup_screen_bloc.dart';
@@ -69,6 +71,7 @@ void loginButtonClicked({required BuildContext context,required Size screenSize}
           await sharedPreferenceStorageInstance.setString('role', salesManData.role);
           await sharedPreferenceStorageInstance.setString('userUid', 'NoData');
           await sharedPreferenceStorageInstance.setString('village', salesManData.location);
+          await clearTextFormControllers();
           Navigator.of(context).pushAndRemoveUntil(
             MaterialPageRoute(builder: (context) => SalesManHomeScreen(screenSize: screenSize,salesmanData: salesManData,)),
             (Route<dynamic> route) => false,
@@ -85,11 +88,13 @@ void loginButtonClicked({required BuildContext context,required Size screenSize}
           await sharedPreferenceStorageInstance.setString('userUid', userData.userUid);
           await sharedPreferenceStorageInstance.setString('village', userData.village);
           if(userData.role == 'Admin' && roleController.text == userData.role){
+            await clearTextFormControllers();
             Navigator.of(context).pushAndRemoveUntil(
               MaterialPageRoute(builder: (context) => AdminHomescreen(screenSize: screenSize,)),
               (Route<dynamic> route) => false,
             );
           }else if(userData.role == 'Retailer' && roleController.text == userData.role){
+            await clearTextFormControllers();
             Navigator.of(context).pushAndRemoveUntil(
               MaterialPageRoute(builder: (context) => RetailerHomeScreen(screenSize: screenSize,email: userData.email,userData: userData,)),
               (Route<dynamic> route) => false,
@@ -140,6 +145,7 @@ void signUpButtonClicked({required BuildContext context,required Size screenSize
           await sharedPreferenceStorageInstance.setString('role', userData.role);
           await sharedPreferenceStorageInstance.setString('userUid', userData.userUid);
           await sharedPreferenceStorageInstance.setString('village', userData.village);
+          await clearTextFormControllers();
           if(userData.role == 'Admin'){
             Navigator.of(context).pushAndRemoveUntil(
               MaterialPageRoute(builder: (context) => AdminHomescreen(screenSize: screenSize,)),
@@ -261,4 +267,12 @@ Future<void> logout({required BuildContext context,required Size screenSize}) as
   } catch (e) {
     snackbarMessageWidget(text: 'Something Went Wrong', context: context, color: Colors.red, textColor: Colors.white, behavior: SnackBarBehavior.floating, time: 3000);
   }
+}
+
+clearTextFormControllers(){
+  emailController.clear();
+  passwordController.clear();
+  roleController.clear();
+  villageController.clear();
+  locationController.clear();
 }
