@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_polyline_points/flutter_polyline_points.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 LatLng? salesManCurrentLocation; // Variable to store the fetched current location
 GoogleMapController? salesManCurrentLocationMapController; // To control the GoogleMap view
@@ -79,5 +80,16 @@ Future<List<LatLng>> fetchPolylinePoints({required LatLng destination}) async {
   } else {
     debugPrint(result.errorMessage);
     return [];
+  }
+}
+
+Future<void> openGoogleMaps(LatLng destination) async {
+  final Uri googleMapsUri = Uri.parse(
+      'https://www.google.com/maps/dir/?api=1&destination=${destination.latitude},${destination.longitude}&travelmode=driving');
+
+  if (await canLaunchUrl(googleMapsUri)) {
+    await launchUrl(googleMapsUri, mode: LaunchMode.externalApplication);
+  } else {
+    throw 'Could not launch Google Maps';
   }
 }
